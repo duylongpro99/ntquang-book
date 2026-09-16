@@ -1,0 +1,23 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",         "x": 0,    "y": 0,    "w": 1000, "h": 740 },
+    { "file": "Category.dc.html",     "x": 1080, "y": 0,    "w": 1000, "h": 720 },
+    { "file": "Search.dc.html",       "x": 2160, "y": 0,    "w": 720,  "h": 660 },
+    { "file": "SearchEmpty.dc.html",  "x": 2960, "y": 0,    "w": 700,  "h": 560 },
+    { "file": "BookDetail.dc.html",   "x": 3740, "y": 0,    "w": 1000, "h": 880 },
+    { "file": "BookLoading.dc.html",  "x": 4820, "y": 0,    "w": 1000, "h": 520 },
+
+    { "file": "AuthModal.dc.html",    "x": 0,    "y": 1020, "w": 520,  "h": 560 },
+    { "file": "AuthError.dc.html",    "x": 600,  "y": 1020, "w": 520,  "h": 560 },
+
+    { "file": "Account.dc.html",      "x": 0,    "y": 1740, "w": 1000, "h": 620 },
+    { "file": "Downloads.dc.html",    "x": 1080, "y": 1740, "w": 1000, "h": 620 },
+    { "file": "DownloadsEmpty.dc.html","x": 2160,"y": 1740, "w": 1000, "h": 620 }
+  ],
+  "annotations": [
+    { "id": "row1", "x": 0, "y": -110, "w": 440, "text": "FLOW 1 — Browse → Book\nHome · Category · Search (+empty) · Book detail (+loading rail)" },
+    { "id": "row2", "x": 0, "y": 910,  "w": 440, "text": "FLOW 2 — Login gate\nLogin (+error) — username + password only, no tiers/social. Logged in ⇒ download any book." },
+    { "id": "row3", "x": 0, "y": 1630, "w": 440, "text": "FLOW 3 — Account\nDashboard (My library first, no tier/expiry) · My library (+empty)" }
+  ],
+  "launch": { "view": "canvas" }
+}

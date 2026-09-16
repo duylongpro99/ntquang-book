@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body{margin:0;font-family:'Be Vietnam Pro',system-ui,sans-serif;background:#0f172a;color:#334155;}
+    a{color:#d97706;}a:hover{color:#b45309;}
+    .ann{background:#1e293b;color:#e2e8f0;font-size:12px;padding:6px 12px;}.ann b{color:#5eead4;}
+    .scrim{background:rgba(15,23,42,.55);padding:40px;display:flex;justify-content:center;}
+    .modal{background:#fff;border-radius:12px;padding:24px;width:320px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.2);}
+    .field{border:1px solid #cbd5e1;border-radius:8px;padding:10px 12px;font-size:13px;color:#94a3b8;}
+    .cta{background:#0f766e;color:#fff;border-radius:8px;padding:11px;font-size:14px;font-weight:700;text-align:center;}
+    .goog{border:1px solid #cbd5e1;border-radius:8px;padding:10px;font-size:13px;text-align:center;color:#475569;}
+    .or{display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:11px;}
+    .or:before,.or:after{content:'';flex:1;height:1px;background:#e2e8f0;}
+  </style>
+</helmet>
+<div>
+  <div class="ann">login / modal-overlay &nbsp;·&nbsp; branch: <b>happy — triggered by Tải sách</b></div>
+  <div class="scrim">
+    <div class="modal">
+      <div style="font-size:18px;font-weight:700;text-align:center;color:#334155;">ĐĂNG NHẬP</div>
+      <div class="field">Tên tài khoản hoặc email</div>
+      <div class="field">Mật khẩu</div>
+      <div class="cta">Đăng nhập</div>
+      <div style="font-size:12px;color:#64748b;text-align:center;">Chưa có tài khoản? <a>Đăng ký ngay</a></div>
+      <div style="font-size:11px;color:#94a3b8;text-align:center;">Chỉ tên tài khoản + mật khẩu · không đăng nhập mạng xã hội</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
