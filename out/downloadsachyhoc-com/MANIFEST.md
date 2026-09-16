@@ -14,7 +14,7 @@ in 00–02 as reconnaissance (marked out-of-scope), not built.
 | 01 | cris-re-features | done | 2026-09-16 | 49 features (19 obs / 27 inf / 3 guess), ratio 1.6:1 |
 | 02 | cris-re-domain | done | 2026-09-16 | 18 entities, 5 state machines, 17 events; features→52 (ratio 1.7:1) |
 | 03 | cris-re-ia | done | 2026-09-16 | 24 screens, 6 patterns (marketing-page/tier/payment screens removed), 8 orphan routes |
-| 04 | cris-re-product | done | 2026-09-16 | PRD + MVP cut (Now 21/52=40%; tiers+payment+social-login+marketing OUT → 15 Never); Gate B approved; est ↓ (WP-without-Woo) |
+| 04 | cris-re-product | done | 2026-09-16 | PRD + MVP cut (Now 21/52=40%; tiers+payment+social-login+marketing OUT → 15 Never); Gate B approved; + build docs: architecture.md (STACK DECIDED: Next.js 16/TS 7 · Strapi 5 CMS · Postgres · R2 PDFs(private,presigned)+covers(public) · Postgres FTS · own user+pw auth · VPS · no email v1) + roadmap.md (4 phases, R1/R5-gated) |
 | 05 | cris-re-ux | partial | 2026-09-16 | UX spec from evidence (public flows observed); binary login-gate; member flows inferred; BRIEF.md handoff for R1 only |
 | 06 | cris-re-ui | done | 2026-09-16 | tokens + 24 components + 11 lo-fi (wireframes.html) + 4 hi-fi exemplars (hifi/); no tiers/payment/social-login; all local files |
 
