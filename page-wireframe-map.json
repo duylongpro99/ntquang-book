@@ -1,0 +1,224 @@
+{
+  "_note": "Wires each Next.js (App Router) page to its wireframe artboard(s) and the design system. Source of truth for what to build and what it should look like. Wireframes are lo-fi structure only — fidelity, color, spacing come from design.md, never from the wireframe's placeholder hex values.",
+  "meta": {
+    "framework": "next-app-router",
+    "lang": "vi",
+    "designSystem": "design.md",
+    "tokens": "out/downloadsachyhoc-com/06-ui/tokens.json",
+    "componentInventory": "out/downloadsachyhoc-com/06-ui/components.md",
+    "wireframeDir": "out/downloadsachyhoc-com/06-ui/wireframes",
+    "wireframeCanvas": "out/downloadsachyhoc-com/06-ui/wireframes/canvas.json",
+    "patterns": "out/downloadsachyhoc-com/03-ia/patterns.md",
+    "scope": "No membership tiers, no payment, no social login. Browse is public; download requires username/email + password login; any logged-in user downloads any book."
+  },
+
+  "conventions": {
+    "appDir": "app",
+    "componentsDir": "src/components",
+    "loadingFile": "loading.tsx renders the *Loading wireframe as a skeleton",
+    "emptyState": "Rendered inside the page component when the data set is empty — maps to the *Empty wireframe",
+    "errorFile": "error.tsx / inline field errors — never a bare error string",
+    "wireframePlaceholders": "Boxes/bars in .dc.html are placeholders. Replace with real components from src/components. Do NOT copy the wireframe's inline CSS or hex colors."
+  },
+
+  "pages": [
+    {
+      "id": "home",
+      "route": "/",
+      "appFile": "app/page.tsx",
+      "titleVi": "Trang chủ",
+      "pattern": "list-grid",
+      "auth": "public",
+      "wireframes": { "default": "Main.dc.html" },
+      "dynamicParams": [],
+      "data": "Curated rails (Sách mới cập nhật), hero, mega-menu source (79 categories). No filter sidebar on home.",
+      "components": ["AppHeader", "MegaMenu", "GlobalSearch", "Rail", "BookCard", "CardGrid", "SocialProofToast", "ChatLauncher", "AppFooter"],
+      "states": ["default", "loading(rails skeleton)"],
+      "notes": "Hero band + curated horizontal rails, NOT a filtered grid. Rails paint with skeletons while async."
+    },
+    {
+      "id": "library",
+      "route": "/thu-vien-sach",
+      "appFile": "app/thu-vien-sach/page.tsx",
+      "titleVi": "Thư viện sách",
+      "pattern": "list-grid",
+      "auth": "public",
+      "wireframes": { "default": "Category.dc.html", "empty": "SearchEmpty.dc.html" },
+      "dynamicParams": [],
+      "data": "Full catalog, filterable. Reuses the Category list-grid shell (filter sidebar + grid + pagination).",
+      "components": ["FilterSidebar", "SortControl", "CardGrid", "BookCard", "Pagination", "EmptyState", "Breadcrumb"],
+      "states": ["default", "applied-filters", "empty", "loading"],
+      "notes": "Same shell as Category; the difference is data scope (all books vs one taxonomy branch)."
+    },
+    {
+      "id": "category",
+      "route": "/danh-muc/[...slug]",
+      "appFile": "app/danh-muc/[...slug]/page.tsx",
+      "titleVi": "Danh mục · chuyên khoa",
+      "pattern": "list-grid",
+      "auth": "public",
+      "wireframes": { "default": "Category.dc.html", "empty": "SearchEmpty.dc.html" },
+      "dynamicParams": ["slug (catch-all, up to 3 taxonomy levels: e.g. can-lam-sang/chan-doan-hinh-anh/x-quang)"],
+      "data": "Books within the taxonomy branch resolved from the catch-all slug. Breadcrumb reflects the path.",
+      "components": ["Breadcrumb", "FilterSidebar", "SortControl", "CardGrid", "BookCard", "Pagination", "EmptyState"],
+      "states": ["default", "applied-filters", "empty", "loading"],
+      "notes": "Catch-all route handles depth-4 tree. <768px filters collapse to a 'Bộ lọc' drawer."
+    },
+    {
+      "id": "search",
+      "route": "/tim-kiem",
+      "appFile": "app/tim-kiem/page.tsx",
+      "titleVi": "Kết quả tìm kiếm",
+      "pattern": "list-grid",
+      "auth": "public",
+      "wireframes": { "default": "Search.dc.html", "empty": "SearchEmpty.dc.html" },
+      "dynamicParams": ["searchParams.q", "searchParams.page"],
+      "data": "Native catalog search on ?q=. No Google CSE.",
+      "components": ["GlobalSearch", "CardGrid", "BookCard", "Pagination", "EmptyState", "SortControl"],
+      "states": ["default", "loading", "no-results(empty)"],
+      "notes": "Empty state (SearchEmpty) shows a CTA back to browse. Search input reflects the current query."
+    },
+    {
+      "id": "book-detail",
+      "route": "/sach/[slug]",
+      "appFile": "app/sach/[slug]/page.tsx",
+      "titleVi": "Chi tiết sách",
+      "pattern": "product-detail",
+      "auth": "public",
+      "wireframes": { "default": "BookDetail.dc.html", "loading": "BookLoading.dc.html" },
+      "loadingFile": "app/sach/[slug]/loading.tsx",
+      "dynamicParams": ["slug"],
+      "data": "Single book: cover, meta (editor/language/publisher/SKU), description, related grid, recently-updated rail.",
+      "components": ["Breadcrumb", "MediaViewer", "MetaList", "RatingStars", "PrimaryCTA", "ShareBar", "TabGroup", "Rail", "BookCard", "CardGrid"],
+      "states": ["default", "loading(skeleton)", "cta-loading(downloading)"],
+      "primaryAction": {
+        "component": "PrimaryCTA",
+        "labelVi": "Tải sách",
+        "flow": "logged-in => file downloads (CTA shows progress); logged-out => open AuthModal, resume download after login. No tier gate, no upsell."
+      },
+      "notes": "BookLoading.dc.html is the skeleton for loading.tsx — a leaked error rail becomes a gracefully-hidden skeleton. <768px: CTA sticks to bottom."
+    },
+    {
+      "id": "account",
+      "route": "/tai-khoan",
+      "appFile": "app/tai-khoan/page.tsx",
+      "titleVi": "Tài khoản của tôi",
+      "pattern": "account-dashboard",
+      "auth": "protected",
+      "wireframes": { "default": "Account.dc.html" },
+      "dynamicParams": [],
+      "data": "Account landing. Hero panel = My library (re-download) summary. Tabs: my library · requests · details · logout.",
+      "components": ["AccountNav", "DataTable", "EmptyState", "TabGroup"],
+      "states": ["default", "loading"],
+      "notes": "INFERRED from reference — member area was not captured live. Confirm nav items and landing content against the real member area (05-ux/BRIEF §3.4) before final build. ≥1024px 2-pane; md tabs."
+    },
+    {
+      "id": "account-library",
+      "route": "/tai-khoan/thu-vien",
+      "appFile": "app/tai-khoan/thu-vien/page.tsx",
+      "titleVi": "Thư viện của tôi",
+      "pattern": "account-dashboard",
+      "auth": "protected",
+      "wireframes": { "default": "Downloads.dc.html", "empty": "DownloadsEmpty.dc.html" },
+      "dynamicParams": ["searchParams.page"],
+      "data": "Table of downloaded books with a re-download control (Bet 2). Paginated.",
+      "components": ["AccountNav", "DataTable", "Pagination", "EmptyState"],
+      "states": ["default", "empty", "loading", "paginated"],
+      "notes": "DataTable columns/re-download control are INFERRED — confirm against live member area before build. Empty state (DownloadsEmpty) CTAs to browse."
+    },
+    {
+      "id": "account-details",
+      "route": "/tai-khoan/thong-tin",
+      "appFile": "app/tai-khoan/thong-tin/page.tsx",
+      "titleVi": "Thông tin tài khoản",
+      "pattern": "form",
+      "auth": "protected",
+      "wireframes": { "default": null, "reuse": "Assemble from FormField (login) + AccountNav shell" },
+      "dynamicParams": [],
+      "data": "Editable profile fields. No payment/billing fields.",
+      "components": ["AccountNav", "FormField"],
+      "states": ["default", "focus", "error", "disabled", "success"],
+      "notes": "No dedicated wireframe — compose the account-dashboard shell + FormField set. No checkout fields."
+    },
+    {
+      "id": "contact",
+      "route": "/lien-he",
+      "appFile": "app/lien-he/page.tsx",
+      "titleVi": "Liên hệ",
+      "pattern": "form",
+      "auth": "public",
+      "wireframes": { "default": null, "reuse": "FormField set, single column" },
+      "dynamicParams": [],
+      "data": "Contact form: name, email, message.",
+      "components": ["FormField"],
+      "states": ["default", "focus", "error", "success"],
+      "notes": "No dedicated wireframe — reuse FormField. Inline validation, success state."
+    },
+    {
+      "id": "news-index",
+      "route": "/tin-tuc",
+      "appFile": "app/tin-tuc/page.tsx",
+      "titleVi": "Tin tức",
+      "pattern": "list-grid",
+      "auth": "public",
+      "wireframes": { "default": "Category.dc.html", "reuse": "list-grid shell, article card variant" },
+      "dynamicParams": ["searchParams.page"],
+      "data": "News/blog posts listing.",
+      "components": ["CardGrid", "BookCard", "Pagination"],
+      "states": ["default", "loading", "empty"],
+      "notes": "Reuse list-grid; BookCard 'article' variant. No dedicated wireframe."
+    },
+    {
+      "id": "article",
+      "route": "/tin-tuc/[slug]",
+      "appFile": "app/tin-tuc/[slug]/page.tsx",
+      "titleVi": "Bài viết",
+      "pattern": "article",
+      "auth": "public",
+      "wireframes": { "default": null, "reuse": "Prose body, max-w-prose, optional related rail" },
+      "dynamicParams": ["slug"],
+      "data": "Single article: title + prose body + optional related-posts rail.",
+      "components": ["Breadcrumb", "Rail", "BookCard"],
+      "states": ["default", "loading"],
+      "notes": "article pattern — single column, wide readable measure (max-w-prose)."
+    },
+    {
+      "id": "about",
+      "route": "/gioi-thieu",
+      "appFile": "app/gioi-thieu/page.tsx",
+      "titleVi": "Giới thiệu",
+      "pattern": "article",
+      "auth": "public",
+      "wireframes": { "default": null, "reuse": "Static prose, body-only" },
+      "dynamicParams": [],
+      "data": "Static content.",
+      "components": [],
+      "states": ["default"],
+      "notes": "Body-only article. Also covers /huong-dan-tai-sach, /dieu-khoan, /bao-mat as static prose pages."
+    }
+  ],
+
+  "modals": [
+    {
+      "id": "auth-modal",
+      "surface": "modal-overlay (no dedicated URL — triggered site-wide)",
+      "component": "AuthModal",
+      "titleVi": "Đăng nhập / Đăng ký",
+      "pattern": "modal-overlay",
+      "wireframes": { "default": "AuthModal.dc.html", "error": "AuthError.dc.html" },
+      "variants": ["login", "register"],
+      "components": ["AuthModal", "FormField"],
+      "states": ["default", "validating", "error"],
+      "fields": ["username-or-email", "password"],
+      "notes": "Username/email + password + submit + login/register toggle ONLY. NO Google/social button. The single gate: login => can download any book. Traps focus, Esc closes, resumes pending download after success. Errors render inline (AuthError), never a bare string.",
+      "implementation": "Render via a route-intercepting parallel route (app/@modal) or a global client modal store; the download CTA opens it when logged out."
+    }
+  ],
+
+  "deferred": [
+    { "id": "course-catalog", "route": "/khoa-hoc", "reason": "Later — courses catalog" },
+    { "id": "course-detail", "route": "/khoa-hoc/[slug]", "reason": "Later — course detail" },
+    { "id": "book-requests", "route": "/tai-khoan/yeu-cau", "reason": "Later — book requests tab" },
+    { "id": "author-archive", "route": "/tac-gia/[slug]", "reason": "Orphan browse axis — reachable only from a book's author link/deep link; reuse list-grid" }
+  ]
+}
