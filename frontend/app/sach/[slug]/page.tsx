@@ -1,24 +1,19 @@
 "use client";
 
-import React, { use } from "react";
+import { ArrowLeft, Download, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { getBookBySlug, getRelatedBooks, BOOKS_DATA } from "@/src/data/books";
-import { Breadcrumb } from "@/src/components/global/Breadcrumb";
+import { use } from "react";
+import { Rail } from "@/src/components/book/Rail";
+import { RatingStars } from "@/src/components/book/RatingStars";
 import { MediaViewer } from "@/src/components/detail/MediaViewer";
 import { MetaList } from "@/src/components/detail/MetaList";
 import { PrimaryCTA } from "@/src/components/detail/PrimaryCTA";
 import { ShareBar } from "@/src/components/detail/ShareBar";
 import { TabGroup } from "@/src/components/detail/TabGroup";
-import { RatingStars } from "@/src/components/book/RatingStars";
-import { Rail } from "@/src/components/book/Rail";
-import { ShieldCheck, ArrowLeft, Download, CheckCircle2 } from "lucide-react";
+import { Breadcrumb } from "@/src/components/global/Breadcrumb";
+import { getBookBySlug, getRelatedBooks } from "@/src/data/books";
 
-export default function BookDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default function BookDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
   const slug = resolvedParams?.slug;
   const book = getBookBySlug(slug);
@@ -26,11 +21,10 @@ export default function BookDetailPage({
   if (!book) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 text-center space-y-4">
-        <h1 className="text-2xl font-bold text-content font-heading">
-          Không tìm thấy tài liệu
-        </h1>
+        <h1 className="text-2xl font-bold text-content font-heading">Không tìm thấy tài liệu</h1>
         <p className="text-sm text-content-muted">
-          Cuốn sách hoặc tài liệu y khoa bạn đang tìm kiếm không tồn tại hoặc đã được chuyển sang đường dẫn khác.
+          Cuốn sách hoặc tài liệu y khoa bạn đang tìm kiếm không tồn tại hoặc đã được chuyển sang
+          đường dẫn khác.
         </p>
         <Link
           href="/thu-vien-sach"
@@ -83,7 +77,9 @@ export default function BookDetailPage({
                 {book.title}
               </h1>
               <p className="text-sm text-content-muted mt-1.5 font-medium">
-                Tác giả / Chủ biên: <span className="text-content font-semibold">{book.author}</span> · NXB: {book.publisher}
+                Tác giả / Chủ biên:{" "}
+                <span className="text-content font-semibold">{book.author}</span> · NXB:{" "}
+                {book.publisher}
               </p>
 
               <div className="flex items-center gap-3 mt-3 pt-3 border-t border-border">

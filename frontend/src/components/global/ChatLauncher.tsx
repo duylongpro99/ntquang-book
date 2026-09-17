@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { MessageCircleQuestion, X, Send } from "lucide-react";
+import { MessageCircleQuestion, Send, X } from "lucide-react";
+import type React from "react";
+import { useState } from "react";
 
 export function ChatLauncher() {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +49,8 @@ export function ChatLauncher() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-2.5">
                 <p className="text-xs text-content-muted leading-relaxed">
-                  Bạn không tìm thấy ebook, giáo trình hay tài liệu bài giảng y khoa cần thiết? Hãy gửi tên sách để chúng tôi cập nhật bổ sung sớm nhất.
+                  Bạn không tìm thấy ebook, giáo trình hay tài liệu bài giảng y khoa cần thiết? Hãy
+                  gửi tên sách để chúng tôi cập nhật bổ sung sớm nhất.
                 </p>
                 <textarea
                   value={message}

@@ -1,4 +1,3 @@
-import React from "react";
 import { Star, StarHalf } from "lucide-react";
 
 export interface RatingStarsProps {
@@ -8,12 +7,7 @@ export interface RatingStarsProps {
   showCount?: boolean;
 }
 
-export function RatingStars({
-  rating,
-  count,
-  size = "sm",
-  showCount = true,
-}: RatingStarsProps) {
+export function RatingStars({ rating, count, size = "sm", showCount = true }: RatingStarsProps) {
   const starSize = size === "sm" ? "w-3.5 h-3.5" : "w-4 h-4";
   const fullStars = Math.floor(rating);
   const hasHalf = rating % 1 >= 0.4 && rating % 1 <= 0.8;
@@ -25,9 +19,7 @@ export function RatingStars({
         {Array.from({ length: fullStars }).map((_, i) => (
           <Star key={`full-${i}`} className={`${starSize} fill-accent text-accent`} />
         ))}
-        {hasHalf && (
-          <StarHalf className={`${starSize} fill-accent text-accent`} />
-        )}
+        {hasHalf && <StarHalf className={`${starSize} fill-accent text-accent`} />}
         {Array.from({ length: Math.max(0, emptyStars) }).map((_, i) => (
           <Star key={`empty-${i}`} className={`${starSize} text-border`} />
         ))}

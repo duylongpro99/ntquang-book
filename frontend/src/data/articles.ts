@@ -17,11 +17,13 @@ export const ARTICLES_DATA: Article[] = [
     slug: "cap-nhat-huong-dan-chan-doan-dieu-tri-tang-huyet-ap-2024",
     title: "Cập nhật Hướng dẫn Chẩn đoán và Xử trí Tăng huyết áp 2024 của Hội Tim Mạch VN",
     category: "Kiến thức y học",
-    excerpt: "Điểm lại các thay đổi quan trọng về đích kiểm soát huyết áp, khuyến cáo phối hợp thuốc sớm ngay từ bước đầu tiên và theo dõi huyết áp lưu động 24h.",
+    excerpt:
+      "Điểm lại các thay đổi quan trọng về đích kiểm soát huyết áp, khuyến cáo phối hợp thuốc sớm ngay từ bước đầu tiên và theo dõi huyết áp lưu động 24h.",
     author: "BS. Nguyễn Văn Hùng",
     publishedAt: "25/02/2024",
     readTime: "7 phút đọc",
-    cover: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80",
+    cover:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80",
     content: `
       <p>Tăng huyết áp (THA) vẫn là một trong những nguyên nhân hàng đầu gây tử vong và tàn phế do biến cố tim mạch và đột quỵ tại Việt Nam. Theo khuyến cáo cập nhật năm 2024 của Hội Tim Mạch Học Việt Nam (VNHA), nhiều điểm mấu chốt trong tiếp cận chẩn đoán và điều trị đã được chuẩn hóa.</p>
       
@@ -40,11 +42,13 @@ export const ARTICLES_DATA: Article[] = [
     slug: "phan-biet-nhoi-mau-nao-va-xuat-huyet-nao-tren-ct-scanner",
     title: "Nguyên tắc tiếp cận hình ảnh CT Sọ Não trong Đột Quỵ Cấp giờ vàng",
     category: "Cận lâm sàng",
-    excerpt: "Hướng dẫn thực hành nhận diện các dấu hiệu sớm của thiếu máu não cục bộ diện rộng và phân biệt chính xác với xuất huyết nội sọ trước khi quyết định tiêu sợi huyết.",
+    excerpt:
+      "Hướng dẫn thực hành nhận diện các dấu hiệu sớm của thiếu máu não cục bộ diện rộng và phân biệt chính xác với xuất huyết nội sọ trước khi quyết định tiêu sợi huyết.",
     author: "ThS.BS. Lê Hoàng Nam",
     publishedAt: "18/02/2024",
     readTime: "10 phút đọc",
-    cover: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80",
+    cover:
+      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80",
     content: `
       <p>Trong cấp cứu đột quỵ não cấp, thời gian chính là tế bào não (Time is Brain). Chụp cắt lớp vi tính sọ não không tiêm thuốc cản quang là chỉ định đầu tay bắt buộc để loại trừ xuất huyết não trước khi xem xét điều trị tái tưới máu bằng rtPA.</p>
       
@@ -67,11 +71,13 @@ export const ARTICLES_DATA: Article[] = [
     slug: "top-5-giao-trinh-y-khoa-phai-co-cho-sinh-vien-noi-tru",
     title: "Top 5 bộ sách và giáo trình gối đầu giường cho Bác sĩ Nội trú và Sinh viên Y",
     category: "Giáo trình y khoa",
-    excerpt: "Tổng hợp các đầu sách tham khảo kinh điển từ giải phẫu Netter, nội khoa Harrison đến các phác đồ hồi sức cấp cứu thực hành lâm sàng tốt nhất.",
+    excerpt:
+      "Tổng hợp các đầu sách tham khảo kinh điển từ giải phẫu Netter, nội khoa Harrison đến các phác đồ hồi sức cấp cứu thực hành lâm sàng tốt nhất.",
     author: "BSNT. Trần Minh Tuấn",
     publishedAt: "05/02/2024",
     readTime: "5 phút đọc",
-    cover: "https://images.unsplash.com/photo-1532012164546-f432f2e3777a?auto=format&fit=crop&w=800&q=80",
+    cover:
+      "https://images.unsplash.com/photo-1532012164546-f432f2e3777a?auto=format&fit=crop&w=800&q=80",
     content: `
       <p>Hành trình học tập trong ngành y đòi hỏi sự trau dồi liên tục từ những nguồn tài liệu chuẩn mực. Dưới đây là 5 đầu sách quan trọng nhất được các thế hệ bác sĩ nội trú đánh giá cao nhất:</p>
       <ol>

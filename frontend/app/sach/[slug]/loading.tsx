@@ -1,4 +1,3 @@
-import React from "react";
 import { Skeleton } from "@/src/components/ui/Skeleton";
 
 export default function BookDetailLoading() {

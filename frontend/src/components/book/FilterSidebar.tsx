@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { CATEGORIES_TREE } from "@/src/data/categories";
-import { Filter, X, Check, ChevronDown, ChevronRight, RotateCcw } from "lucide-react";
+import { ChevronDown, ChevronRight, Filter, RotateCcw, X } from "lucide-react";
+import type React from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/src/components/ui/Button";
+import { CATEGORIES_TREE } from "@/src/data/categories";
 
 export interface FilterState {
   category?: string;
@@ -184,7 +185,9 @@ export function FilterSidebar({
           )}
         </div>
 
-        <div className={`${isMobileDrawer ? "space-y-1" : "space-y-1 max-h-80 overflow-y-auto pr-1"} text-xs`}>
+        <div
+          className={`${isMobileDrawer ? "space-y-1" : "space-y-1 max-h-80 overflow-y-auto pr-1"} text-xs`}
+        >
           {CATEGORIES_TREE.map((cat) => {
             const isSelected = filters.category === cat.slug;
             const isExpanded = expandedCategories[cat.id];
@@ -227,7 +230,7 @@ export function FilterSidebar({
                 {/* Subcategories */}
                 {isExpanded && hasSub && (
                   <div className="pl-3.5 space-y-1 border-l-2 border-border ml-3 my-1">
-                    {cat.children!.map((sub) => {
+                    {cat.children?.map((sub) => {
                       const isSubSelected = filters.category === sub.slug;
                       return (
                         <button
@@ -362,12 +365,7 @@ export function FilterSidebar({
           {/* Fixed Drawer Footer */}
           <div className="p-4 border-t border-border bg-surface shrink-0 flex items-center gap-3">
             {hasActiveFilters && (
-              <Button
-                variant="secondary"
-                size="md"
-                className="shrink-0"
-                onClick={clearAllFilters}
-              >
+              <Button variant="secondary" size="md" className="shrink-0" onClick={clearAllFilters}>
                 Đặt lại
               </Button>
             )}

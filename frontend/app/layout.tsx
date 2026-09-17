@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Be_Vietnam_Pro } from "next/font/google";
+import { Be_Vietnam_Pro, Inter } from "next/font/google";
 import "./globals.css";
+import { QuickViewModal } from "@/src/components/book/QuickViewModal";
+import { AppFooter } from "@/src/components/global/AppFooter";
+import { AppHeader } from "@/src/components/global/AppHeader";
+import { AuthModal } from "@/src/components/global/AuthModal";
+import { ChatLauncher } from "@/src/components/global/ChatLauncher";
+import { CmsThemeProvider } from "@/src/components/global/CmsThemeManager";
+import { SocialProofToast } from "@/src/components/global/SocialProofToast";
 import { AuthProvider } from "@/src/context/AuthContext";
 import { QuickViewProvider } from "@/src/context/QuickViewContext";
-import { CmsThemeProvider } from "@/src/components/global/CmsThemeManager";
-import { AppHeader } from "@/src/components/global/AppHeader";
-import { AppFooter } from "@/src/components/global/AppFooter";
-import { AuthModal } from "@/src/components/global/AuthModal";
-import { QuickViewModal } from "@/src/components/book/QuickViewModal";
-import { SocialProofToast } from "@/src/components/global/SocialProofToast";
-import { ChatLauncher } from "@/src/components/global/ChatLauncher";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -37,11 +37,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" className={`${inter.variable} ${beVietnamPro.variable}`}>
       <body className="min-h-screen flex flex-col bg-bg text-content antialiased">

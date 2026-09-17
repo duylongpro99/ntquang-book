@@ -1,17 +1,17 @@
 "use client";
 
-import React, { useState, useMemo, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { Search } from "lucide-react";
 import Link from "next/link";
-import { BOOKS_DATA, Book } from "@/src/data/books";
-import { CATEGORIES_TREE } from "@/src/data/categories";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useMemo, useState } from "react";
+import { CardGrid } from "@/src/components/book/CardGrid";
+import { EmptyState } from "@/src/components/book/EmptyState";
+import { Pagination } from "@/src/components/book/Pagination";
+import { SortControl, type SortOption } from "@/src/components/book/SortControl";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
 import { GlobalSearch } from "@/src/components/global/GlobalSearch";
-import { SortControl, SortOption } from "@/src/components/book/SortControl";
-import { CardGrid } from "@/src/components/book/CardGrid";
-import { Pagination } from "@/src/components/book/Pagination";
-import { EmptyState } from "@/src/components/book/EmptyState";
-import { Search } from "lucide-react";
+import { BOOKS_DATA } from "@/src/data/books";
+import { CATEGORIES_TREE } from "@/src/data/categories";
 
 function SearchPageContent() {
   const searchParams = useSearchParams();
@@ -41,7 +41,9 @@ function SearchPageContent() {
     const list = [...results];
     switch (sort) {
       case "newest":
-        return list.sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime());
+        return list.sort(
+          (a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
+        );
       case "downloads":
         return list.sort((a, b) => b.downloadCount - a.downloadCount);
       case "rating":
@@ -98,7 +100,13 @@ function SearchPageContent() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-2">
             <span className="text-xs text-content-muted">Gợi ý tìm kiếm phổ biến:</span>
-            {["Nội khoa", "Chẩn đoán hình ảnh", "Giải phẫu Netter", "Phác đồ điều trị", "Nhi khoa"].map((tag) => (
+            {[
+              "Nội khoa",
+              "Chẩn đoán hình ảnh",
+              "Giải phẫu Netter",
+              "Phác đồ điều trị",
+              "Nhi khoa",
+            ].map((tag) => (
               <Link
                 key={tag}
                 href={`/tim-kiem?q=${encodeURIComponent(tag)}`}
@@ -162,7 +170,13 @@ function SearchPageContent() {
 
 export default function SearchPage() {
   return (
-    <Suspense fallback={<div className="max-w-[1280px] mx-auto px-4 py-12 text-center text-sm text-content-muted">Đang tìm kiếm...</div>}>
+    <Suspense
+      fallback={
+        <div className="max-w-[1280px] mx-auto px-4 py-12 text-center text-sm text-content-muted">
+          Đang tìm kiếm...
+        </div>
+      }
+    >
       <SearchPageContent />
     </Suspense>
   );

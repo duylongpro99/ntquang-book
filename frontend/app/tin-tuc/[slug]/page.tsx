@@ -1,20 +1,15 @@
 "use client";
 
-import React, { use } from "react";
+import { ArrowLeft, Calendar, Clock, HeartPulse, User } from "lucide-react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { getArticleBySlug, ARTICLES_DATA } from "@/src/data/articles";
-import { BOOKS_DATA } from "@/src/data/books";
-import { Breadcrumb } from "@/src/components/global/Breadcrumb";
-import { ShareBar } from "@/src/components/detail/ShareBar";
+import { use } from "react";
 import { Rail } from "@/src/components/book/Rail";
-import { Calendar, User, Clock, HeartPulse, ArrowLeft } from "lucide-react";
+import { ShareBar } from "@/src/components/detail/ShareBar";
+import { Breadcrumb } from "@/src/components/global/Breadcrumb";
+import { getArticleBySlug } from "@/src/data/articles";
+import { BOOKS_DATA } from "@/src/data/books";
 
-export default function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
   const slug = resolvedParams?.slug;
   const article = getArticleBySlug(slug);
@@ -22,9 +17,7 @@ export default function BlogPostPage({
   if (!article) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 text-center space-y-4">
-        <h1 className="text-2xl font-bold text-content font-heading">
-          Không tìm thấy bài viết
-        </h1>
+        <h1 className="text-2xl font-bold text-content font-heading">Không tìm thấy bài viết</h1>
         <p className="text-sm text-content-muted">
           Bài viết y khoa bạn tìm kiếm không tồn tại hoặc đã bị xóa.
         </p>
@@ -45,10 +38,7 @@ export default function BlogPostPage({
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-8">
       <Breadcrumb
-        items={[
-          { label: "Tin tức y khoa", href: "/tin-tuc" },
-          { label: article.title },
-        ]}
+        items={[{ label: "Tin tức y khoa", href: "/tin-tuc" }, { label: article.title }]}
       />
 
       <div className="max-w-3xl mx-auto">
@@ -82,11 +72,7 @@ export default function BlogPostPage({
 
         {/* Hero Cover Image */}
         <div className="my-6 aspect-16/9 rounded-xl overflow-hidden bg-surface-muted border border-border shadow-e1">
-          <img
-            src={article.cover}
-            alt={article.title}
-            className="w-full h-full object-cover"
-          />
+          <img src={article.cover} alt={article.title} className="w-full h-full object-cover" />
         </div>
 
         {/* Share Bar */}
@@ -111,7 +97,9 @@ export default function BlogPostPage({
               Tuyên bố miễn trừ trách nhiệm y khoa:
             </h4>
             <p className="leading-relaxed text-[11px]">
-              Bài viết mang tính chất chia sẻ kiến thức học thuật và tổng hợp tài liệu y học. Không sử dụng thông tin trong bài viết để tự chẩn đoán hoặc tự ý điều trị mà không có hướng dẫn từ bác sĩ chuyên khoa.
+              Bài viết mang tính chất chia sẻ kiến thức học thuật và tổng hợp tài liệu y học. Không
+              sử dụng thông tin trong bài viết để tự chẩn đoán hoặc tự ý điều trị mà không có hướng
+              dẫn từ bác sĩ chuyên khoa.
             </p>
           </div>
         </aside>

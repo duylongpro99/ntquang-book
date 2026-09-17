@@ -1,12 +1,12 @@
-import React from "react";
+import { ArrowRight, Clock, User } from "lucide-react";
 import Link from "next/link";
-import { ARTICLES_DATA } from "@/src/data/articles";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
-import { Calendar, User, ArrowRight, BookOpen, Clock } from "lucide-react";
+import { ARTICLES_DATA } from "@/src/data/articles";
 
 export const metadata = {
   title: "Tin Tức & Kiến Thức Y Khoa - Thư Viện Sách Y Học",
-  description: "Cập nhật bài viết hướng dẫn lâm sàng, điểm tin y học và giới thiệu sách chuyên khoa mới.",
+  description:
+    "Cập nhật bài viết hướng dẫn lâm sàng, điểm tin y học và giới thiệu sách chuyên khoa mới.",
 };
 
 export default function BlogListPage() {
@@ -15,11 +15,7 @@ export default function BlogListPage() {
 
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-8">
-      <Breadcrumb
-        items={[
-          { label: "Tin tức y khoa" },
-        ]}
-      />
+      <Breadcrumb items={[{ label: "Tin tức y khoa" }]} />
 
       <div className="pb-4 border-b border-border">
         <h1 className="text-2xl sm:text-3xl font-heading font-bold text-content tracking-tight">

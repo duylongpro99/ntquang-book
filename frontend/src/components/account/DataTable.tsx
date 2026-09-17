@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import { CheckCircle2, Download, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { DownloadRecord, useAuth } from "@/src/context/AuthContext";
-import { Download, BookOpen, ExternalLink, CheckCircle2 } from "lucide-react";
-import { Button } from "@/src/components/ui/Button";
+import { useState } from "react";
 import { EmptyState } from "@/src/components/book/EmptyState";
+import { type DownloadRecord, useAuth } from "@/src/context/AuthContext";
 import { BOOKS_DATA } from "@/src/data/books";
 
 export interface DataTableProps {
@@ -41,7 +40,9 @@ export function DataTable({ downloads, className = "" }: DataTableProps) {
   }
 
   return (
-    <div className={`bg-surface rounded-xl border border-border shadow-e1 overflow-hidden ${className}`}>
+    <div
+      className={`bg-surface rounded-xl border border-border shadow-e1 overflow-hidden ${className}`}
+    >
       <div className="p-4 border-b border-border flex items-center justify-between">
         <div>
           <h3 className="text-base font-heading font-semibold text-content">
@@ -118,12 +119,24 @@ export function DataTable({ downloads, className = "" }: DataTableProps) {
         <table className="w-full text-left text-xs text-content">
           <thead className="bg-surface-muted/60 text-content-muted border-b border-border uppercase text-[10px] tracking-wider font-semibold">
             <tr>
-              <th scope="col" className="px-4 py-3">Tài liệu / Ebook</th>
-              <th scope="col" className="px-4 py-3">Tác giả</th>
-              <th scope="col" className="px-4 py-3">Định dạng</th>
-              <th scope="col" className="px-4 py-3">Dung lượng</th>
-              <th scope="col" className="px-4 py-3">Thời gian tải</th>
-              <th scope="col" className="px-4 py-3 text-right">Thao tác</th>
+              <th scope="col" className="px-4 py-3">
+                Tài liệu / Ebook
+              </th>
+              <th scope="col" className="px-4 py-3">
+                Tác giả
+              </th>
+              <th scope="col" className="px-4 py-3">
+                Định dạng
+              </th>
+              <th scope="col" className="px-4 py-3">
+                Dung lượng
+              </th>
+              <th scope="col" className="px-4 py-3">
+                Thời gian tải
+              </th>
+              <th scope="col" className="px-4 py-3 text-right">
+                Thao tác
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -163,12 +176,8 @@ export function DataTable({ downloads, className = "" }: DataTableProps) {
                     {record.format}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-content-muted font-medium">
-                  {record.fileSize}
-                </td>
-                <td className="px-4 py-3 text-content-muted">
-                  {record.downloadedAt}
-                </td>
+                <td className="px-4 py-3 text-content-muted font-medium">{record.fileSize}</td>
+                <td className="px-4 py-3 text-content-muted">{record.downloadedAt}</td>
                 <td className="px-4 py-3 text-right">
                   <button
                     onClick={() => handleReDownload(record)}

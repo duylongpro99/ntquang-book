@@ -1,11 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import {
-  ThemeConfig,
-  DEFAULT_THEME,
-  CMS_PRESET_THEMES,
-} from "@/src/config/theme";
+import { createContext, type ReactNode, useCallback, useContext, useEffect, useState } from "react";
+import { CMS_PRESET_THEMES, DEFAULT_THEME, type ThemeConfig } from "@/src/config/theme";
 
 interface CmsThemeContextType {
   currentTheme: ThemeConfig;
@@ -18,17 +14,7 @@ const CmsThemeContext = createContext<CmsThemeContextType | undefined>(undefined
 export function CmsThemeProvider({ children }: { children: ReactNode }) {
   const [currentTheme, setCurrentTheme] = useState<ThemeConfig>(DEFAULT_THEME);
 
-  useEffect(() => {
-    // Check if custom CMS theme preset was configured or selected
-    const savedThemeId = localStorage.getItem("cms_brand_theme_id");
-    if (savedThemeId && CMS_PRESET_THEMES[savedThemeId]) {
-      applyTheme(CMS_PRESET_THEMES[savedThemeId]);
-    } else {
-      applyTheme(DEFAULT_THEME);
-    }
-  }, []);
-
-  const applyTheme = (theme: ThemeConfig) => {
+  const applyTheme = useCallback((theme: ThemeConfig) => {
     setCurrentTheme(theme);
     const root = document.documentElement;
 
@@ -50,7 +36,17 @@ export function CmsThemeProvider({ children }: { children: ReactNode }) {
     root.style.setProperty("--danger", l.danger);
     root.style.setProperty("--info", l.info);
     root.style.setProperty("--focus-ring", l.focusRing);
-  };
+  }, []);
+
+  useEffect(() => {
+    // Check if custom CMS theme preset was configured or selected
+    const savedThemeId = localStorage.getItem("cms_brand_theme_id");
+    if (savedThemeId && CMS_PRESET_THEMES[savedThemeId]) {
+      applyTheme(CMS_PRESET_THEMES[savedThemeId]);
+    } else {
+      applyTheme(DEFAULT_THEME);
+    }
+  }, [applyTheme]);
 
   const setThemeById = (themeId: string) => {
     const selected = CMS_PRESET_THEMES[themeId];

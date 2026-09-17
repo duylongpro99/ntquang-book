@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export interface PaginationProps {
@@ -33,7 +32,6 @@ export function Pagination({
 
   return (
     <nav
-      role="navigation"
       aria-label="Phân trang"
       className={`flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 pt-6 ${className}`}
     >

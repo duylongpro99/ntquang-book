@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { Book } from "@/src/data/books";
-import { ZoomIn, X } from "lucide-react";
+import { X, ZoomIn } from "lucide-react";
+import { useState } from "react";
+import type { Book } from "@/src/data/books";
 
 export interface MediaViewerProps {
   book: Book;
@@ -17,11 +17,7 @@ export function MediaViewer({ book, className = "" }: MediaViewerProps) {
       {/* Cover Image Container */}
       <div className="relative group bg-surface rounded-xl border border-border overflow-hidden shadow-e2 flex items-center justify-center p-4">
         <div className="relative aspect-3/4 max-w-[340px] w-full mx-auto rounded-lg overflow-hidden shadow-md">
-          <img
-            src={book.cover}
-            alt={book.title}
-            className="w-full h-full object-cover"
-          />
+          <img src={book.cover} alt={book.title} className="w-full h-full object-cover" />
           <button
             onClick={() => setIsZoomed(true)}
             aria-label="Phóng to ảnh bìa sách"

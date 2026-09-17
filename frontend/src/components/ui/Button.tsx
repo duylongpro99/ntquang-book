@@ -23,7 +23,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const sizeClasses = {
       sm: "px-3 py-1.5 text-sm gap-1.5",
@@ -32,14 +32,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const variantClasses = {
-      primary:
-        "bg-primary hover:bg-primary-hover text-primary-contrast font-semibold shadow-e1",
-      secondary:
-        "bg-surface text-content border border-border hover:bg-surface-muted font-medium",
-      ghost:
-        "bg-transparent text-content hover:bg-surface-muted font-medium",
-      danger:
-        "bg-danger hover:opacity-90 text-white font-semibold",
+      primary: "bg-primary hover:bg-primary-hover text-primary-contrast font-semibold shadow-e1",
+      secondary: "bg-surface text-content border border-border hover:bg-surface-muted font-medium",
+      ghost: "bg-transparent text-content hover:bg-surface-muted font-medium",
+      danger: "bg-danger hover:opacity-90 text-white font-semibold",
     };
 
     const baseClasses =
@@ -56,12 +52,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <button
-        ref={ref}
-        disabled={disabled || loading}
-        className={computedClass}
-        {...props}
-      >
+      <button ref={ref} disabled={disabled || loading} className={computedClass} {...props}>
         {loading && (
           <svg
             className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
@@ -88,7 +79,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {children}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

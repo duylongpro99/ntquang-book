@@ -1,7 +1,8 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { Book } from "@/src/data/books";
+import type React from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import type { Book } from "@/src/data/books";
 
 export interface User {
   id: string;
@@ -49,7 +50,8 @@ const INITIAL_DOWNLOADS: DownloadRecord[] = [
     bookId: "b1",
     bookSlug: "dieu-tri-hoc-noi-khoa-tap-1",
     bookTitle: "Điều Trị Học Nội Khoa (Tập 1) – ĐH Y Dược TP.HCM",
-    bookCover: "https://images.unsplash.com/photo-1532012164546-f432f2e3777a?auto=format&fit=crop&w=600&q=80",
+    bookCover:
+      "https://images.unsplash.com/photo-1532012164546-f432f2e3777a?auto=format&fit=crop&w=600&q=80",
     author: "PGS.TS. Châu Ngọc Hoa (Chủ biên)",
     fileSize: "45.2 MB",
     format: "PDF",
@@ -60,7 +62,8 @@ const INITIAL_DOWNLOADS: DownloadRecord[] = [
     bookId: "b3",
     bookSlug: "chan-doan-hinh-anh-toan-dien-ct-mri",
     bookTitle: "Chẩn Đoán Hình Ảnh Toàn Diện: CT và MRI Lâm Sàng",
-    bookCover: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
+    bookCover:
+      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
     author: "PGS.TS. Bùi Văn Lệnh",
     fileSize: "92.4 MB",
     format: "PDF",
@@ -71,7 +74,8 @@ const INITIAL_DOWNLOADS: DownloadRecord[] = [
     bookId: "b9",
     bookSlug: "doc-dien-tam-do-ecg-de-hieu-tu-a-z",
     bookTitle: "Đọc Điện Tâm Đồ (ECG) Dễ Hiểu Từ A Đến Z",
-    bookCover: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
+    bookCover:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
     author: "BS. Nguyễn Tôn Thơ",
     fileSize: "28.3 MB",
     format: "PDF",
@@ -116,7 +120,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const executeDownload = (book: Book) => {
     const newRecord: DownloadRecord = {
-      id: "dl-" + Date.now(),
+      id: `dl-${Date.now()}`,
       bookId: book.id,
       bookSlug: book.slug,
       bookTitle: book.title,
@@ -152,12 +156,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       : usernameOrEmail;
 
     const loggedUser: User = {
-      id: "user-" + Date.now(),
+      id: `user-${Date.now()}`,
       name: defaultName,
       email: usernameOrEmail.includes("@") ? usernameOrEmail : `${usernameOrEmail}@hospital.edu.vn`,
       hospital: "Bệnh viện Đại học Y Dược",
       specialty: "Nội khoa",
-      avatar: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80",
       joinedDate: "16/09/2024",
     };
 
@@ -181,12 +186,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const register = async (name: string, email: string): Promise<boolean> => {
     const newUser: User = {
-      id: "user-" + Date.now(),
+      id: `user-${Date.now()}`,
       name: name,
       email: email,
       hospital: "Bác sĩ / Cán bộ y tế",
       specialty: "Đa khoa",
-      avatar: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80",
       joinedDate: new Date().toLocaleDateString("vi-VN"),
     };
 

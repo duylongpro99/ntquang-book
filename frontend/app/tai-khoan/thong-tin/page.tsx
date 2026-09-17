@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import { useAuth } from "@/src/context/AuthContext";
+import { Check, CheckCircle2, Palette, Save, UserCheck } from "lucide-react";
+import type React from "react";
+import { useState } from "react";
 import { AccountNav } from "@/src/components/account/AccountNav";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
-import { FormField } from "@/src/components/ui/FormField";
-import { Button } from "@/src/components/ui/Button";
 import { useCmsTheme } from "@/src/components/global/CmsThemeManager";
-import { UserCheck, CheckCircle2, Save, Palette, Check } from "lucide-react";
+import { Button } from "@/src/components/ui/Button";
+import { FormField } from "@/src/components/ui/FormField";
+import { useAuth } from "@/src/context/AuthContext";
 
 export default function AccountInfoPage() {
   const { user, isAuthenticated, openAuthModal } = useAuth();
@@ -49,10 +50,7 @@ export default function AccountInfoPage() {
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-6">
       <Breadcrumb
-        items={[
-          { label: "Tài khoản", href: "/tai-khoan" },
-          { label: "Thông tin cá nhân" },
-        ]}
+        items={[{ label: "Tài khoản", href: "/tai-khoan" }, { label: "Thông tin cá nhân" }]}
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
@@ -159,7 +157,12 @@ function CmsThemeCard() {
       </div>
 
       <p className="text-xs text-content-muted leading-relaxed">
-        Hệ thống màu sắc được kiến trúc tập trung tại <code className="px-1.5 py-0.5 rounded bg-surface-muted border border-border text-primary font-mono text-[11px]">src/config/theme.ts</code> và đồng bộ hóa qua CSS variables. Khi CMS cập nhật, toàn bộ giao diện (Nút bấm, Thẻ sách, Thanh điều hướng, Modal) tự động đổi màu đồng nhất:
+        Hệ thống màu sắc được kiến trúc tập trung tại{" "}
+        <code className="px-1.5 py-0.5 rounded bg-surface-muted border border-border text-primary font-mono text-[11px]">
+          src/config/theme.ts
+        </code>{" "}
+        và đồng bộ hóa qua CSS variables. Khi CMS cập nhật, toàn bộ giao diện (Nút bấm, Thẻ sách,
+        Thanh điều hướng, Modal) tự động đổi màu đồng nhất:
       </p>
 
       {/* Preset selection grid */}

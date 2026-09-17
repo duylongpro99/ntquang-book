@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
+import { BookOpen, LogOut, ShieldCheck, User as UserIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/src/context/AuthContext";
-import { BookOpen, User as UserIcon, LogOut, ShieldCheck } from "lucide-react";
 
 export function AccountNav() {
   const pathname = usePathname();

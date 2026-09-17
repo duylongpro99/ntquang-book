@@ -3,13 +3,7 @@ node_modules/
 .pnp
 .pnp.*
 
-# next.js
-frontend/.next/
-frontend/out/
-frontend/build/
-frontend/next-env.d.ts
-
-# production
+# build output (per-package ignores live in each package, e.g. frontend/.gitignore)
 dist/
 
 # env

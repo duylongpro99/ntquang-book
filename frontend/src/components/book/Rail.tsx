@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useRef } from "react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { Book } from "@/src/data/books";
+import { useRef } from "react";
 import { BookCard } from "@/src/components/book/BookCard";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import type { Book } from "@/src/data/books";
 
 export interface RailProps {
   title: string;
@@ -40,11 +40,7 @@ export function Rail({
           <h2 className="text-lg md:text-xl font-heading font-bold text-content tracking-tight">
             {title}
           </h2>
-          {subtitle && (
-            <p className="text-xs md:text-sm text-content-muted mt-0.5">
-              {subtitle}
-            </p>
-          )}
+          {subtitle && <p className="text-xs md:text-sm text-content-muted mt-0.5">{subtitle}</p>}
         </div>
 
         <div className="flex items-center gap-2">
@@ -81,31 +77,22 @@ export function Rail({
       <div
         ref={scrollRef}
         className="flex gap-4 overflow-x-auto pb-3 pt-1 scrollbar-none snap-x focus:outline-none"
-        tabIndex={0}
         aria-label={title}
       >
         {loading ? (
           Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={`rail-skel-${i}`}
-              className="w-[180px] sm:w-[220px] shrink-0 snap-start"
-            >
+            <div key={`rail-skel-${i}`} className="w-[180px] sm:w-[220px] shrink-0 snap-start">
               <BookCard loading={true} />
             </div>
           ))
         ) : books.length > 0 ? (
           books.map((book) => (
-            <div
-              key={book.id}
-              className="w-[180px] sm:w-[220px] shrink-0 snap-start"
-            >
+            <div key={book.id} className="w-[180px] sm:w-[220px] shrink-0 snap-start">
               <BookCard book={book} />
             </div>
           ))
         ) : (
-          <div className="py-6 text-sm text-content-muted">
-            Hiện chưa có sách trong mục này.
-          </div>
+          <div className="py-6 text-sm text-content-muted">Hiện chưa có sách trong mục này.</div>
         )}
       </div>
     </section>

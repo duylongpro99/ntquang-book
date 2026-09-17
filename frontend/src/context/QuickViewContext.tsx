@@ -1,7 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { Book } from "@/src/data/books";
+import { createContext, type ReactNode, useContext, useState } from "react";
+import type { Book } from "@/src/data/books";
 
 interface QuickViewContextType {
   selectedBook: Book | null;

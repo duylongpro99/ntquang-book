@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useState, useMemo, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import { BOOKS_DATA, Book } from "@/src/data/books";
-import { Breadcrumb } from "@/src/components/global/Breadcrumb";
-import { FilterSidebar, FilterState } from "@/src/components/book/FilterSidebar";
-import { SortControl, SortOption } from "@/src/components/book/SortControl";
-import { CardGrid } from "@/src/components/book/CardGrid";
-import { Pagination } from "@/src/components/book/Pagination";
-import { EmptyState } from "@/src/components/book/EmptyState";
 import { Filter } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useMemo, useState } from "react";
+import { CardGrid } from "@/src/components/book/CardGrid";
+import { EmptyState } from "@/src/components/book/EmptyState";
+import { FilterSidebar, type FilterState } from "@/src/components/book/FilterSidebar";
+import { Pagination } from "@/src/components/book/Pagination";
+import { SortControl, type SortOption } from "@/src/components/book/SortControl";
+import { Breadcrumb } from "@/src/components/global/Breadcrumb";
+import { BOOKS_DATA } from "@/src/data/books";
 
 function LibraryCatalogContent() {
   const searchParams = useSearchParams();
@@ -48,7 +48,9 @@ function LibraryCatalogContent() {
     const list = [...filteredBooks];
     switch (sort) {
       case "newest":
-        return list.sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime());
+        return list.sort(
+          (a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
+        );
       case "downloads":
         return list.sort((a, b) => b.downloadCount - a.downloadCount);
       case "rating":
@@ -74,11 +76,7 @@ function LibraryCatalogContent() {
 
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-6">
-      <Breadcrumb
-        items={[
-          { label: "Thư viện sách y học" },
-        ]}
-      />
+      <Breadcrumb items={[{ label: "Thư viện sách y học" }]} />
 
       {/* Page Title & Mobile Filter Trigger */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-border">
@@ -110,10 +108,7 @@ function LibraryCatalogContent() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
         {/* Desktop Filter Sidebar */}
         <div className="hidden lg:block lg:col-span-1 sticky top-20">
-          <FilterSidebar
-            filters={filters}
-            onFilterChange={handleFilterChange}
-          />
+          <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
         </div>
 
         {/* Mobile Filter Drawer */}
@@ -163,7 +158,13 @@ function LibraryCatalogContent() {
 
 export default function LibraryPage() {
   return (
-    <Suspense fallback={<div className="max-w-[1280px] mx-auto px-4 py-12 text-center text-sm text-content-muted">Đang tải kho sách...</div>}>
+    <Suspense
+      fallback={
+        <div className="max-w-[1280px] mx-auto px-4 py-12 text-center text-sm text-content-muted">
+          Đang tải kho sách...
+        </div>
+      }
+    >
       <LibraryCatalogContent />
     </Suspense>
   );

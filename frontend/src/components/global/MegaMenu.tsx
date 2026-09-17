@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import { BookOpen, ChevronDown, ChevronRight, Layers, Menu } from "lucide-react";
 import Link from "next/link";
-import { CATEGORIES_TREE, CategoryItem } from "@/src/data/categories";
-import { ChevronDown, ChevronRight, Menu, X, BookOpen, Layers } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { CATEGORIES_TREE, type CategoryItem } from "@/src/data/categories";
 
 export interface MegaMenuProps {
   isMobileDrawer?: boolean;
@@ -90,9 +90,7 @@ export function MegaMenu({ isMobileDrawer = false, onCloseMobileDrawer }: MegaMe
         <Menu className="w-4 h-4" />
         <span>Danh mục sách</span>
         <ChevronDown
-          className={`w-3.5 h-3.5 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 

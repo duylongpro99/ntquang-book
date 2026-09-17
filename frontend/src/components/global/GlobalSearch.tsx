@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
-import { Search, X, BookOpen, ChevronRight } from "lucide-react";
-import { BOOKS_DATA, Book } from "@/src/data/books";
+import { ChevronRight, Search, X } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
+import { BOOKS_DATA, type Book } from "@/src/data/books";
 
 export interface GlobalSearchProps {
   variant?: "inline" | "full";
@@ -43,7 +44,7 @@ export function GlobalSearch({
           b.title.toLowerCase().includes(q) ||
           b.author.toLowerCase().includes(q) ||
           b.categoryName.toLowerCase().includes(q) ||
-          b.description.toLowerCase().includes(q)
+          b.description.toLowerCase().includes(q),
       ).slice(0, 5);
       setResults(filtered);
       setIsOpen(true);
@@ -107,11 +108,7 @@ export function GlobalSearch({
             </button>
           )}
         </div>
-        <button
-          type="submit"
-          className="sr-only"
-          aria-label="Tìm kiếm"
-        >
+        <button type="submit" className="sr-only" aria-label="Tìm kiếm">
           Tìm
         </button>
       </form>
@@ -139,16 +136,10 @@ export function GlobalSearch({
                   className="flex items-center gap-3 p-3 hover:bg-surface-muted transition-colors text-left"
                 >
                   <div className="w-10 h-14 bg-surface-muted rounded overflow-hidden shrink-0 border border-border">
-                    <img
-                      src={book.cover}
-                      alt={book.title}
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={book.cover} alt={book.title} className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-medium text-content line-clamp-1">
-                      {book.title}
-                    </h4>
+                    <h4 className="text-sm font-medium text-content line-clamp-1">{book.title}</h4>
                     <p className="text-xs text-content-muted line-clamp-1 mt-0.5">
                       {book.author} · {book.categoryName}
                     </p>

@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
-import { useAuth } from "@/src/context/AuthContext";
+import { UserCheck } from "lucide-react";
 import { AccountNav } from "@/src/components/account/AccountNav";
 import { DataTable } from "@/src/components/account/DataTable";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
 import { Button } from "@/src/components/ui/Button";
-import { UserCheck } from "lucide-react";
+import { useAuth } from "@/src/context/AuthContext";
 
 export default function MyLibraryPage() {
   const { user, isAuthenticated, downloads, openAuthModal } = useAuth();
@@ -21,7 +20,8 @@ export default function MyLibraryPage() {
           Đăng nhập để xem thư viện cá nhân
         </h1>
         <p className="text-xs text-content-muted leading-relaxed">
-          Vui lòng đăng nhập để xem danh sách tài liệu y khoa bạn đã tải về máy và tải lại nhanh chóng.
+          Vui lòng đăng nhập để xem danh sách tài liệu y khoa bạn đã tải về máy và tải lại nhanh
+          chóng.
         </p>
         <div className="pt-2">
           <Button
@@ -40,10 +40,7 @@ export default function MyLibraryPage() {
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-6">
       <Breadcrumb
-        items={[
-          { label: "Tài khoản", href: "/tai-khoan" },
-          { label: "Thư viện đã tải" },
-        ]}
+        items={[{ label: "Tài khoản", href: "/tai-khoan" }, { label: "Thư viện đã tải" }]}
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">

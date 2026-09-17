@@ -1,14 +1,15 @@
 "use client";
 
+import { BookOpen, Lock } from "lucide-react";
 import React, { useState } from "react";
-import { Modal } from "@/src/components/ui/Modal";
-import { FormField } from "@/src/components/ui/FormField";
 import { Button } from "@/src/components/ui/Button";
+import { FormField } from "@/src/components/ui/FormField";
+import { Modal } from "@/src/components/ui/Modal";
 import { useAuth } from "@/src/context/AuthContext";
-import { Lock, User as UserIcon, BookOpen } from "lucide-react";
 
 export function AuthModal() {
-  const { isAuthModalOpen, authModalMode, closeAuthModal, login, register, pendingDownloadBook } = useAuth();
+  const { isAuthModalOpen, authModalMode, closeAuthModal, login, register, pendingDownloadBook } =
+    useAuth();
   const [mode, setMode] = useState<"login" | "register">(authModalMode);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export function AuthModal() {
   React.useEffect(() => {
     setMode(authModalMode);
     setError(null);
-  }, [authModalMode, isAuthModalOpen]);
+  }, [authModalMode]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

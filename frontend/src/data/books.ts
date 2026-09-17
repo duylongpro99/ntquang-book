@@ -45,8 +45,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "noi-khoa/noi-tong-quat",
     categoryName: "Nội tổng quát",
     parentCategorySlug: "noi-khoa",
-    cover: "https://images.unsplash.com/photo-1532012164546-f432f2e3777a?auto=format&fit=crop&w=600&q=80",
-    description: "Sách Điều Trị Học Nội Khoa tập 1 là giáo trình chuẩn của Đại học Y Dược TP.HCM cập nhật các phác đồ điều trị tim mạch, hô hấp, tiêu hóa mới nhất theo Hội Tim Mạch Học Việt Nam và ESC/AHA.",
+    cover:
+      "https://images.unsplash.com/photo-1532012164546-f432f2e3777a?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Sách Điều Trị Học Nội Khoa tập 1 là giáo trình chuẩn của Đại học Y Dược TP.HCM cập nhật các phác đồ điều trị tim mạch, hô hấp, tiêu hóa mới nhất theo Hội Tim Mạch Học Việt Nam và ESC/AHA.",
     tableOfContents: [
       "Chương 1: Nguyên tắc tiếp cận bệnh nhân nội khoa",
       "Chương 2: Cập nhật điều trị Tăng huyết áp nguyên phát",
@@ -80,8 +82,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "y-hoc-co-so/giai-phau-hoc",
     categoryName: "Giải phẫu học",
     parentCategorySlug: "y-hoc-co-so",
-    cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80",
-    description: "Ấn phẩm giải phẫu học kinh điển toàn cầu của Frank Netter với hình vẽ minh họa chi tiết, sắc nét từng lớp giải phẫu từ đầu mặt cổ, ngực, bụng đến chi trên và chi dưới.",
+    cover:
+      "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Ấn phẩm giải phẫu học kinh điển toàn cầu của Frank Netter với hình vẽ minh họa chi tiết, sắc nét từng lớp giải phẫu từ đầu mặt cổ, ngực, bụng đến chi trên và chi dưới.",
     tableOfContents: [
       "Phần 1: Đầu và cổ",
       "Phần 2: Lưng và tủy sống",
@@ -115,8 +119,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "can-lam-sang/chan-doan-hinh-anh",
     categoryName: "Chẩn đoán hình ảnh",
     parentCategorySlug: "can-lam-sang",
-    cover: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
-    description: "Cẩm nang hướng dẫn đọc và phân tích hình ảnh cắt lớp vi tính (CT scanner) và cộng hưởng từ (MRI) từ cơ bản đến nâng cao cho các bệnh lý sọ não, ngực, bụng chậu và cơ xương khớp.",
+    cover:
+      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Cẩm nang hướng dẫn đọc và phân tích hình ảnh cắt lớp vi tính (CT scanner) và cộng hưởng từ (MRI) từ cơ bản đến nâng cao cho các bệnh lý sọ não, ngực, bụng chậu và cơ xương khớp.",
     tableOfContents: [
       "Chương 1: Nguyên lý tạo ảnh CT & MRI",
       "Chương 2: Đột quỵ thiếu máu não và xuất huyết não",
@@ -148,8 +154,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "noi-khoa/hoi-suc-cap-cuu",
     categoryName: "Hồi sức – Cấp cứu – ICU",
     parentCategorySlug: "noi-khoa",
-    cover: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80",
-    description: "Bộ phác đồ xử trí khẩn cấp các tình huống nguy kịch đe dọa tính mạng: sốc nhiễm khuẩn, suy hô hấp cấp tiến triển (ARDS), rối loạn toan kiềm, ngộ độc cấp tính và ECMO.",
+    cover:
+      "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Bộ phác đồ xử trí khẩn cấp các tình huống nguy kịch đe dọa tính mạng: sốc nhiễm khuẩn, suy hô hấp cấp tiến triển (ARDS), rối loạn toan kiềm, ngộ độc cấp tính và ECMO.",
     tableOfContents: [
       "Phần 1: Cấp cứu ngừng tuần hoàn nâng cao (ACLS)",
       "Phần 2: Sốc nhiễm khuẩn và rối loạn huyết động",
@@ -181,8 +189,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "ngoai-khoa/giao-trinh-ngoai",
     categoryName: "Giáo trình Ngoại",
     parentCategorySlug: "ngoai-khoa",
-    cover: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
-    description: "Giáo trình nền tảng về khám lâm sàng ngoại khoa, vô khuẩn trong phẫu thuật, các hội chứng bụng ngoại khoa cấp tính như viêm ruột thừa, tắc ruột, thủng tạng rỗng.",
+    cover:
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Giáo trình nền tảng về khám lâm sàng ngoại khoa, vô khuẩn trong phẫu thuật, các hội chứng bụng ngoại khoa cấp tính như viêm ruột thừa, tắc ruột, thủng tạng rỗng.",
     tableOfContents: [
       "Chương 1: Khám bệnh nhân ngoại khoa",
       "Chương 2: Sốc chấn thương và hồi sức trước mổ",
@@ -213,8 +223,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "san-phu-khoa/san-khoa-san-khoa",
     categoryName: "Sản khoa",
     parentCategorySlug: "san-phu-khoa",
-    cover: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=600&q=80",
-    description: "Phác đồ lâm sàng chi tiết của Bệnh viện Từ Dũ về quản lý thai nghén nguy cơ cao, tiền sản giật, đái tháo đường thai kỳ, băng huyết sau sinh và phẫu thuật phụ khoa nội soi.",
+    cover:
+      "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Phác đồ lâm sàng chi tiết của Bệnh viện Từ Dũ về quản lý thai nghén nguy cơ cao, tiền sản giật, đái tháo đường thai kỳ, băng huyết sau sinh và phẫu thuật phụ khoa nội soi.",
     tableOfContents: [
       "Phần 1: Chăm sóc tiền sản và sàng lọc trước sinh",
       "Phần 2: Xử trí tăng huyết áp thai kỳ và tiền sản giật nặng",
@@ -245,8 +257,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "nhi-khoa/noi-nhi",
     categoryName: "Nội Nhi & Sơ sinh",
     parentCategorySlug: "nhi-khoa",
-    cover: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80",
-    description: "Tài liệu gối đầu giường của bác sĩ nhi khoa toàn quốc, chuẩn hóa chẩn đoán và điều trị sốt xuất huyết Dengue, tay chân miệng, viêm tiểu phế quản, co giật do sốt cao và hồi sức sơ sinh.",
+    cover:
+      "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Tài liệu gối đầu giường của bác sĩ nhi khoa toàn quốc, chuẩn hóa chẩn đoán và điều trị sốt xuất huyết Dengue, tay chân miệng, viêm tiểu phế quản, co giật do sốt cao và hồi sức sơ sinh.",
     tableOfContents: [
       "Chương 1: Hồi sức cấp cứu Nhi và Sơ sinh",
       "Chương 2: Sốt xuất huyết Dengue ở trẻ em",
@@ -276,8 +290,10 @@ export const BOOKS_DATA: Book[] = [
     ratingCount: 512,
     categorySlug: "sach-tieng-anh",
     categoryName: "Sách Tiếng Anh",
-    cover: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600&q=80",
-    description: "Bộ bách khoa toàn thư nội khoa danh tiếng thế giới. Nguồn tham khảo thẩm quyền số 1 cho các bác sĩ nội trú, chuyên gia nội khoa và các kỳ thi USMLE.",
+    cover:
+      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Bộ bách khoa toàn thư nội khoa danh tiếng thế giới. Nguồn tham khảo thẩm quyền số 1 cho các bác sĩ nội trú, chuyên gia nội khoa và các kỳ thi USMLE.",
     tableOfContents: [
       "Part 1: The Profession of Medicine",
       "Part 2: Cardinal Manifestations and Presentation of Diseases",
@@ -310,8 +326,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "can-lam-sang/dien-tam-do",
     categoryName: "Điện tâm đồ (ECG)",
     parentCategorySlug: "can-lam-sang",
-    cover: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
-    description: "Sách hướng dẫn đọc ECG từng bước thực hành: xác định trục điện tim, rối loạn nhịp xoang, rung nhĩ, cuồng nhĩ, block nhánh, phì đại cơ tim và định khu nhồi máu cơ tim ST chênh lên.",
+    cover:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Sách hướng dẫn đọc ECG từng bước thực hành: xác định trục điện tim, rối loạn nhịp xoang, rung nhĩ, cuồng nhĩ, block nhánh, phì đại cơ tim và định khu nhồi máu cơ tim ST chênh lên.",
     tableOfContents: [
       "Bài 1: Cơ sở điện sinh lý học tế bào cơ tim",
       "Bài 2: Các đạo trình ECG và cách mắc điện cực",
@@ -342,8 +360,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "y-hoc-co-so/duoc-ly-hoc",
     categoryName: "Dược lý học",
     parentCategorySlug: "y-hoc-co-so",
-    cover: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=600&q=80",
-    description: "Cơ chế tác dụng, chỉ định, chống chỉ định và tương tác thuốc lâm sàng của các nhóm kháng sinh, thuốc hạ áp, chống đông, hạ đường huyết và thuốc tác động trên hệ thần kinh trung ương.",
+    cover:
+      "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Cơ chế tác dụng, chỉ định, chống chỉ định và tương tác thuốc lâm sàng của các nhóm kháng sinh, thuốc hạ áp, chống đông, hạ đường huyết và thuốc tác động trên hệ thần kinh trung ương.",
     tableOfContents: [
       "Chương 1: Dược động học và dược lực học đại cương",
       "Chương 2: Thuốc tác động lên hệ thần kinh thực vật",
@@ -372,8 +392,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "ngoai-khoa/chan-thuong-chinh-hinh",
     categoryName: "Chấn thương chỉnh hình",
     parentCategorySlug: "ngoai-khoa",
-    cover: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
-    description: "Phân loại gãy xương theo AO, nguyên tắc kết hợp xương nẹp vít, thay khớp háng khớp gối nhân tạo, phẫu thuật nội soi tái tạo dây chằng chéo trước và thoát vị đĩa đệm cột sống thắt lưng.",
+    cover:
+      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Phân loại gãy xương theo AO, nguyên tắc kết hợp xương nẹp vít, thay khớp háng khớp gối nhân tạo, phẫu thuật nội soi tái tạo dây chằng chéo trước và thoát vị đĩa đệm cột sống thắt lưng.",
     tableOfContents: [
       "Phần 1: Nguyên tắc xử trí gãy xương hở và gãy xương kín",
       "Phần 2: Gãy cổ xương đùi và liên mấu chuyển ở người cao tuổi",
@@ -402,8 +424,10 @@ export const BOOKS_DATA: Book[] = [
     categorySlug: "chuyen-khoa-le/da-lieu",
     categoryName: "Da liễu & Thẩm mỹ da",
     parentCategorySlug: "chuyen-khoa-le",
-    cover: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=600&q=80",
-    description: "Chẩn đoán phân biệt các thương tổn da nguyên phát và thứ phát, điều trị vảy nến, viêm da cơ địa, mụn trứng cá nặng, bệnh tự miễn bọng nước và các kỹ thuật laser thẩm mỹ da hiện đại.",
+    cover:
+      "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=600&q=80",
+    description:
+      "Chẩn đoán phân biệt các thương tổn da nguyên phát và thứ phát, điều trị vảy nến, viêm da cơ địa, mụn trứng cá nặng, bệnh tự miễn bọng nước và các kỹ thuật laser thẩm mỹ da hiện đại.",
     tableOfContents: [
       "Chương 1: Giải phẫu sinh lý da và tổn thương cơ bản",
       "Chương 2: Viêm da cơ địa và chàm",
@@ -426,6 +450,6 @@ export function getRelatedBooks(book: Book, limit = 4): Book[] {
   return BOOKS_DATA.filter(
     (b) =>
       b.id !== book.id &&
-      (b.categorySlug === book.categorySlug || b.parentCategorySlug === book.parentCategorySlug)
+      (b.categorySlug === book.categorySlug || b.parentCategorySlug === book.parentCategorySlug),
   ).slice(0, limit);
 }

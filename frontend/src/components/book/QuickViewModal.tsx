@@ -1,21 +1,20 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Link from "next/link";
-import { useQuickView } from "@/src/context/QuickViewContext";
-import { useAuth } from "@/src/context/AuthContext";
-import { RatingStars } from "@/src/components/book/RatingStars";
-import { PrimaryCTA } from "@/src/components/detail/PrimaryCTA";
 import {
-  X,
-  ExternalLink,
   BookOpen,
   Calendar,
-  Building,
-  Languages,
+  ExternalLink,
   HardDrive,
+  Languages,
   ListOrdered,
+  X,
 } from "lucide-react";
+import Link from "next/link";
+import { useEffect } from "react";
+import { RatingStars } from "@/src/components/book/RatingStars";
+import { PrimaryCTA } from "@/src/components/detail/PrimaryCTA";
+import { useAuth } from "@/src/context/AuthContext";
+import { useQuickView } from "@/src/context/QuickViewContext";
 
 export function QuickViewModal() {
   const { selectedBook, closeQuickView } = useQuickView();
@@ -127,9 +126,7 @@ export function QuickViewModal() {
                 {selectedBook.title}
               </h2>
 
-              <p className="text-xs text-content-muted mt-1 font-medium">
-                {selectedBook.author}
-              </p>
+              <p className="text-xs text-content-muted mt-1 font-medium">{selectedBook.author}</p>
 
               <div className="mt-2.5 flex items-center gap-3">
                 <RatingStars
@@ -175,9 +172,7 @@ export function QuickViewModal() {
               <PrimaryCTA book={selectedBook} />
 
               <div className="flex justify-between items-center text-xs">
-                <span className="text-[11px] text-content-muted">
-                  Mã SKU: {selectedBook.sku}
-                </span>
+                <span className="text-[11px] text-content-muted">Mã SKU: {selectedBook.sku}</span>
                 <Link
                   href={`/sach/${selectedBook.slug}`}
                   onClick={closeQuickView}

@@ -1,6 +1,5 @@
-import React from "react";
-import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
+import Link from "next/link";
 
 export interface BreadcrumbItem {
   label: string;
@@ -14,7 +13,10 @@ export interface BreadcrumbProps {
 
 export function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
   return (
-    <nav aria-label="Breadcrumb" className={`flex items-center text-xs text-content-muted ${className}`}>
+    <nav
+      aria-label="Breadcrumb"
+      className={`flex items-center text-xs text-content-muted ${className}`}
+    >
       <ol className="flex items-center gap-1.5 flex-wrap">
         <li className="flex items-center">
           <Link

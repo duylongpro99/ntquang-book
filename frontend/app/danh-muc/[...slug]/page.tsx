@@ -1,23 +1,18 @@
 "use client";
 
-import React, { useState, useMemo, use } from "react";
-import { useParams } from "next/navigation";
-import { BOOKS_DATA, Book } from "@/src/data/books";
-import { CATEGORIES_TREE, findCategoryBySlug } from "@/src/data/categories";
-import { Breadcrumb } from "@/src/components/global/Breadcrumb";
-import { FilterSidebar, FilterState } from "@/src/components/book/FilterSidebar";
-import { SortControl, SortOption } from "@/src/components/book/SortControl";
-import { CardGrid } from "@/src/components/book/CardGrid";
-import { Pagination } from "@/src/components/book/Pagination";
-import { EmptyState } from "@/src/components/book/EmptyState";
 import { Filter, Layers } from "lucide-react";
 import Link from "next/link";
+import { use, useMemo, useState } from "react";
+import { CardGrid } from "@/src/components/book/CardGrid";
+import { EmptyState } from "@/src/components/book/EmptyState";
+import { FilterSidebar, type FilterState } from "@/src/components/book/FilterSidebar";
+import { Pagination } from "@/src/components/book/Pagination";
+import { SortControl, type SortOption } from "@/src/components/book/SortControl";
+import { Breadcrumb } from "@/src/components/global/Breadcrumb";
+import { BOOKS_DATA } from "@/src/data/books";
+import { findCategoryBySlug } from "@/src/data/categories";
 
-export default function CategoryPage({
-  params,
-}: {
-  params: Promise<{ slug: string[] }>;
-}) {
+export default function CategoryPage({ params }: { params: Promise<{ slug: string[] }> }) {
   const resolvedParams = use(params);
   const slugArray = resolvedParams?.slug || [];
   const fullSlug = slugArray.join("/");
@@ -60,7 +55,9 @@ export default function CategoryPage({
     const list = [...categoryBooks];
     switch (sort) {
       case "newest":
-        return list.sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime());
+        return list.sort(
+          (a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
+        );
       case "downloads":
         return list.sort((a, b) => b.downloadCount - a.downloadCount);
       case "rating":

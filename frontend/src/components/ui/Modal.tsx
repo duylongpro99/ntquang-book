@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
 import { X } from "lucide-react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 export interface ModalProps {
   isOpen: boolean;

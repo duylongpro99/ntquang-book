@@ -1,6 +1,4 @@
-import React from "react";
-import Link from "next/link";
-import { SearchX, FolderX, FileQuestion, ArrowLeft } from "lucide-react";
+import { ArrowLeft, FileQuestion, FolderX, SearchX } from "lucide-react";
 import { Button } from "@/src/components/ui/Button";
 
 export interface EmptyStateProps {

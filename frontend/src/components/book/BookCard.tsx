@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
+import { ArrowRight, Download, Eye } from "lucide-react";
 import Link from "next/link";
-import { Book } from "@/src/data/books";
 import { RatingStars } from "@/src/components/book/RatingStars";
 import { Skeleton } from "@/src/components/ui/Skeleton";
 import { useQuickView } from "@/src/context/QuickViewContext";
-import { Download, FileText, ArrowRight, Eye } from "lucide-react";
+import type { Book } from "@/src/data/books";
 
 export interface BookCardProps {
   book?: Book;
@@ -39,7 +38,9 @@ export function BookCard({
       );
     }
     return (
-      <div className={`bg-surface rounded-md border border-border p-3 flex flex-col gap-3 ${className}`}>
+      <div
+        className={`bg-surface rounded-md border border-border p-3 flex flex-col gap-3 ${className}`}
+      >
         <Skeleton className="w-full aspect-3/4" />
         <Skeleton className="h-4 w-5/6" />
         <Skeleton className="h-3 w-3/5" />
@@ -72,16 +73,12 @@ export function BookCard({
           <h4 className="text-xs font-medium text-content line-clamp-2 group-hover:text-primary transition-colors">
             {book.title}
           </h4>
-          <p className="text-[11px] text-content-muted line-clamp-1 mt-0.5">
-            {book.author}
-          </p>
+          <p className="text-[11px] text-content-muted line-clamp-1 mt-0.5">{book.author}</p>
           <div className="flex items-center gap-2 mt-1">
             <span className="text-[10px] font-semibold text-content-muted bg-surface-muted px-1.5 py-0.5 rounded border border-border">
               {book.format}
             </span>
-            <span className="text-[10px] text-content-muted">
-              {book.fileSize}
-            </span>
+            <span className="text-[10px] text-content-muted">{book.fileSize}</span>
           </div>
         </div>
       </Link>
@@ -110,9 +107,7 @@ export function BookCard({
             <h3 className="text-sm font-semibold text-content line-clamp-2 group-hover:text-primary transition-colors">
               {book.title}
             </h3>
-            <p className="text-xs text-content-muted line-clamp-2 mt-1.5">
-              {book.description}
-            </p>
+            <p className="text-xs text-content-muted line-clamp-2 mt-1.5">{book.description}</p>
           </div>
           <div className="pt-3 mt-3 border-t border-border flex items-center justify-between text-xs text-content-muted">
             <span>{book.author}</span>

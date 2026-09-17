@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import { AlertCircle, CheckCircle2, Mail, MapPin, Phone, Send } from "lucide-react";
+import type React from "react";
+import { useState } from "react";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
-import { FormField } from "@/src/components/ui/FormField";
 import { Button } from "@/src/components/ui/Button";
-import { Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare, AlertCircle } from "lucide-react";
+import { FormField } from "@/src/components/ui/FormField";
 
 export default function ContactPage() {
   const [name, setName] = useState("");
@@ -29,11 +30,7 @@ export default function ContactPage() {
 
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-8">
-      <Breadcrumb
-        items={[
-          { label: "Liên hệ & Hỗ trợ" },
-        ]}
-      />
+      <Breadcrumb items={[{ label: "Liên hệ & Hỗ trợ" }]} />
 
       <div className="pb-4 border-b border-border">
         <h1 className="text-2xl sm:text-3xl font-heading font-bold text-content tracking-tight">
@@ -56,14 +53,11 @@ export default function ContactPage() {
                 Đã gửi yêu cầu thành công!
               </h2>
               <p className="text-xs text-content-muted max-w-sm mx-auto leading-relaxed">
-                Ban quản trị thư viện đã tiếp nhận thông tin của bạn. Chúng tôi sẽ xử lý và phản hồi qua email trong vòng 24 giờ.
+                Ban quản trị thư viện đã tiếp nhận thông tin của bạn. Chúng tôi sẽ xử lý và phản hồi
+                qua email trong vòng 24 giờ.
               </p>
               <div className="pt-2">
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => setSubmitted(false)}
-                >
+                <Button variant="secondary" size="sm" onClick={() => setSubmitted(false)}>
                   Gửi yêu cầu khác
                 </Button>
               </div>
@@ -201,7 +195,9 @@ export default function ContactPage() {
               <span>Chính sách kiểm duyệt tài liệu</span>
             </div>
             <p className="text-content-muted leading-relaxed text-[11px]">
-              Tất cả các tài liệu được gửi lên hoặc yêu cầu đều được rà soát chất lượng quét, trang in và bản quyền học thuật nhằm đem lại nguồn tư liệu tin cậy nhất cho cộng đồng ngành y.
+              Tất cả các tài liệu được gửi lên hoặc yêu cầu đều được rà soát chất lượng quét, trang
+              in và bản quyền học thuật nhằm đem lại nguồn tư liệu tin cậy nhất cho cộng đồng ngành
+              y.
             </p>
           </div>
         </div>

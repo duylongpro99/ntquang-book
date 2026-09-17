@@ -1,33 +1,29 @@
-import React from "react";
-import Link from "next/link";
-import { BOOKS_DATA } from "@/src/data/books";
-import { CATEGORIES_TREE } from "@/src/data/categories";
-import { Rail } from "@/src/components/book/Rail";
-import { CardGrid } from "@/src/components/book/CardGrid";
-import { GlobalSearch } from "@/src/components/global/GlobalSearch";
 import {
-  BookOpen,
   ArrowRight,
-  ShieldCheck,
-  Download,
-  Users,
   Award,
-  Search,
+  BookOpen,
+  Download,
+  ShieldCheck,
   Sparkles,
   Stethoscope,
 } from "lucide-react";
+import Link from "next/link";
+import { Rail } from "@/src/components/book/Rail";
+import { GlobalSearch } from "@/src/components/global/GlobalSearch";
+import { BOOKS_DATA } from "@/src/data/books";
+import { CATEGORIES_TREE } from "@/src/data/categories";
 
 export default function HomePage() {
   const newBooks = BOOKS_DATA.filter((b) => b.isNew || b.isFeatured);
   const featuredBooks = BOOKS_DATA.filter((b) => b.isFeatured);
   const internalMedBooks = BOOKS_DATA.filter(
-    (b) => b.parentCategorySlug === "noi-khoa" || b.categorySlug.includes("noi-khoa")
+    (b) => b.parentCategorySlug === "noi-khoa" || b.categorySlug.includes("noi-khoa"),
   );
   const surgeryBooks = BOOKS_DATA.filter(
-    (b) => b.parentCategorySlug === "ngoai-khoa" || b.categorySlug.includes("ngoai-khoa")
+    (b) => b.parentCategorySlug === "ngoai-khoa" || b.categorySlug.includes("ngoai-khoa"),
   );
   const paraclinicalBooks = BOOKS_DATA.filter(
-    (b) => b.parentCategorySlug === "can-lam-sang" || b.categorySlug.includes("can-lam-sang")
+    (b) => b.parentCategorySlug === "can-lam-sang" || b.categorySlug.includes("can-lam-sang"),
   );
 
   return (
@@ -45,7 +41,8 @@ export default function HomePage() {
           </h1>
 
           <p className="text-sm md:text-base text-content-muted max-w-2xl mx-auto mt-3 mb-8 leading-relaxed">
-            Tra cứu, tải trọn bộ giáo trình đại học y dược, ebook lâm sàng, phác đồ điều trị bệnh viện và tài liệu chuyên khoa định dạng PDF sắc nét.
+            Tra cứu, tải trọn bộ giáo trình đại học y dược, ebook lâm sàng, phác đồ điều trị bệnh
+            viện và tài liệu chuyên khoa định dạng PDF sắc nét.
           </p>
 
           {/* Centered Search in Hero */}
@@ -103,7 +100,8 @@ export default function HomePage() {
             <div>
               <h3 className="text-sm font-semibold text-content">Tải Về Không Giới Hạn</h3>
               <p className="text-xs text-content-muted mt-0.5 leading-relaxed">
-                Mọi thành viên đăng ký đều tải được toàn bộ tài liệu, không phân chia hạng thành viên.
+                Mọi thành viên đăng ký đều tải được toàn bộ tài liệu, không phân chia hạng thành
+                viên.
               </p>
             </div>
           </div>
@@ -164,9 +162,7 @@ export default function HomePage() {
                     <h4 className="text-xs font-semibold text-content line-clamp-2 mt-0.5 group-hover:text-primary">
                       {book.title}
                     </h4>
-                    <p className="text-[11px] text-content-muted mt-1 truncate">
-                      {book.author}
-                    </p>
+                    <p className="text-[11px] text-content-muted mt-1 truncate">{book.author}</p>
                   </Link>
                 </div>
               ))}
@@ -206,9 +202,7 @@ export default function HomePage() {
                     <h4 className="text-xs font-semibold text-content line-clamp-2 mt-0.5 group-hover:text-primary">
                       {book.title}
                     </h4>
-                    <p className="text-[11px] text-content-muted mt-1 truncate">
-                      {book.author}
-                    </p>
+                    <p className="text-[11px] text-content-muted mt-1 truncate">{book.author}</p>
                   </Link>
                 </div>
               ))}
@@ -231,7 +225,8 @@ export default function HomePage() {
               Bạn Cần Tìm Giáo Trình Hoặc Ebook Chuyên Khoa Cụ Thể?
             </h2>
             <p className="text-xs md:text-sm text-primary-contrast/90 max-w-xl">
-              Hơn 79 chuyên khoa y học đã được phân loại chi tiết theo hệ thống mã môn học chuẩn y tế. Hãy khám phá ngay kho sách đầy đủ.
+              Hơn 79 chuyên khoa y học đã được phân loại chi tiết theo hệ thống mã môn học chuẩn y
+              tế. Hãy khám phá ngay kho sách đầy đủ.
             </p>
           </div>
           <Link

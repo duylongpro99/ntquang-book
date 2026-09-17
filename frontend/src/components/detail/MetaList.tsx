@@ -1,6 +1,5 @@
-import React from "react";
-import { Book } from "@/src/data/books";
-import { User, Building, Calendar, BookOpen, HardDrive, Languages, Hash } from "lucide-react";
+import { BookOpen, Building, Calendar, HardDrive, Hash, Languages, User } from "lucide-react";
+import type { Book } from "@/src/data/books";
 
 export interface MetaListProps {
   book: Book;
@@ -47,7 +46,9 @@ export function MetaList({ book, className = "" }: MetaListProps) {
   ];
 
   return (
-    <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-surface-muted/60 rounded-xl border border-border text-xs ${className}`}>
+    <div
+      className={`grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-surface-muted/60 rounded-xl border border-border text-xs ${className}`}
+    >
       {items.map((item, index) => (
         <div key={index} className="flex items-start gap-2.5">
           <div className="p-1 rounded bg-surface border border-border/80 shrink-0 mt-0.5">

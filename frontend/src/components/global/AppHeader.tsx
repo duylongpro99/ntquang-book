@@ -1,22 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { useAuth } from "@/src/context/AuthContext";
-import { MegaMenu } from "@/src/components/global/MegaMenu";
-import { GlobalSearch } from "@/src/components/global/GlobalSearch";
-import { ThemeToggle } from "@/src/components/global/ThemeToggle";
 import {
-  Menu,
-  X,
-  User as UserIcon,
-  LogOut,
   BookOpen,
-  HelpCircle,
   FileText,
-  Phone,
+  HelpCircle,
   Library,
+  LogOut,
+  Menu,
+  Phone,
+  User as UserIcon,
+  X,
 } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { GlobalSearch } from "@/src/components/global/GlobalSearch";
+import { MegaMenu } from "@/src/components/global/MegaMenu";
+import { ThemeToggle } from "@/src/components/global/ThemeToggle";
+import { useAuth } from "@/src/context/AuthContext";
 
 export function AppHeader() {
   const { user, isAuthenticated, openAuthModal, logout } = useAuth();
@@ -40,9 +40,7 @@ export function AppHeader() {
           <span className="hidden sm:inline">
             Thư viện sách y học trực tuyến dành cho bác sĩ, dược sĩ & sinh viên y khoa
           </span>
-          <span className="sm:hidden mx-auto font-medium">
-            Thư viện sách y khoa trực tuyến
-          </span>
+          <span className="sm:hidden mx-auto font-medium">Thư viện sách y khoa trực tuyến</span>
           <div className="hidden sm:flex items-center gap-4 text-[11px] text-content-muted">
             <Link href="/gioi-thieu" className="hover:text-primary transition-colors">
               Giới thiệu
@@ -99,16 +97,10 @@ export function AppHeader() {
             {/* Right: Navigation & User Auth */}
             <div className="flex items-center gap-2 sm:gap-3">
               <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-content-muted mr-1">
-                <Link
-                  href="/thu-vien-sach"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/thu-vien-sach" className="hover:text-primary transition-colors">
                   Kho sách
                 </Link>
-                <Link
-                  href="/tin-tuc"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/tin-tuc" className="hover:text-primary transition-colors">
                   Tin tức
                 </Link>
               </nav>
@@ -142,12 +134,8 @@ export function AppHeader() {
                   {userDropdownOpen && (
                     <div className="absolute right-0 mt-2 w-56 bg-surface rounded-xl border border-border shadow-e3 z-50 py-1.5 animate-in fade-in zoom-in-95 duration-100">
                       <div className="px-4 py-2 border-b border-border">
-                        <p className="text-xs font-semibold text-content truncate">
-                          {user.name}
-                        </p>
-                        <p className="text-[11px] text-content-muted truncate">
-                          {user.email}
-                        </p>
+                        <p className="text-xs font-semibold text-content truncate">{user.name}</p>
+                        <p className="text-[11px] text-content-muted truncate">{user.email}</p>
                       </div>
 
                       <div className="py-1">
@@ -213,10 +201,7 @@ export function AppHeader() {
       {/* Mobile Drawer Sheet */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 flex md:hidden">
-          <div
-            className="fixed inset-0 bg-black/50"
-            onClick={() => setMobileMenuOpen(false)}
-          />
+          <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
           <div className="relative w-4/5 max-w-sm bg-surface h-full z-10 shadow-e3 flex flex-col">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <div className="flex items-center gap-2 font-bold text-primary">

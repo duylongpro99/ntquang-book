@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { ArrowRight, Download, ShieldCheck, UserCheck } from "lucide-react";
 import Link from "next/link";
-import { useAuth } from "@/src/context/AuthContext";
 import { AccountNav } from "@/src/components/account/AccountNav";
 import { DataTable } from "@/src/components/account/DataTable";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
 import { Button } from "@/src/components/ui/Button";
-import { BookOpen, Download, ShieldCheck, UserCheck, ArrowRight, Clock } from "lucide-react";
+import { useAuth } from "@/src/context/AuthContext";
 
 export default function AccountDashboardPage() {
   const { user, isAuthenticated, downloads, openAuthModal } = useAuth();
@@ -22,7 +21,8 @@ export default function AccountDashboardPage() {
           Đăng nhập để xem trang tài khoản
         </h1>
         <p className="text-xs text-content-muted leading-relaxed">
-          Vui lòng đăng nhập bằng tài khoản email hoặc tên đăng nhập của bạn để xem lịch sử tải sách và quản lý thông tin thành viên.
+          Vui lòng đăng nhập bằng tài khoản email hoặc tên đăng nhập của bạn để xem lịch sử tải sách
+          và quản lý thông tin thành viên.
         </p>
         <div className="pt-2">
           <Button
@@ -41,10 +41,7 @@ export default function AccountDashboardPage() {
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-6">
       <Breadcrumb
-        items={[
-          { label: "Tài khoản", href: "/tai-khoan" },
-          { label: "Tổng quan thành viên" },
-        ]}
+        items={[{ label: "Tài khoản", href: "/tai-khoan" }, { label: "Tổng quan thành viên" }]}
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
@@ -97,9 +94,7 @@ export default function AccountDashboardPage() {
                   <span className="text-xs text-content-muted">Quyền truy cập</span>
                   <ShieldCheck className="w-4 h-4 text-success" />
                 </div>
-                <div className="text-2xl font-bold font-heading text-success mt-1">
-                  100% Mở
-                </div>
+                <div className="text-2xl font-bold font-heading text-success mt-1">100% Mở</div>
                 <span className="text-[11px] text-content-muted">Không giới hạn chuyên khoa</span>
               </div>
 
@@ -108,9 +103,7 @@ export default function AccountDashboardPage() {
                   <span className="text-xs text-content-muted">Tình trạng tài khoản</span>
                   <UserCheck className="w-4 h-4 text-primary" />
                 </div>
-                <div className="text-2xl font-bold font-heading text-content mt-1">
-                  Kích hoạt
-                </div>
+                <div className="text-2xl font-bold font-heading text-content mt-1">Kích hoạt</div>
                 <span className="text-[11px] text-content-muted">Đã xác thực</span>
               </div>
             </div>

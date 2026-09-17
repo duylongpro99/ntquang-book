@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { ArrowUpDown } from "lucide-react";
 
 export type SortOption = "newest" | "downloads" | "rating" | "title";
@@ -19,7 +18,9 @@ export function SortControl({
   className = "",
 }: SortControlProps) {
   return (
-    <div className={`flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 text-xs sm:text-sm ${className}`}>
+    <div
+      className={`flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 text-xs sm:text-sm ${className}`}
+    >
       {totalResults !== undefined && (
         <span className="text-content-muted text-xs">
           Tìm thấy <strong className="text-content font-semibold">{totalResults}</strong> tài liệu
@@ -27,7 +28,10 @@ export function SortControl({
       )}
 
       <div className="flex items-center gap-2 ml-auto sm:ml-auto">
-        <label htmlFor="sort-select" className="text-content-muted flex items-center gap-1.5 whitespace-nowrap text-xs">
+        <label
+          htmlFor="sort-select"
+          className="text-content-muted flex items-center gap-1.5 whitespace-nowrap text-xs"
+        >
           <ArrowUpDown className="w-3.5 h-3.5 text-content-muted shrink-0" />
           <span className="hidden xs:inline">Sắp xếp:</span>
         </label>

@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
-import { Book } from "@/src/data/books";
-import { useAuth } from "@/src/context/AuthContext";
+import { CheckCircle2, Download, ShieldCheck } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/src/components/ui/Button";
-import { Download, CheckCircle2, ShieldCheck, Lock } from "lucide-react";
+import { useAuth } from "@/src/context/AuthContext";
+import type { Book } from "@/src/data/books";
 
 export interface PrimaryCTAProps {
   book: Book;
@@ -12,11 +12,7 @@ export interface PrimaryCTAProps {
   isStickyMobile?: boolean;
 }
 
-export function PrimaryCTA({
-  book,
-  className = "",
-  isStickyMobile = false,
-}: PrimaryCTAProps) {
+export function PrimaryCTA({ book, className = "", isStickyMobile = false }: PrimaryCTAProps) {
   const { isAuthenticated, triggerDownload } = useAuth();
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
@@ -75,12 +71,8 @@ export function PrimaryCTA({
               Tài liệu mở cho thành viên
             </span>
             <div className="flex items-baseline gap-2 mt-1">
-              <span className="text-xl font-heading font-bold text-content">
-                Miễn phí tải về
-              </span>
-              <span className="text-xs text-content-muted">
-                (Định dạng gốc {book.format})
-              </span>
+              <span className="text-xl font-heading font-bold text-content">Miễn phí tải về</span>
+              <span className="text-xs text-content-muted">(Định dạng gốc {book.format})</span>
             </div>
           </div>
           <div className="text-right text-xs text-content-muted">

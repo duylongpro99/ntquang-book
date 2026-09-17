@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { BookOpen, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface ToastActivity {
   doctor: string;
@@ -11,9 +11,21 @@ interface ToastActivity {
 
 const ACTIVITIES: ToastActivity[] = [
   { doctor: "BS. Trần Quốc Tuấn", book: "Điều Trị Học Nội Khoa (Tập 1)", timeAgo: "2 phút trước" },
-  { doctor: "BSNT. Lê Đình Thắng", book: "Atlas Giải Phẫu Người Netter 7th", timeAgo: "5 phút trước" },
-  { doctor: "BS. Nguyễn Thanh Tùng", book: "Phác Đồ Hồi Sức Cấp Cứu 2024", timeAgo: "12 phút trước" },
-  { doctor: "BS. Lương Thiên Bình", book: "Chẩn Đoán Hình Ảnh Toàn Diện CT-MRI", timeAgo: "18 phút trước" },
+  {
+    doctor: "BSNT. Lê Đình Thắng",
+    book: "Atlas Giải Phẫu Người Netter 7th",
+    timeAgo: "5 phút trước",
+  },
+  {
+    doctor: "BS. Nguyễn Thanh Tùng",
+    book: "Phác Đồ Hồi Sức Cấp Cứu 2024",
+    timeAgo: "12 phút trước",
+  },
+  {
+    doctor: "BS. Lương Thiên Bình",
+    book: "Chẩn Đoán Hình Ảnh Toàn Diện CT-MRI",
+    timeAgo: "18 phút trước",
+  },
   { doctor: "DS. Nguyễn Ngọc Hạnh", book: "Dược Lý Học Lâm Sàng", timeAgo: "25 phút trước" },
 ];
 

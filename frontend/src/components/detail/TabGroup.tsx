@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import { Book } from "@/src/data/books";
-import { BookOpen, ListOrdered, FileText, Star, MessageSquare } from "lucide-react";
+import { FileText, ListOrdered, Star } from "lucide-react";
+import { useState } from "react";
 import { RatingStars } from "@/src/components/book/RatingStars";
+import type { Book } from "@/src/data/books";
 
 export interface TabGroupProps {
   book: Book;
@@ -14,7 +14,9 @@ export function TabGroup({ book, className = "" }: TabGroupProps) {
   const [activeTab, setActiveTab] = useState<"desc" | "toc" | "reviews">("desc");
 
   return (
-    <div className={`bg-surface rounded-xl border border-border shadow-e1 overflow-hidden ${className}`}>
+    <div
+      className={`bg-surface rounded-xl border border-border shadow-e1 overflow-hidden ${className}`}
+    >
       {/* Tabs Header */}
       <div className="flex border-b border-border bg-surface-muted/40 overflow-x-auto scrollbar-none">
         <button
@@ -60,16 +62,16 @@ export function TabGroup({ book, className = "" }: TabGroupProps) {
       <div className="p-4 sm:p-6">
         {activeTab === "desc" && (
           <div className="prose max-w-none text-content text-sm leading-relaxed space-y-4">
-            <p className="text-base text-content font-medium leading-normal">
-              {book.description}
-            </p>
+            <p className="text-base text-content font-medium leading-normal">{book.description}</p>
 
             <div className="p-4 bg-surface-muted rounded-lg border border-border mt-4">
               <h4 className="text-xs font-bold text-content uppercase tracking-wider mb-2">
                 Thông tin bản quyền & Lưu ý sử dụng
               </h4>
               <p className="text-xs text-content-muted leading-relaxed">
-                Tài liệu <strong>{book.title}</strong> được biên soạn bởi {book.author}, xuất bản bởi {book.publisher}. Bản ebook phục vụ mục đích tự học tập, tham khảo nâng cao nghiệp vụ cho đội ngũ y bác sĩ và sinh viên ngành y khoa.
+                Tài liệu <strong>{book.title}</strong> được biên soạn bởi {book.author}, xuất bản
+                bởi {book.publisher}. Bản ebook phục vụ mục đích tự học tập, tham khảo nâng cao
+                nghiệp vụ cho đội ngũ y bác sĩ và sinh viên ngành y khoa.
               </p>
             </div>
           </div>
@@ -134,7 +136,8 @@ export function TabGroup({ book, className = "" }: TabGroupProps) {
                 </div>
                 <RatingStars rating={5} showCount={false} />
                 <p className="text-xs text-content-muted leading-relaxed">
-                  Bản quét PDF cực kỳ rõ nét, mục lục bookmark chuyển trang rất mượt mà. Nội dung bám sát thực tiễn lâm sàng.
+                  Bản quét PDF cực kỳ rõ nét, mục lục bookmark chuyển trang rất mượt mà. Nội dung
+                  bám sát thực tiễn lâm sàng.
                 </p>
               </div>
 
@@ -152,7 +155,8 @@ export function TabGroup({ book, className = "" }: TabGroupProps) {
                 </div>
                 <RatingStars rating={5} showCount={false} />
                 <p className="text-xs text-content-muted leading-relaxed">
-                  Cảm ơn ban quản trị thư viện đã chia sẻ cuốn sách này. Tài liệu rất hữu ích cho các kỳ thi chuyên khoa và thực hành lâm sàng.
+                  Cảm ơn ban quản trị thư viện đã chia sẻ cuốn sách này. Tài liệu rất hữu ích cho
+                  các kỳ thi chuyên khoa và thực hành lâm sàng.
                 </p>
               </div>
             </div>

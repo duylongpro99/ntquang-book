@@ -1,6 +1,5 @@
-import React from "react";
-import Link from "next/link";
 import { ArrowLeft, BookOpen } from "lucide-react";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -12,7 +11,8 @@ export default function NotFound() {
         404 - Không tìm thấy trang
       </h1>
       <p className="text-sm text-content-muted leading-relaxed">
-        Trang hoặc tài liệu y khoa bạn đang tìm kiếm không tồn tại hoặc đã được chuyển sang địa chỉ mới.
+        Trang hoặc tài liệu y khoa bạn đang tìm kiếm không tồn tại hoặc đã được chuyển sang địa chỉ
+        mới.
       </p>
       <div className="pt-2">
         <Link

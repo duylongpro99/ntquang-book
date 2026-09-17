@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useId } from "react";
+import type React from "react";
+import { useId } from "react";
 
 export interface FormFieldOption {
   label: string;
@@ -15,7 +16,9 @@ export interface FormFieldProps {
   placeholder?: string;
   value?: string;
   defaultValue?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  onChange?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => void;
   error?: string | null;
   helperText?: string;
   disabled?: boolean;
@@ -123,9 +126,7 @@ export function FormField({
           {error}
         </p>
       ) : helperText ? (
-        <p className="text-xs text-content-muted mt-0.5">
-          {helperText}
-        </p>
+        <p className="text-xs text-content-muted mt-0.5">{helperText}</p>
       ) : null}
     </div>
   );

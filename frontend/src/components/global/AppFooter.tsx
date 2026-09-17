@@ -1,6 +1,5 @@
-import React from "react";
+import { HeartPulse, Library, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import { Library, ShieldCheck, HeartPulse, BookOpen, Mail } from "lucide-react";
 import { CATEGORIES_TREE } from "@/src/data/categories";
 
 export function AppFooter() {
@@ -24,7 +23,8 @@ export function AppFooter() {
               </div>
             </Link>
             <p className="text-xs text-content-muted leading-relaxed">
-              Kho tài liệu giáo trình, ebook y khoa và bài giảng chuyên ngành chất lượng cao dành cho bác sĩ nội trú, sinh viên y dược và nhân viên y tế học tập, nghiên cứu.
+              Kho tài liệu giáo trình, ebook y khoa và bài giảng chuyên ngành chất lượng cao dành
+              cho bác sĩ nội trú, sinh viên y dược và nhân viên y tế học tập, nghiên cứu.
             </p>
             <div className="flex items-center gap-2 text-xs text-success font-medium">
               <ShieldCheck className="w-4 h-4 text-success" />
@@ -93,7 +93,9 @@ export function AppFooter() {
               <span>Tuyên bố miễn trừ y khoa</span>
             </div>
             <p className="text-content-muted text-[11px] leading-relaxed">
-              Các tài liệu, ebook và bài giảng được lưu trữ trên thư viện chỉ nhằm mục đích nghiên cứu học thuật và nâng cao kiến thức y khoa chuyên môn. Không thay thế cho tư vấn, chẩn đoán hay điều trị y khoa trực tiếp từ cơ sở y tế có thẩm quyền.
+              Các tài liệu, ebook và bài giảng được lưu trữ trên thư viện chỉ nhằm mục đích nghiên
+              cứu học thuật và nâng cao kiến thức y khoa chuyên môn. Không thay thế cho tư vấn, chẩn
+              đoán hay điều trị y khoa trực tiếp từ cơ sở y tế có thẩm quyền.
             </p>
           </div>
         </div>
