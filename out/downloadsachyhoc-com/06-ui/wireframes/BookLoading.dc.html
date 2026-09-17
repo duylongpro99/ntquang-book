@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body{margin:0;font-family:'Be Vietnam Pro',system-ui,sans-serif;background:#fff;color:#334155;}
+    a{color:#d97706;}a:hover{color:#b45309;}
+    .ann{background:#134e4a;color:#ccfbf1;font-size:12px;padding:6px 12px;}.ann b{color:#5eead4;}
+    .wrap{padding:16px 20px;}
+    .box{background:#eef2f2;border:1px dashed #cbd5e1;border-radius:8px;color:#94a3b8;display:flex;align-items:center;justify-content:center;font-size:13px;}
+    .lbl{font-size:12px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
+    .col{display:flex;flex-direction:column;gap:8px;}
+    .grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+    .sk{background:linear-gradient(90deg,#eef2f2 25%,#e2e8f0 50%,#eef2f2 75%);border-radius:8px;}
+    .card{border:1px solid #e2e8f0;border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px;}
+    .skbar{height:10px;background:#e2e8f0;border-radius:4px;}
+  </style>
+</helmet>
+<div>
+  <div class="ann">book / product-detail &nbsp;·&nbsp; branch: <b>LOADING — related rail skeleton (fix leaked error)</b></div>
+  <div class="wrap col" style="gap:16px;">
+    <div style="font-size:16px;font-weight:600;color:#0f766e;">✔ Nội dung sách hiển thị đầy đủ (không phụ thuộc rail)</div>
+    <div class="lbl">Sách hay dành cho bạn — đang tải</div>
+    <div class="grid4">
+      <div class="card"><div class="sk" style="height:90px;"></div><div class="skbar" style="width:85%;"></div><div class="skbar" style="width:55%;"></div></div>
+      <div class="card"><div class="sk" style="height:90px;"></div><div class="skbar" style="width:85%;"></div><div class="skbar" style="width:55%;"></div></div>
+      <div class="card"><div class="sk" style="height:90px;"></div><div class="skbar" style="width:85%;"></div><div class="skbar" style="width:55%;"></div></div>
+      <div class="card"><div class="sk" style="height:90px;"></div><div class="skbar" style="width:85%;"></div><div class="skbar" style="width:55%;"></div></div>
+    </div>
+    <div style="font-size:12px;color:#94a3b8;max-width:520px;">↳ Bản gốc rò rỉ lỗi “Lỗi tải nội dung.” khi chưa đăng nhập. Bản dựng lại: skeleton rồi ẩn nhẹ nhàng nếu rỗng — không bao giờ hiện chuỗi lỗi thô.</div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

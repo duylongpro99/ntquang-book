@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body{margin:0;font-family:'Be Vietnam Pro',system-ui,sans-serif;background:#fff;color:#334155;}
+    a{color:#d97706;}a:hover{color:#b45309;}
+    .ann{background:#7c2d12;color:#fde68a;font-size:12px;padding:6px 12px;}.ann b{color:#fdba74;}
+    .wrap{padding:16px 20px;}
+    .row{display:flex;gap:16px;}.col{display:flex;flex-direction:column;gap:8px;}
+    .nav{width:180px;display:flex;flex-direction:column;gap:4px;}
+    .navitem{padding:8px 12px;border-radius:6px;font-size:13px;color:#475569;}
+    .navitem.on{background:#0f766e;color:#fff;font-weight:600;}
+    .empty{display:flex;flex-direction:column;gap:12px;align-items:center;padding:50px 20px;}
+    .box{background:#eef2f2;border:1px dashed #cbd5e1;border-radius:50%;width:64px;height:64px;display:flex;align-items:center;justify-content:center;color:#94a3b8;}
+    .cta{background:#0f766e;color:#fff;border-radius:8px;padding:11px 18px;font-size:14px;font-weight:700;}
+  </style>
+</helmet>
+<div>
+  <div class="ann">acc-downloads / account-dashboard &nbsp;·&nbsp; branch: <b>EMPTY — no downloads yet (state variant)</b></div>
+  <div class="wrap row" style="align-items:flex-start;">
+    <div class="nav">
+      <div class="navitem on">Thư viện của tôi</div>
+      <div class="navitem">Yêu cầu sách</div>
+      <div class="navitem">Thông tin tài khoản</div>
+      <div class="navitem" style="color:#94a3b8;">Đăng xuất</div>
+    </div>
+    <div class="col" style="flex:1;">
+      <div class="empty">
+        <div class="box">📚</div>
+        <div style="font-size:17px;font-weight:600;">Bạn chưa tải sách nào</div>
+        <div style="color:#64748b;font-size:13px;text-align:center;max-width:340px;">Bắt đầu khám phá thư viện — mọi cuốn sách bạn tải sẽ xuất hiện ở đây để tải lại bất cứ lúc nào.</div>
+        <div class="cta">Khám phá thư viện</div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,13 @@
+method,path,request_shape,response_shape,seen_from,auth_required
+GET,/,-,HTML (home),browser+curl,no
+GET,/sach/{slug}/,-,HTML (product),browser+curl,no
+GET,/danh-muc-sach/{cat}/,-,HTML (category archive),curl,no
+GET,/goi-tai-khoan/,-,HTML (pricing/packages),curl,no
+GET,/my-account/,-,HTML (login form if logged out; dashboard if in),browser,partial
+POST,/wp-admin/admin-ajax.php,"action=... (WOOF filter, add-to-cart, quick-view, widgets)",HTML/JSON fragment,inferred (robots allow + WOOF plugin),no
+GET,/wp-json/,-,"{code:rest_api,message:REST API is not working}",curl,BLOCKED (REST disabled)
+GET,/sitemap_index.xml,-,XML sitemap index,curl,no
+GET,/{post|page|product|category}-sitemap*.xml,-,XML url set,curl,no
+GET,?add-to-cart={id} / external product_url,-,redirect → login modal,browser (observed),login required
+GET,/search_gcse/?q=,query string,Google CSE results (client JS),inferred,no
+POST,(Google OAuth endpoint),-,OAuth redirect,browser (observed button),no

@@ -1,0 +1,18 @@
+/	[nav] homepage
+/goi-tai-khoan/	[nav] account packages (pricing)
+/lien-he/	[nav] contact
+/gioi-thieu/	[nav] about
+/tin-tuc/	[nav] news index (blog)
+/blog/	[nav] blog index
+/gioi-thieu-ban-be-nhan-ngay-qua-khung/	[nav] referral promo (Khuyến mãi)
+/thu-vien-sach/	[nav] library / shop (all books)
+/my-account/	[nav] account dashboard (login-gated)
+/search_gcse/	[nav] Google custom search results
+/huong-dan-nang-cap-tai-khoan/	[nav] upgrade guide
+/dieu-kien-va-chinh-sach/	[orphan-candidate] terms & policy
+/privacy-policy/	[orphan-candidate] privacy policy
+/sach/{book-slug}/	[nav] product (book) detail — ~1085 books
+/danh-muc-sach/{cat}[/{subcat}[/{subsubcat}]]/	[nav] product category — 79 categories
+/thuong-hieu-san-pham/{author}/  OR  pa_tac-gia/{author}	[nav] author attribute archive — 666 authors
+/tin-tuc/{post-cat}/	[nav] news category — 6 categories
+/{post-slug}/	[nav] blog post — ~12 posts

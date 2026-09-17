@@ -16,13 +16,13 @@ any book.** Do not build tier badges, pricing tables, checkout, or Google-login 
 
 ## 1. Design tokens & CMS Color Management
 
-Central configuration source: `src/config/theme.ts`. Palette is our own proprietary **Oxford Medical Sapphire + Precision Slate & Caduceus Amber** (clinical-academic authority, replacing reference site clones).
+Central configuration source: `frontend/src/config/theme.ts`. Palette is our own proprietary **Oxford Medical Sapphire + Precision Slate & Caduceus Amber** (clinical-academic authority, replacing reference site clones).
 
-**CMS-Ready Architecture:** All color tokens are decoupled and managed via `src/config/theme.ts` & `CmsThemeManager.tsx`. Themes can be updated, extended, or selected dynamically from a CMS without touching individual component files.
+**CMS-Ready Architecture:** All color tokens are decoupled and managed via `frontend/src/config/theme.ts` & `CmsThemeManager.tsx`. Themes can be updated, extended, or selected dynamically from a CMS without touching individual component files.
 
 ### 1.1 CSS variables (light + dark)
 
-Defined in `/app/globals.css` and bound to Tailwind utility classes via `@theme`. Dark mode is opt-in via `class` strategy (`<html class="dark">`).
+Defined in `frontend/app/globals.css` and bound to Tailwind utility classes via `@theme`. Dark mode is opt-in via `class` strategy (`<html class="dark">`).
 
 ```css
 /* app/globals.css */
@@ -163,7 +163,7 @@ component reaches them through a Tailwind utility.
 ## 3. Component library
 
 24 components across 6 layout patterns (`patterns.md`). Build them as a shared package
-(`src/components/`) with a strict variant/state API. **Card/course/article are variants of one
+(`frontend/src/components/`) with a strict variant/state API. **Card/course/article are variants of one
 `BookCard`, not separate components.** No tier/membership/checkout/social-login components exist.
 
 ### 3.1 Conventions for every component
@@ -332,8 +332,8 @@ order follows visual order; the download CTA is reachable and operable without a
 
 ## 7. Build conventions
 
-- **Folder:** `src/components/` primitives (Button, FormField, Modal, Skeleton), `src/components/book/`
-  domain components (BookCard, Rail, RatingStars), `src/layouts/` for the pattern shells.
+- **Folder:** `frontend/src/components/` primitives (Button, FormField, Modal, Skeleton), `frontend/src/components/book/`
+  domain components (BookCard, Rail, RatingStars), `frontend/src/layouts/` for the pattern shells.
 - **Variant management:** one utility (`tailwind-variants` or `cva`) across all components — do not mix.
 - **No inline hex, no arbitrary color values** (`bg-[#...]`). Colors come only from Tailwind tokens.
 - **Skeletons ship with the component** — a component that can load renders its own skeleton at the

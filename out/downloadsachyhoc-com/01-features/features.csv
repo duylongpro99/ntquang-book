@@ -1,0 +1,53 @@
+id,area,feature,description,evidence,entity,roles,tier,confidence,proof,first_seen,verdict,notes
+catalog.book-detail,Catalog,Book detail page,"View a book's cover, editor, language, publisher, specialty, description",route:/sach/{slug}; strings:product.*; screenshot,Book,visitor,all,observed,ss_5320pbnv0,,copy,external product type priced 0
+catalog.book-metadata,Catalog,Book metadata fields,"Structured fields: editor (Chủ biên), language, publisher, SKU, specialty",strings:product.chu_bien/ngon_ngu/nha_xuat_ban; screenshot,Book,visitor,all,observed,ss_5320pbnv0,,copy,
+catalog.category-browse,Catalog,Category browse (hierarchical),Browse books by 3-level medical specialty category tree,route:/danh-muc-sach/{cat}; product_cat-sitemap(79); strings:cat.*,Category,visitor,all,inferred,,,copy,12 top-level / 79 total
+catalog.author-archive,Catalog,Browse by author,List books by author/editor term,pa_tac-gia-sitemap(666); attribute pa_tac-gia,Author,visitor,all,inferred,,,copy,666 author terms
+catalog.faceted-filter,Catalog,Faceted catalog filter,Filter catalog by category/author/language facets,plugin:WOOF(52 refs); endpoint:admin-ajax,Book,visitor,all,inferred,,,copy,WooCommerce Products Filter
+catalog.library-index,Catalog,Library / all-books index,Single page listing/paging the whole catalog,route:/thu-vien-sach/(200),Book,visitor,all,inferred,,,copy,shop page
+catalog.related-books,Catalog,Related books (same specialty),"Grid of related titles ""Sách cùng chuyên ngành""",strings:product.sach_cung_chuyen_nganh; screenshot,Book,visitor,all,observed,ss_5320pbnv0,,copy,
+catalog.recently-updated,Catalog,Recently updated sidebar,"Sidebar ""Sách mới cập nhật"" newest titles with ratings",strings:sidebar.sach_moi_cap_nhat; screenshot,Book,visitor,all,observed,ss_5320pbnv0,,copy,
+catalog.most-downloaded,Catalog,Most-downloaded widget,"""Sách tải nhiều"" popularity list",strings:product.sach_tai_nhieu; page-text,Book,visitor,all,inferred,,,copy,AJAX widget errored logged-out
+catalog.recommended,Catalog,Recommended for you (EN/VN),"""Sách hay dành cho bạn"" tabbed EN/VN recommendations",strings:product.sach_hay_danh_cho_ban; page-text,Book,member,all,inferred,,,copy,AJAX widget errored logged-out
+catalog.quick-view,Catalog,Quick view,"""XEM NHANH"" modal preview on book cards",strings:product.xem_nhanh; page-text,Book,visitor,all,inferred,,,copy,
+catalog.cover-lightbox,Catalog,Cover zoom/lightbox,Zoom the book cover image in a lightbox,theme:Flatsome lightbox; screenshot,Book,visitor,all,observed,ss_5320pbnv0,,copy,
+catalog.book-tags,Catalog,Book collections/tags,"Tag books into collections (""sách hay"", ""tải nhiều"")",strings:product.chuyen_muc; screenshot,Tag,visitor,all,observed,ss_5320pbnv0,,copy,
+catalog.new-badges,Catalog,New/updated year labels,Titles labeled by year (2025/2026 newest),page-text,Book,visitor,all,inferred,,,copy,year labels only — newest access no longer a tier perk (no tiers)
+search.site-search,Search,Site search box,Header keyword search over catalog (Vietnamese diacritics),strings:search.placeholder; screenshot,Book,visitor,all,observed,ss_5320pbnv0,,copy,
+search.gcse,Search,Google custom search page,Dedicated /search_gcse results via Google CSE,route:/search_gcse/; page-sitemap,Book,visitor,all,inferred,,,differentiate,3rd-party dependency
+download.book-download,Download,Download a book (Tải sách),Click Tải sách to download a book file,strings:product.tai_sach; screenshot(click→modal),Book,member,all,observed,ss_55920307d,,copy,gated by LOGIN only (no tiers) — any logged-in user downloads
+download.tier-gating,Access,Per-book tier gating,"Each book requires a minimum tier (free/Thường/VIP/GOLD/DIAMOND)",pricing FAQ (2nd note line); tech-obs,Book,member,tiered,inferred,,,drop,DROPPED: no tier ladder — access is binary (logged-in downloads freely)
+download.unlimited,Access,Unlimited downloads,Every logged-in user downloads without count limits,pricing:all tiers (Không giới hạn lượt tải),Download,member,all,inferred,,,copy,no tiers — same for every account; throttle TBD
+download.protected-delivery,Download,Protected file delivery,Serve the book file only to a logged-in user,tech-obs (not verified),Book,member,all,guessed,,,copy,delivery path unverified; auth-gated (not tier-gated)
+membership.tiers,Membership,Membership tier catalog,"4 access tiers (Thường/VIP/GOLD/DIAMOND) with prices & perks",route:/goi-tai-khoan/; pricing-matrix; live fetch,Plan,visitor,all,observed,raw/goi-tai-khoan.html,,drop,DROPPED: no tiers — simple username+password auth; all accounts equal
+membership.purchase,Membership,Purchase / activate membership,Buy and activate a tier (kích hoạt),strings:plan.kich_hoat; woo checkout,Order,visitor,all,inferred,,,drop,DROPPED: no tiers/payment — no purchase
+membership.upgrade,Membership,Upgrade tier,Upgrade to a higher tier while current still valid,pricing FAQ; /huong-dan-nang-cap-tai-khoan,Membership,member,tiered,inferred,,,drop,DROPPED: no tiers
+membership.duration-expiry,Membership,Duration & expiry,"Time-boxed (1yr) vs permanent access; expiry tracking",pricing:Thời hạn 1 năm / vĩnh viễn,Membership,member,tiered,inferred,,,drop,DROPPED: no tiers/expiry — an account is simply active
+membership.status,Account,Membership status view,See current tier and remaining validity,inferred from upgrade rule + FAQ,Membership,member,tiered,inferred,,,drop,DROPPED: no tiers — nothing to show
+membership.promo,Membership,Promotional pricing,Time-boxed discount campaigns with deadline,strings:plan.promo; screenshot banner,Plan,visitor,all,observed,raw/goi-tai-khoan.html,,drop,DROPPED with marketing-page pattern
+membership.no-ads,Membership,Ad-free for members,Members see no ads / share prompts,pricing:Không quảng cáo/chia sẻ,Membership,member,tiered,inferred,,,drop,DROPPED: no tiers — our build has no ads for anyone
+courses.catalog,Courses,Video courses catalog,Browse medical video courses (~400k each),pricing mentions; courses link (tại đây),Course,visitor,all,inferred,,,copy,secondary product line (Later)
+courses.bonus-grant,Courses,Bonus course grant,GOLD/DIAMOND members pick free bonus courses,pricing:Tặng 2/3 khóa học video,Course,member,tiered,inferred,,,drop,DROPPED: tier perk — no tiers
+requests.request-book,Requests,Request a book,Logged-in users request EN/VN books not yet in library,pricing:Yêu cầu sách Tiếng Anh/Việt,BookRequest,member,all,inferred,,,copy,any logged-in user (no tier gating); Later
+auth.login,Auth,Login,"Log in with username/email + password",strings:auth.*; screenshot modal,User,visitor,all,observed,ss_2122cdwvo,,copy,site-wide modal; username+password only
+auth.google-oauth,Auth,Google login,"Sign in / up with Google (""Tiếp tục với Google"")",strings:auth.google; screenshot,User,visitor,all,observed,ss_2122cdwvo,,drop,DROPPED: no social login — username+password only
+auth.register,Auth,Registration,Create a new account with username + password,strings:auth.no_account; screenshot,User,visitor,all,observed,ss_2122cdwvo,,copy,
+auth.password-reset,Auth,Password reset,Recover a lost password,WooCommerce default (not seen),User,visitor,all,guessed,,,copy,
+account.dashboard,Account,Account dashboard,My Account landing with nav to sub-areas,route:/my-account/(200); WooCommerce,User,member,all,inferred,,,copy,logged-out - not captured
+account.orders,Account,Order history,View past membership/course orders,WooCommerce My Account,Order,member,all,inferred,,,drop,DROPPED: no payment/orders
+account.details,Account,Account details,Edit profile / email / password,WooCommerce My Account,User,member,all,inferred,,,copy,
+account.downloads,Account,Downloads area (My library),List of books the user has downloaded — re-download,WooCommerce downloads + membership,Download,member,all,inferred,,,copy,Bet 2 — one library view; open to any logged-in user
+ratings.star-rating,Social,Star ratings,Books show X/5 star ratings,strings:product.xep_hang_sao; screenshot,Rating,visitor,all,observed,ss_5320pbnv0,,copy,display seen; submit not verified
+ratings.submit-review,Social,Submit a review,Logged-in users rate/review a book,inferred from displayed ratings,Rating,member,all,guessed,,,undecided,submission unverified
+social.proof-toast,Growth,Live social-proof toast,"""X just registered"" popups",screenshot,Event,visitor,all,observed,ss_55920307d,,differentiate,FOMO widget — drop VIP wording (no tiers)
+social.share,Social,Social share buttons,Share a book to FB/Twitter/email/Pinterest,screenshot,Book,visitor,all,observed,ss_5320pbnv0,,copy,
+social.referral,Growth,Refer-a-friend program,Invite friends for gifts,nav:Khuyến mãi; post:gioi-thieu-ban-be,User,member,all,inferred,,,drop,DROPPED with marketing-page pattern
+support.messenger-chat,Support,Messenger live chat,FB Messenger chat widget for 24/7 support,screenshot; tech-obs,-,visitor,all,observed,ss_5320pbnv0,,copy,3rd-party
+support.contact-form,Support,Contact form,Send a message via contact page,plugin:CF7; route:/lien-he/,-,visitor,all,inferred,,,copy,
+content.blog,Content,News / blog,Read medical articles & promo posts by category,route:/tin-tuc/; post-sitemap(12),Post,visitor,all,inferred,,,copy,content marketing + SEO
+content.static-pages,Content,Static info pages,About/terms/privacy/download-guide,page-sitemap; routes,Page,visitor,all,inferred,,,copy,upgrade-guide drops with tiers
+seo.sitemaps,SEO,XML sitemaps,Yoast-generated sitemaps for all content types,raw/sitemap_index.xml,-,visitor,all,observed,raw/sitemap_index.xml,,drop,infra not user feature
+infra.caching,Infra,Full-page caching,LiteSpeed full-page + asset optimization,header:x-litespeed-cache; tech-obs,-,visitor,all,observed,raw/robots.txt,,drop,infra
+membership.renewal,Membership,Renew membership,Renew an expired/expiring plan via a new order,state-machine:Membership.status,Membership,member,tiered,inferred,,,drop,DROPPED: no tiers/expiry — no renewal
+notify.transactional-email,Notifications,Transactional emails,"Account emails: register confirmation, password reset",state-machine:Order.status; events.md,User,member,all,inferred,,,copy,narrowed — order/activation/expiry emails dropped (no payment/tiers)
+notify.renewal-reminder,Notifications,Renewal reminder,Notify member before/at expiry to renew,state-machine:Membership.status,Membership,member,tiered,guessed,,,drop,DROPPED: no tiers/expiry

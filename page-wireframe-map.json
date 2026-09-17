@@ -13,19 +13,19 @@
   },
 
   "conventions": {
-    "appDir": "app",
-    "componentsDir": "src/components",
+    "appDir": "frontend/app",
+    "componentsDir": "frontend/src/components",
     "loadingFile": "loading.tsx renders the *Loading wireframe as a skeleton",
     "emptyState": "Rendered inside the page component when the data set is empty — maps to the *Empty wireframe",
     "errorFile": "error.tsx / inline field errors — never a bare error string",
-    "wireframePlaceholders": "Boxes/bars in .dc.html are placeholders. Replace with real components from src/components. Do NOT copy the wireframe's inline CSS or hex colors."
+    "wireframePlaceholders": "Boxes/bars in .dc.html are placeholders. Replace with real components from frontend/src/components. Do NOT copy the wireframe's inline CSS or hex colors."
   },
 
   "pages": [
     {
       "id": "home",
       "route": "/",
-      "appFile": "app/page.tsx",
+      "appFile": "frontend/app/page.tsx",
       "titleVi": "Trang chủ",
       "pattern": "list-grid",
       "auth": "public",
@@ -39,7 +39,7 @@
     {
       "id": "library",
       "route": "/thu-vien-sach",
-      "appFile": "app/thu-vien-sach/page.tsx",
+      "appFile": "frontend/app/thu-vien-sach/page.tsx",
       "titleVi": "Thư viện sách",
       "pattern": "list-grid",
       "auth": "public",
@@ -53,7 +53,7 @@
     {
       "id": "category",
       "route": "/danh-muc/[...slug]",
-      "appFile": "app/danh-muc/[...slug]/page.tsx",
+      "appFile": "frontend/app/danh-muc/[...slug]/page.tsx",
       "titleVi": "Danh mục · chuyên khoa",
       "pattern": "list-grid",
       "auth": "public",
@@ -67,7 +67,7 @@
     {
       "id": "search",
       "route": "/tim-kiem",
-      "appFile": "app/tim-kiem/page.tsx",
+      "appFile": "frontend/app/tim-kiem/page.tsx",
       "titleVi": "Kết quả tìm kiếm",
       "pattern": "list-grid",
       "auth": "public",
@@ -81,12 +81,12 @@
     {
       "id": "book-detail",
       "route": "/sach/[slug]",
-      "appFile": "app/sach/[slug]/page.tsx",
+      "appFile": "frontend/app/sach/[slug]/page.tsx",
       "titleVi": "Chi tiết sách",
       "pattern": "product-detail",
       "auth": "public",
       "wireframes": { "default": "BookDetail.dc.html", "loading": "BookLoading.dc.html" },
-      "loadingFile": "app/sach/[slug]/loading.tsx",
+      "loadingFile": "frontend/app/sach/[slug]/loading.tsx",
       "dynamicParams": ["slug"],
       "data": "Single book: cover, meta (editor/language/publisher/SKU), description, related grid, recently-updated rail.",
       "components": ["Breadcrumb", "MediaViewer", "MetaList", "RatingStars", "PrimaryCTA", "ShareBar", "TabGroup", "Rail", "BookCard", "CardGrid"],
@@ -101,7 +101,7 @@
     {
       "id": "account",
       "route": "/tai-khoan",
-      "appFile": "app/tai-khoan/page.tsx",
+      "appFile": "frontend/app/tai-khoan/page.tsx",
       "titleVi": "Tài khoản của tôi",
       "pattern": "account-dashboard",
       "auth": "protected",
@@ -115,7 +115,7 @@
     {
       "id": "account-library",
       "route": "/tai-khoan/thu-vien",
-      "appFile": "app/tai-khoan/thu-vien/page.tsx",
+      "appFile": "frontend/app/tai-khoan/thu-vien/page.tsx",
       "titleVi": "Thư viện của tôi",
       "pattern": "account-dashboard",
       "auth": "protected",
@@ -129,7 +129,7 @@
     {
       "id": "account-details",
       "route": "/tai-khoan/thong-tin",
-      "appFile": "app/tai-khoan/thong-tin/page.tsx",
+      "appFile": "frontend/app/tai-khoan/thong-tin/page.tsx",
       "titleVi": "Thông tin tài khoản",
       "pattern": "form",
       "auth": "protected",
@@ -143,7 +143,7 @@
     {
       "id": "contact",
       "route": "/lien-he",
-      "appFile": "app/lien-he/page.tsx",
+      "appFile": "frontend/app/lien-he/page.tsx",
       "titleVi": "Liên hệ",
       "pattern": "form",
       "auth": "public",
@@ -157,7 +157,7 @@
     {
       "id": "news-index",
       "route": "/tin-tuc",
-      "appFile": "app/tin-tuc/page.tsx",
+      "appFile": "frontend/app/tin-tuc/page.tsx",
       "titleVi": "Tin tức",
       "pattern": "list-grid",
       "auth": "public",
@@ -171,7 +171,7 @@
     {
       "id": "article",
       "route": "/tin-tuc/[slug]",
-      "appFile": "app/tin-tuc/[slug]/page.tsx",
+      "appFile": "frontend/app/tin-tuc/[slug]/page.tsx",
       "titleVi": "Bài viết",
       "pattern": "article",
       "auth": "public",
@@ -185,7 +185,7 @@
     {
       "id": "about",
       "route": "/gioi-thieu",
-      "appFile": "app/gioi-thieu/page.tsx",
+      "appFile": "frontend/app/gioi-thieu/page.tsx",
       "titleVi": "Giới thiệu",
       "pattern": "article",
       "auth": "public",
@@ -211,7 +211,7 @@
       "states": ["default", "validating", "error"],
       "fields": ["username-or-email", "password"],
       "notes": "Username/email + password + submit + login/register toggle ONLY. NO Google/social button. The single gate: login => can download any book. Traps focus, Esc closes, resumes pending download after success. Errors render inline (AuthError), never a bare string.",
-      "implementation": "Render via a route-intercepting parallel route (app/@modal) or a global client modal store; the download CTA opens it when logged out."
+      "implementation": "Render via a route-intercepting parallel route (frontend/app/@modal) or a global client modal store; the download CTA opens it when logged out."
     }
   ],
 
