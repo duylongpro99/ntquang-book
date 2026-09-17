@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "book_requests",
+  "info": { "singularName": "book-request", "pluralName": "book-requests", "displayName": "Book Request" },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": {},
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "language": { "type": "string" },
+    "requester": { "type": "relation", "relation": "manyToOne", "target": "plugin::users-permissions.user" },
+    "status": { "type": "enumeration", "enum": ["submitted", "in_review", "fulfilled", "rejected"], "default": "submitted", "required": true },
+    "note": { "type": "text" }
+  }
+}

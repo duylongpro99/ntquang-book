@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_branding_theme_tokens",
+  "info": { "displayName": "Theme Tokens", "icon": "paint" },
+  "options": {},
+  "attributes": {
+    "bg": { "type": "string", "required": true },
+    "surface": { "type": "string", "required": true },
+    "surfaceMuted": { "type": "string", "required": true },
+    "border": { "type": "string", "required": true },
+    "text": { "type": "string", "required": true },
+    "textMuted": { "type": "string", "required": true },
+    "primary": { "type": "string", "required": true },
+    "primaryHover": { "type": "string", "required": true },
+    "primaryContrast": { "type": "string", "required": true },
+    "accent": { "type": "string", "required": true },
+    "accentContrast": { "type": "string", "required": true },
+    "success": { "type": "string", "required": true },
+    "warning": { "type": "string", "required": true },
+    "danger": { "type": "string", "required": true },
+    "info": { "type": "string", "required": true },
+    "focusRing": { "type": "string", "required": true }
+  }
+}

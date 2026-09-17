@@ -1,0 +1,72 @@
+{
+  "collectionName": "up_users",
+  "info": {
+    "name": "user",
+    "description": "PINNED MANUAL TRANSCRIPTION: this is a full copy of the built-in @strapi/plugin-users-permissions user schema (additions-only deep-merge did not work in this Strapi version) plus hospital/specialty/avatar/joinedDate. Re-sync the built-in attributes with node_modules/@strapi/plugin-users-permissions/dist/server/content-types/user/index.js whenever the plugin is upgraded.",
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "User"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": true
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
+    "password": {
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "resetPasswordToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmationToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "role": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.role",
+      "inversedBy": "users",
+      "configurable": false
+    },
+    "hospital": { "type": "string" },
+    "specialty": { "type": "string" },
+    "avatar": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "joinedDate": { "type": "date" }
+  }
+}

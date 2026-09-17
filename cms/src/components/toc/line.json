@@ -1,0 +1,8 @@
+{
+  "collectionName": "components_toc_lines",
+  "info": { "displayName": "TOC Line", "icon": "bulletList" },
+  "options": {},
+  "attributes": {
+    "text": { "type": "string", "required": true }
+  }
+}
