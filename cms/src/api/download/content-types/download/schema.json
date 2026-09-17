@@ -1,0 +1,13 @@
+{
+  "kind": "collectionType",
+  "collectionName": "downloads",
+  "info": { "singularName": "download", "pluralName": "downloads", "displayName": "Download" },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": {},
+  "attributes": {
+    "user": { "type": "relation", "relation": "manyToOne", "target": "plugin::users-permissions.user" },
+    "book": { "type": "relation", "relation": "manyToOne", "target": "api::book.book" },
+    "downloadedAt": { "type": "datetime" },
+    "bookTitle": { "type": "string" }
+  }
+}
