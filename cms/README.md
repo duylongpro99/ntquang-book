@@ -111,3 +111,19 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 ---
 
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+
+## Phase 1 — Content model
+
+Nine content types (book, article, category, article-category, author, publisher,
+download, book-request) plus a branding single type and profile fields on the
+users-permissions user. Draft/Publish is enabled on **book** and **article** only.
+
+Public REST (`/api/...`) and GraphQL (`/graphql`) expose **published** book,
+article, category, article-category, author, publisher, and branding. `download`
+and `book-request` are not publicly readable.
+
+### Read-only API token (for the frontend)
+1. `bun run dev`, open the admin at `/admin`.
+2. Settings → API Tokens → Create new token → Token type: **Read-only**.
+3. Copy the token into the frontend env: `CMS_API_TOKEN=<token>` and
+   `CMS_URL=<cms-origin>`. Keep it server-side only.
