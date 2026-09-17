@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "branding",
+  "info": { "singularName": "branding", "pluralName": "brandings", "displayName": "Branding" },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": {},
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "description": { "type": "text" },
+    "accentLabel": { "type": "string" },
+    "light": { "type": "component", "repeatable": false, "component": "branding.theme-tokens" },
+    "dark": { "type": "component", "repeatable": false, "component": "branding.theme-tokens" },
+    "logo": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "siteTitle": { "type": "string" },
+    "siteDescription": { "type": "text" }
+  }
+}
