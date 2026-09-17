@@ -1,0 +1,6 @@
+{
+  "name": "Download Sách Y Học",
+  "description": "Thư viện sách y khoa trực tuyến, tài liệu giáo trình và ebook y học chuyên sâu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

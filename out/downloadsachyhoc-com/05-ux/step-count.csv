@@ -1,7 +1,0 @@
-task,steps,screen_changes,fields,waits_seconds,friction_points,notes
-find-book-search,3,2,1,2,1,"search demands Vietnamese diacritics (observed)"
-find-book-browse,4,3,0,2,1,"depth-4 taxonomy to reach deepest books (observed)"
-judge-book,1,0,0,1,1,"logged-out recommendation rails error out (observed)"
-register-or-login-to-download,2,0,3,1,1,"username + password only (no Google); modal over book page"
-download-book,2,0,0,999,1,"INFERRED past login gate (R1); gate observed at 1 step; no tier check"
-return-and-redownload,2,1,0,3,1,"INFERRED — My library not observed"

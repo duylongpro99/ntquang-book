@@ -14,54 +14,56 @@ any book.** Do not build tier badges, pricing tables, checkout, or Google-login 
 
 ---
 
-## 1. Design tokens
+## 1. Design tokens & CMS Color Management
 
-Single source: `out/downloadsachyhoc-com/06-ui/tokens.json`. Palette is our own **clinical teal +
-warm amber** (clean-room, not the reference's green). 4px spacing rhythm, 1.2 type scale.
+Central configuration source: `src/config/theme.ts`. Palette is our own proprietary **Oxford Medical Sapphire + Precision Slate & Caduceus Amber** (clinical-academic authority, replacing reference site clones).
+
+**CMS-Ready Architecture:** All color tokens are decoupled and managed via `src/config/theme.ts` & `CmsThemeManager.tsx`. Themes can be updated, extended, or selected dynamically from a CMS without touching individual component files.
 
 ### 1.1 CSS variables (light + dark)
 
-Define once in your global stylesheet. Dark mode is opt-in via `class` strategy (`<html class="dark">`).
+Defined in `/app/globals.css` and bound to Tailwind utility classes via `@theme`. Dark mode is opt-in via `class` strategy (`<html class="dark">`).
 
 ```css
-/* app.css */
+/* app/globals.css */
 @layer base {
   :root {
-    /* color — light */
-    --bg: #f7faf9;
+    /* Proprietary Clinical Palette: Oxford Medical Sapphire & Precision Slate */
+    --bg: #f8fafc;
     --surface: #ffffff;
-    --surface-muted: #eef3f2;
-    --border: #d6e0de;
-    --text: #122522;
-    --text-muted: #5a6b68;
-    --primary: #0f766e;
-    --primary-hover: #0b5c55;
+    --surface-muted: #f1f5f9;
+    --border: #e2e8f0;
+    --text: #0f172a;
+    --text-muted: #475569;
+    --primary: #1d4ed8;
+    --primary-hover: #1e40af;
     --primary-contrast: #ffffff;
     --accent: #d97706;
     --accent-contrast: #ffffff;
-    --success: #15803d;
-    --warning: #b45309;
-    --danger: #b91c1c;
-    --info: #0369a1;
-    --focus-ring: #0f766e;
+    --success: #16a34a;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --info: #0284c7;
+    --focus-ring: #3b82f6;
   }
   .dark {
-    --bg: #0c1614;
-    --surface: #132320;
-    --surface-muted: #1b2f2b;
-    --border: #2a3f3a;
-    --text: #e6efec;
-    --text-muted: #9db1ac;
-    --primary: #2dd4bf;
-    --primary-hover: #5eead4;
-    --primary-contrast: #08201c;
+    /* Night Shift Clinical Navy Slate */
+    --bg: #0b1120;
+    --surface: #111c33;
+    --surface-muted: #1e293b;
+    --border: #25334d;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --primary: #3b82f6;
+    --primary-hover: #60a5fa;
+    --primary-contrast: #ffffff;
     --accent: #f59e0b;
-    --accent-contrast: #231303;
-    --success: #4ade80;
+    --accent-contrast: #0b1120;
+    --success: #22c55e;
     --warning: #fbbf24;
-    --danger: #f87171;
+    --danger: #ef4444;
     --info: #38bdf8;
-    --focus-ring: #2dd4bf;
+    --focus-ring: #60a5fa;
   }
   html { background: var(--bg); color: var(--text); }
   body { font-family: theme('fontFamily.sans'); }
