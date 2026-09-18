@@ -1,11 +1,13 @@
 import type { Core } from '@strapi/strapi';
 import { setupStrapi, teardownStrapi } from '../helpers/strapi';
+import { clearSeedData } from '../helpers/clear-seed-data';
 import { seedAuthors } from '../../scripts/seed/steps/authors';
 import { seedPublishers } from '../../scripts/seed/steps/publishers';
 import { seedArticleCategories } from '../../scripts/seed/steps/article-categories';
 
 let strapi: Core.Strapi;
 beforeAll(async () => { strapi = await setupStrapi(); });
+beforeAll(async () => { await clearSeedData(strapi); });
 afterAll(async () => { await teardownStrapi(); });
 
 describe('reference entity steps', () => {

@@ -1,5 +1,6 @@
 import type { Core } from '@strapi/strapi';
 import { setupStrapi, teardownStrapi } from '../helpers/strapi';
+import { clearSeedData } from '../helpers/clear-seed-data';
 import { seedCategories } from '../../scripts/seed/steps/categories';
 import { seedAuthors } from '../../scripts/seed/steps/authors';
 import { seedPublishers } from '../../scripts/seed/steps/publishers';
@@ -8,6 +9,7 @@ import { seedBooks } from '../../scripts/seed/steps/books';
 let strapi: Core.Strapi;
 beforeAll(async () => {
   strapi = await setupStrapi();
+  await clearSeedData(strapi);
   await seedCategories(strapi);
   await seedAuthors(strapi);
   await seedPublishers(strapi);

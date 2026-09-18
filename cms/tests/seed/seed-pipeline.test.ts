@@ -1,9 +1,11 @@
 import type { Core } from '@strapi/strapi';
 import { setupStrapi, teardownStrapi } from '../helpers/strapi';
+import { clearSeedData } from '../helpers/clear-seed-data';
 import { runSeed } from '../../scripts/seed';
 
 let strapi: Core.Strapi;
 beforeAll(async () => { strapi = await setupStrapi(); });
+beforeAll(async () => { await clearSeedData(strapi); });
 afterAll(async () => { await teardownStrapi(); });
 
 describe('runSeed (full pipeline)', () => {
