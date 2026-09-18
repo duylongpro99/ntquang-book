@@ -29,3 +29,6 @@ yarn-error.log*
 # python caches (tooling under .claude)
 __pycache__/
 *.pyc
+
+# git worktrees (isolated workspaces)
+.claude/worktrees/
