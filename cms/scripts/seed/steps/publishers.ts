@@ -5,7 +5,9 @@ import { upsertByKey } from '../upsert';
 
 const UID = 'api::publisher.publisher';
 
-/** Distinct verbatim book.publisher strings. */
+/** Distinct verbatim book.publisher strings.
+ *  Assumes `slug` (uid) is unique across names: two distinct names that `slugify()` to the same
+ *  slug would throw on create (fail-loud) — acceptable; no collision in current data. */
 export async function seedPublishers(strapi: Core.Strapi): Promise<number> {
   const names = new Set<string>();
   for (const b of BOOKS_DATA) names.add(b.publisher);

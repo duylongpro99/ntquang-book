@@ -39,6 +39,10 @@ async function main(): Promise<void> {
       const result = await verify(strapi);
       // eslint-disable-next-line no-console
       console.log(result.ok ? 'Verify: OK' : `Verify FAILED:\n${result.errors.join('\n')}`);
+      for (const n of result.notes) {
+        // eslint-disable-next-line no-console
+        console.log('Note:', n);
+      }
       if (!result.ok) process.exitCode = 1;
     }
   } finally {

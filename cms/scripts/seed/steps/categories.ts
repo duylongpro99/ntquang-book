@@ -8,6 +8,9 @@ const UID = 'api::category.category';
  * Two-pass seed of the book category tree.
  * Pass 1: upsert every node by slug (name + slug only; `count` is ignored — derived in Phase 3).
  * Pass 2: set each child's `parent` relation from the tree nesting.
+ *
+ * Assumes a 2-level tree (top-level nodes + direct children only, via `top.children`); a
+ * future 3rd level would need both passes to recurse instead of reading one level flatly.
  */
 export async function seedCategories(strapi: Core.Strapi): Promise<number> {
   // Pass 1 — create/update all nodes, remember documentId by slug.

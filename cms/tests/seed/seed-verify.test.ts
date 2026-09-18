@@ -18,5 +18,9 @@ describe('verify', () => {
     if (!result.ok) throw new Error('verify errors:\n' + result.errors.join('\n'));
     expect(result.ok).toBe(true);
     expect(result.errors).toHaveLength(0);
+    // MED-CDHA-003's source categoryName diverges from the canonical CATEGORIES_TREE name —
+    // this is intentional (spec §3: categoryName is re-derived from the category relation) and
+    // must be surfaced as a note, not silently masked by the deep-equal override.
+    expect(result.notes.some((n) => n.includes('MED-CDHA-003'))).toBe(true);
   });
 });
