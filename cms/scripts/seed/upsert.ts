@@ -24,7 +24,9 @@ export async function upsertByKey(
     const updated = await strapi
       .documents(uid as any)
       .update({ documentId: existing.documentId, data: data as any, ...(status ? { status } : {}) });
-    return { documentId: updated.documentId };
+    // `update` can type as nullable even though we just confirmed the doc exists;
+    // documentId is stable across updates, so fall back to the id we already have.
+    return { documentId: updated?.documentId ?? existing.documentId };
   }
 
   const created = await strapi

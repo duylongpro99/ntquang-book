@@ -12,6 +12,8 @@
     "start": "strapi start",
     "strapi": "strapi",
     "test": "NODE_ENV=test DATABASE_CLIENT=sqlite DATABASE_FILENAME=.tmp/test.db jest --runInBand --forceExit",
+    "seed": "bun ./scripts/seed.ts",
+    "typecheck:seed": "tsc -p tsconfig.scripts.json",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
