@@ -15,6 +15,7 @@
     "test:api": "NODE_ENV=test DATABASE_CLIENT=sqlite DATABASE_FILENAME=.tmp/test.db jest -c jest.config.js --runInBand --forceExit",
     "test:seed": "NODE_ENV=test DATABASE_CLIENT=sqlite DATABASE_FILENAME=.tmp/test-seed.db jest -c jest.seed.config.js --runInBand --forceExit",
     "seed": "bun ./scripts/seed.ts",
+    "seed:verify": "bun ./scripts/seed-verify.ts",
     "typecheck:seed": "tsc -p tsconfig.scripts.json",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
