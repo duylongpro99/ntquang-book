@@ -39,6 +39,10 @@
     // Do not include test files
     "**/*.test.*",
     // Do not include plugins in the server compilation
-    "src/plugins/**"
+    "src/plugins/**",
+    // Seed scripts are run via ts-jest/tsx separately and may import
+    // outside rootDir (e.g. frontend data sources); not part of the
+    // Strapi app build.
+    "scripts/**"
   ]
 }
