@@ -8,11 +8,10 @@ type PopulatedArticle = Record<string, any>;
 /**
  * CMS book entry (category/authors/publisher/tableOfContents populated) → frontend Book minus id.
  *
- * Key insertion order matters: the re-flatten diff (`scripts/seed-verify.ts`) compares this
- * against the source `Book` object with `JSON.stringify`, which is order-sensitive. The keys
- * below — including where each optional field is conditionally spread in — mirror the exact
- * property order used in every entry of `frontend/src/data/books.ts` (itself the `Book`
- * interface's declaration order), so a faithful round-trip stringifies identically.
+ * `categoryName` is re-derived from the populated `category` relation's canonical name
+ * (spec §3: the book-level `categoryName` field is dropped and re-derived, not stored).
+ * The re-flatten diff (`scripts/seed-verify.ts`) compares the result key-order-insensitively,
+ * so key order here is cosmetic only.
  */
 export function reflattenBook(entry: PopulatedBook): Omit<Book, 'id'> {
   const parentSlug = entry.category?.parent?.slug;
@@ -33,7 +32,7 @@ export function reflattenBook(entry: PopulatedBook): Omit<Book, 'id'> {
     rating: entry.rating,
     ratingCount: entry.ratingCount,
     categorySlug: entry.category?.slug,
-    categoryName: entry.categoryName,
+    categoryName: entry.category?.name,
     ...(parentSlug != null && { parentCategorySlug: parentSlug }),
     cover: entry.coverUrl,
     description: entry.description,
@@ -48,13 +47,7 @@ export function reflattenBook(entry: PopulatedBook): Omit<Book, 'id'> {
   return out;
 }
 
-/**
- * CMS article entry (author/category populated) → frontend Article minus id.
- *
- * Key order mirrors every entry in `frontend/src/data/articles.ts` (slug, title, category,
- * excerpt, author, publishedAt, readTime, cover, content) rather than the `Article` interface's
- * declaration order, since the re-flatten diff compares via order-sensitive `JSON.stringify`.
- */
+/** CMS article entry (author/category populated) → frontend Article minus id. */
 export function reflattenArticle(entry: PopulatedArticle): Omit<Article, 'id'> {
   return {
     slug: entry.slug,

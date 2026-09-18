@@ -5,7 +5,7 @@ describe('reflattenBook', () => {
   it('reconstructs a child-category book equal to source (minus id)', () => {
     const src = BOOKS_DATA.find((b) => b.sku === 'MED-NOI-001')!;
     const entry = {
-      slug: src.slug, title: src.title, editor: src.editor, byline: src.author, categoryName: src.categoryName,
+      slug: src.slug, title: src.title, editor: src.editor, byline: src.author,
       publisher: { name: src.publisher }, category: { slug: src.categorySlug, name: src.categoryName, parent: { slug: src.parentCategorySlug } },
       year: src.year, pages: src.pages, fileSize: src.fileSize, format: src.format, language: src.language,
       sku: src.sku, rating: src.rating, ratingCount: src.ratingCount, downloadCount: src.downloadCount,
@@ -20,7 +20,7 @@ describe('reflattenBook', () => {
   it('omits parentCategorySlug/isFeatured/isNew for a top-level, unflagged book', () => {
     const src = BOOKS_DATA.find((b) => b.sku === 'MED-ENG-008')!; // sach-tieng-anh, isFeatured only
     const entry = {
-      slug: src.slug, title: src.title, editor: src.editor, byline: src.author, categoryName: src.categoryName,
+      slug: src.slug, title: src.title, editor: src.editor, byline: src.author,
       publisher: { name: src.publisher }, category: { slug: src.categorySlug, name: src.categoryName, parent: null },
       year: src.year, pages: src.pages, fileSize: src.fileSize, format: src.format, language: src.language,
       sku: src.sku, rating: src.rating, ratingCount: src.ratingCount, downloadCount: src.downloadCount,

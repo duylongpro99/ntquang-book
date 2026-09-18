@@ -12,7 +12,6 @@
     "authors": { "type": "relation", "relation": "manyToMany", "target": "api::author.author" },
     "publisher": { "type": "relation", "relation": "manyToOne", "target": "api::publisher.publisher" },
     "category": { "type": "relation", "relation": "manyToOne", "target": "api::category.category" },
-    "categoryName": { "type": "string" },
     "description": { "type": "richtext" },
     "tableOfContents": { "type": "component", "repeatable": true, "component": "toc.line" },
     "year": { "type": "integer" },

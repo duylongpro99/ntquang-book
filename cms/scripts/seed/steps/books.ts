@@ -25,7 +25,6 @@ export async function seedBooks(strapi: Core.Strapi, data: Book[] = BOOKS_DATA):
       authors: [authorId],
       publisher: publisherId,
       category: categoryId,
-      categoryName: b.categoryName,
       description: b.description,
       tableOfContents: (b.tableOfContents ?? []).map((text) => ({ text })),
       year: b.year,
