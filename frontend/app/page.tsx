@@ -10,21 +10,26 @@ import {
 import Link from "next/link";
 import { Rail } from "@/src/components/book/Rail";
 import { GlobalSearch } from "@/src/components/global/GlobalSearch";
-import { BOOKS_DATA } from "@/src/data/books";
-import { CATEGORIES_TREE } from "@/src/data/categories";
+import { listBooks } from "@/src/lib/cms/books";
+import { getCategoryTree } from "@/src/lib/cms/categories";
 
-export default function HomePage() {
-  const newBooks = BOOKS_DATA.filter((b) => b.isNew || b.isFeatured);
-  const featuredBooks = BOOKS_DATA.filter((b) => b.isFeatured);
-  const internalMedBooks = BOOKS_DATA.filter(
-    (b) => b.parentCategorySlug === "noi-khoa" || b.categorySlug.includes("noi-khoa"),
-  );
-  const surgeryBooks = BOOKS_DATA.filter(
-    (b) => b.parentCategorySlug === "ngoai-khoa" || b.categorySlug.includes("ngoai-khoa"),
-  );
-  const paraclinicalBooks = BOOKS_DATA.filter(
-    (b) => b.parentCategorySlug === "can-lam-sang" || b.categorySlug.includes("can-lam-sang"),
-  );
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const [newRes, featuredRes, noiRes, ngoaiRes, canRes, categories] = await Promise.all([
+    listBooks({ featuredOrNew: true, limit: 12 }),
+    listBooks({ isFeatured: true, limit: 12 }),
+    listBooks({ category: "noi-khoa", limit: 2 }),
+    listBooks({ category: "ngoai-khoa", limit: 2 }),
+    listBooks({ category: "can-lam-sang", limit: 2 }),
+    getCategoryTree(),
+  ]);
+  const newBooks = newRes.books;
+  const featuredBooks = featuredRes.books;
+  const internalMedBooks = noiRes.books;
+  const surgeryBooks = ngoaiRes.books;
+  const paraclinicalBooks = canRes.books;
+  const quickCategories = categories.slice(0, 7);
 
   return (
     <div className="space-y-10 pb-16">
@@ -56,7 +61,7 @@ export default function HomePage() {
           {/* Quick Specialties Badges */}
           <div className="flex flex-wrap items-center justify-center gap-2 mt-6 max-w-3xl mx-auto">
             <span className="text-xs text-content-muted font-medium mr-1">Chuyên khoa nhanh:</span>
-            {CATEGORIES_TREE.slice(0, 7).map((cat) => (
+            {quickCategories.map((cat) => (
               <Link
                 key={cat.id}
                 href={`/danh-muc/${cat.slug}`}
