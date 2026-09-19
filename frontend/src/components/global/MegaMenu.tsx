@@ -17,7 +17,7 @@ export function MegaMenu({
   onCloseMobileDrawer,
 }: MegaMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<CategoryItem>(categories[0]);
+  const [activeCategory, setActiveCategory] = useState<CategoryItem | null>(categories[0] ?? null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -112,7 +112,7 @@ export function MegaMenu({
             </div>
             <div className="divide-y divide-border/40">
               {categories.map((cat) => {
-                const isActive = activeCategory.id === cat.id;
+                const isActive = activeCategory?.id === cat.id;
                 return (
                   <button
                     key={cat.id}
@@ -138,47 +138,56 @@ export function MegaMenu({
           {/* Subcategory specialties panel */}
           <div className="flex-1 p-5 bg-surface flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between pb-3 border-b border-border">
-                <Link
-                  href={`/danh-muc/${activeCategory.slug}`}
-                  onClick={() => setIsOpen(false)}
-                  className="text-base font-heading font-bold text-primary hover:underline flex items-center gap-2"
-                >
-                  <BookOpen className="w-4 h-4 text-primary" />
-                  <span>{activeCategory.name}</span>
-                </Link>
-                <Link
-                  href={`/danh-muc/${activeCategory.slug}`}
-                  onClick={() => setIsOpen(false)}
-                  className="text-xs text-content-muted hover:text-primary font-medium"
-                >
-                  Xem toàn bộ ({activeCategory.count} ebook) →
-                </Link>
-              </div>
-
-              {activeCategory.children && activeCategory.children.length > 0 ? (
-                <div className="grid grid-cols-2 gap-x-6 gap-y-2.5 mt-4">
-                  {activeCategory.children.map((sub) => (
+              {activeCategory ? (
+                <>
+                  <div className="flex items-center justify-between pb-3 border-b border-border">
                     <Link
-                      key={sub.id}
-                      href={`/danh-muc/${sub.slug}`}
+                      href={`/danh-muc/${activeCategory.slug}`}
                       onClick={() => setIsOpen(false)}
-                      className="group flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-surface-muted transition-colors"
+                      className="text-base font-heading font-bold text-primary hover:underline flex items-center gap-2"
                     >
-                      <span className="text-sm text-content group-hover:text-primary transition-colors line-clamp-1">
-                        {sub.name}
-                      </span>
-                      {sub.count && (
-                        <span className="text-xs text-content-muted/70 group-hover:text-primary">
-                          ({sub.count})
-                        </span>
-                      )}
+                      <BookOpen className="w-4 h-4 text-primary" />
+                      <span>{activeCategory.name}</span>
                     </Link>
-                  ))}
-                </div>
+                    <Link
+                      href={`/danh-muc/${activeCategory.slug}`}
+                      onClick={() => setIsOpen(false)}
+                      className="text-xs text-content-muted hover:text-primary font-medium"
+                    >
+                      Xem toàn bộ ({activeCategory.count} ebook) →
+                    </Link>
+                  </div>
+
+                  {activeCategory.children && activeCategory.children.length > 0 ? (
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-2.5 mt-4">
+                      {activeCategory.children.map((sub) => (
+                        <Link
+                          key={sub.id}
+                          href={`/danh-muc/${sub.slug}`}
+                          onClick={() => setIsOpen(false)}
+                          className="group flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-surface-muted transition-colors"
+                        >
+                          <span className="text-sm text-content group-hover:text-primary transition-colors line-clamp-1">
+                            {sub.name}
+                          </span>
+                          {sub.count && (
+                            <span className="text-xs text-content-muted/70 group-hover:text-primary">
+                              ({sub.count})
+                            </span>
+                          )}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="py-8 text-center text-sm text-content-muted">
+                      Tất cả các tài liệu, bài giảng và ebook thuộc chuyên ngành{" "}
+                      {activeCategory.name}.
+                    </div>
+                  )}
+                </>
               ) : (
                 <div className="py-8 text-center text-sm text-content-muted">
-                  Tất cả các tài liệu, bài giảng và ebook thuộc chuyên ngành {activeCategory.name}.
+                  Chưa có chuyên khoa nào được xuất bản.
                 </div>
               )}
             </div>

@@ -33,7 +33,7 @@ export default async function LibraryPage({
       language,
       format,
       sort,
-      page: Number(sp["trang"] ?? "1"),
+      page: Number(sp.trang ?? "1"),
       pageSize: 8,
     }),
   ]);

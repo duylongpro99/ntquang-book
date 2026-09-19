@@ -44,7 +44,7 @@ export default async function CategoryPage({
       language: sp["ngon-ngu"],
       format: sp["dinh-dang"],
       sort,
-      page: Number(sp["trang"] ?? "1"),
+      page: Number(sp.trang ?? "1"),
     }),
   ]);
 

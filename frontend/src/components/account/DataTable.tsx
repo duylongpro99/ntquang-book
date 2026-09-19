@@ -4,7 +4,7 @@ import { CheckCircle2, Download, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { EmptyState } from "@/src/components/book/EmptyState";
-import { type DownloadRecord } from "@/src/context/AuthContext";
+import type { DownloadRecord } from "@/src/context/AuthContext";
 
 export interface DataTableProps {
   downloads: DownloadRecord[];

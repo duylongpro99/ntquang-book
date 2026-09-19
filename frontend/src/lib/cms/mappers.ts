@@ -1,6 +1,7 @@
 import { absolute } from "./client";
 import type { Article, Book, CategoryItem } from "./types";
 
+// biome-ignore lint/suspicious/noExplicitAny: Strapi response entries are intentionally dynamically shaped (spec §4)
 export type StrapiEntry = Record<string, any>;
 
 /** 'yyyy-mm-dd' → 'dd/mm/yyyy'. Inverse of the seed's parseSeedDate. */
@@ -13,7 +14,7 @@ export function formatCmsDate(iso: string): string {
 
 export function mapBook(e: StrapiEntry): Book {
   const parentSlug = e.category?.parent?.slug;
-  const toc: string[] = (e.tableOfContents ?? []).map((t: any) => t.text);
+  const toc: string[] = (e.tableOfContents ?? []).map((t: { text: string }) => t.text);
   const book: Book = {
     id: e.documentId,
     slug: e.slug,

@@ -31,12 +31,12 @@ export default async function SearchPage({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const sp = await searchParams;
-  const query = sp["q"] ?? "";
+  const query = sp.q ?? "";
   const sort = SORT_MAP[(sp["sap-xep"] ?? "moi-nhat") as keyof typeof SORT_MAP];
 
   const [{ books, pageCount }, categories] = await Promise.all([
     query.trim()
-      ? searchBooks({ query, sort, page: Number(sp["trang"] ?? "1") })
+      ? searchBooks({ query, sort, page: Number(sp.trang ?? "1") })
       : Promise.resolve({ books: [], total: 0, pageCount: 0 }),
     getCategoryTree(),
   ]);
