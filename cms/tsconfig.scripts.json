@@ -2,8 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": true,
-    "rootDir": ".."
+    "rootDir": "."
   },
-  "include": ["scripts/**/*.ts", "../frontend/src/**/*.ts"],
+  "include": ["scripts/**/*.ts"],
   "exclude": ["node_modules/", "build/", "dist/", ".cache/", ".tmp/", ".strapi/", "**/*.test.*"]
 }
