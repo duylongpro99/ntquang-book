@@ -3,31 +3,31 @@
 import { ChevronDown, ChevronRight, Filter, RotateCcw, X } from "lucide-react";
 import type React from "react";
 import { useEffect, useState } from "react";
+import { useParamNav } from "@/src/components/book/CatalogControls";
 import { Button } from "@/src/components/ui/Button";
-import { CATEGORIES_TREE } from "@/src/data/categories";
-
-export interface FilterState {
-  category?: string;
-  language?: string;
-  format?: string;
-  year?: string;
-}
+import type { CategoryItem } from "@/src/lib/cms/types";
 
 export interface FilterSidebarProps {
-  filters: FilterState;
-  onFilterChange: (filters: FilterState) => void;
+  categories: CategoryItem[];
   className?: string;
   isMobileDrawer?: boolean;
   onCloseMobileDrawer?: () => void;
 }
 
+const LANGUAGES = ["Tiếng Việt", "English", "Song ngữ"];
+const FORMATS = ["PDF", "EPUB"];
+
 export function FilterSidebar({
-  filters,
-  onFilterChange,
+  categories,
   className = "",
   isMobileDrawer = false,
   onCloseMobileDrawer,
 }: FilterSidebarProps) {
+  const { params, setParam } = useParamNav();
+  const category = params.get("chuyen-khoa") ?? undefined;
+  const language = params.get("ngon-ngu") ?? undefined;
+  const format = params.get("dinh-dang") ?? undefined;
+
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({
     "noi-khoa": true,
     "ngoai-khoa": false,
@@ -54,36 +54,22 @@ export function FilterSidebar({
   };
 
   const handleLanguageToggle = (lang: string) => {
-    onFilterChange({
-      ...filters,
-      language: filters.language === lang ? undefined : lang,
-    });
+    setParam({ "ngon-ngu": language === lang ? null : lang, trang: null });
   };
 
   const handleFormatToggle = (fmt: string) => {
-    onFilterChange({
-      ...filters,
-      format: filters.format === fmt ? undefined : fmt,
-    });
+    setParam({ "dinh-dang": format === fmt ? null : fmt, trang: null });
   };
 
   const handleCategorySelect = (catSlug: string) => {
-    onFilterChange({
-      ...filters,
-      category: filters.category === catSlug ? undefined : catSlug,
-    });
+    setParam({ "chuyen-khoa": category === catSlug ? null : catSlug, trang: null });
   };
 
   const clearAllFilters = () => {
-    onFilterChange({});
+    setParam({ "chuyen-khoa": null, "ngon-ngu": null, "dinh-dang": null, trang: null });
   };
 
-  const activeFiltersCount = [
-    filters.category,
-    filters.language,
-    filters.format,
-    filters.year,
-  ].filter(Boolean).length;
+  const activeFiltersCount = [category, language, format].filter(Boolean).length;
 
   const hasActiveFilters = activeFiltersCount > 0;
 
@@ -129,11 +115,11 @@ export function FilterSidebar({
             )}
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {filters.category && (
+            {category && (
               <span className="inline-flex items-center gap-1.5 text-xs bg-primary/10 text-primary px-2.5 py-1 rounded-full font-medium border border-primary/20">
-                <span className="max-w-[150px] truncate">{filters.category}</span>
+                <span className="max-w-[150px] truncate">{category}</span>
                 <button
-                  onClick={() => onFilterChange({ ...filters, category: undefined })}
+                  onClick={() => setParam({ "chuyen-khoa": null, trang: null })}
                   aria-label="Xóa chuyên khoa"
                   className="hover:text-primary-hover p-0.5"
                 >
@@ -141,11 +127,11 @@ export function FilterSidebar({
                 </button>
               </span>
             )}
-            {filters.language && (
+            {language && (
               <span className="inline-flex items-center gap-1.5 text-xs bg-primary/10 text-primary px-2.5 py-1 rounded-full font-medium border border-primary/20">
-                <span>{filters.language}</span>
+                <span>{language}</span>
                 <button
-                  onClick={() => onFilterChange({ ...filters, language: undefined })}
+                  onClick={() => setParam({ "ngon-ngu": null, trang: null })}
                   aria-label="Xóa ngôn ngữ"
                   className="hover:text-primary-hover p-0.5"
                 >
@@ -153,11 +139,11 @@ export function FilterSidebar({
                 </button>
               </span>
             )}
-            {filters.format && (
+            {format && (
               <span className="inline-flex items-center gap-1.5 text-xs bg-primary/10 text-primary px-2.5 py-1 rounded-full font-medium border border-primary/20">
-                <span>{filters.format}</span>
+                <span>{format}</span>
                 <button
-                  onClick={() => onFilterChange({ ...filters, format: undefined })}
+                  onClick={() => setParam({ "dinh-dang": null, trang: null })}
                   aria-label="Xóa định dạng"
                   className="hover:text-primary-hover p-0.5"
                 >
@@ -175,9 +161,9 @@ export function FilterSidebar({
           <h4 className="text-xs font-semibold text-content uppercase tracking-wider">
             Chuyên khoa y tế
           </h4>
-          {filters.category && (
+          {category && (
             <button
-              onClick={() => onFilterChange({ ...filters, category: undefined })}
+              onClick={() => setParam({ "chuyen-khoa": null, trang: null })}
               className="text-[11px] text-content-muted hover:text-primary"
             >
               Bỏ chọn
@@ -188,8 +174,8 @@ export function FilterSidebar({
         <div
           className={`${isMobileDrawer ? "space-y-1" : "space-y-1 max-h-80 overflow-y-auto pr-1"} text-xs`}
         >
-          {CATEGORIES_TREE.map((cat) => {
-            const isSelected = filters.category === cat.slug;
+          {categories.map((cat) => {
+            const isSelected = category === cat.slug;
             const isExpanded = expandedCategories[cat.id];
             const hasSub = cat.children && cat.children.length > 0;
 
@@ -231,7 +217,7 @@ export function FilterSidebar({
                 {isExpanded && hasSub && (
                   <div className="pl-3.5 space-y-1 border-l-2 border-border ml-3 my-1">
                     {cat.children?.map((sub) => {
-                      const isSubSelected = filters.category === sub.slug;
+                      const isSubSelected = category === sub.slug;
                       return (
                         <button
                           key={sub.id}
@@ -265,8 +251,8 @@ export function FilterSidebar({
           Ngôn ngữ tài liệu
         </h4>
         <div className="space-y-2 text-xs">
-          {["Tiếng Việt", "English", "Song ngữ"].map((lang) => {
-            const checked = filters.language === lang;
+          {LANGUAGES.map((lang) => {
+            const checked = language === lang;
             return (
               <label
                 key={lang}
@@ -295,8 +281,8 @@ export function FilterSidebar({
           Định dạng ebook
         </h4>
         <div className="space-y-2 text-xs">
-          {["PDF", "EPUB"].map((fmt) => {
-            const checked = filters.format === fmt;
+          {FORMATS.map((fmt) => {
+            const checked = format === fmt;
             return (
               <label
                 key={fmt}
@@ -390,5 +376,44 @@ export function FilterSidebar({
     >
       {filterControls}
     </aside>
+  );
+}
+
+export interface MobileFilterTriggerProps {
+  categories: CategoryItem[];
+  label?: string;
+}
+
+/** Mobile-only "open filters" button + drawer, self-contained so list pages can stay server components. */
+export function MobileFilterTrigger({
+  categories,
+  label = "Bộ lọc chuyên khoa",
+}: MobileFilterTriggerProps) {
+  const [open, setOpen] = useState(false);
+  const { params } = useParamNav();
+  const hasActiveFilters = Boolean(
+    params.get("chuyen-khoa") || params.get("ngon-ngu") || params.get("dinh-dang"),
+  );
+
+  return (
+    <div className="lg:hidden flex items-center gap-2">
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="flex items-center gap-2 px-3 py-2 rounded-md border border-border bg-surface text-content text-xs font-semibold hover:bg-surface-muted transition-colors shadow-2xs"
+      >
+        <Filter className="w-4 h-4 text-primary" />
+        <span>{label}</span>
+        {hasActiveFilters && <span className="w-2 h-2 rounded-full bg-primary" />}
+      </button>
+
+      {open && (
+        <FilterSidebar
+          categories={categories}
+          isMobileDrawer={true}
+          onCloseMobileDrawer={() => setOpen(false)}
+        />
+      )}
+    </div>
   );
 }

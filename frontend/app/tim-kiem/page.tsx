@@ -1,66 +1,45 @@
-"use client";
-
 import { Search } from "lucide-react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { Suspense, useMemo, useState } from "react";
 import { CardGrid } from "@/src/components/book/CardGrid";
+import { Pagination, SortSelect } from "@/src/components/book/CatalogControls";
 import { EmptyState } from "@/src/components/book/EmptyState";
-import { Pagination } from "@/src/components/book/Pagination";
-import { SortControl, type SortOption } from "@/src/components/book/SortControl";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
 import { GlobalSearch } from "@/src/components/global/GlobalSearch";
-import { BOOKS_DATA } from "@/src/data/books";
-import { CATEGORIES_TREE } from "@/src/data/categories";
+import { searchBooks } from "@/src/lib/cms/books";
+import { getCategoryTree } from "@/src/lib/cms/categories";
 
-function SearchPageContent() {
-  const searchParams = useSearchParams();
-  const query = searchParams.get("q") || "";
+export const revalidate = 60;
 
-  const [sort, setSort] = useState<SortOption>("newest");
-  const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 8;
+const SORT_MAP = {
+  "moi-nhat": "newest",
+  "luot-tai": "downloads",
+  "danh-gia": "rating",
+  ten: "title",
+} as const;
 
-  // Search filter
-  const results = useMemo(() => {
-    if (!query.trim()) return [];
-    const q = query.toLowerCase().trim();
-    return BOOKS_DATA.filter((b) => {
-      return (
-        b.title.toLowerCase().includes(q) ||
-        b.author.toLowerCase().includes(q) ||
-        b.categoryName.toLowerCase().includes(q) ||
-        b.description.toLowerCase().includes(q) ||
-        b.publisher.toLowerCase().includes(q)
-      );
-    });
-  }, [query]);
+const SUGGESTED_TAGS = [
+  "Nội khoa",
+  "Chẩn đoán hình ảnh",
+  "Giải phẫu Netter",
+  "Phác đồ điều trị",
+  "Nhi khoa",
+];
 
-  // Sort
-  const sortedBooks = useMemo(() => {
-    const list = [...results];
-    switch (sort) {
-      case "newest":
-        return list.sort(
-          (a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
-        );
-      case "downloads":
-        return list.sort((a, b) => b.downloadCount - a.downloadCount);
-      case "rating":
-        return list.sort((a, b) => b.rating - a.rating);
-      case "title":
-        return list.sort((a, b) => a.title.localeCompare(b.title, "vi"));
-      default:
-        return list;
-    }
-  }, [results, sort]);
+export default async function SearchPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | undefined>>;
+}) {
+  const sp = await searchParams;
+  const query = sp["q"] ?? "";
+  const sort = SORT_MAP[(sp["sap-xep"] ?? "moi-nhat") as keyof typeof SORT_MAP];
 
-  // Paginate
-  const totalPages = Math.ceil(sortedBooks.length / ITEMS_PER_PAGE);
-  const paginatedBooks = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return sortedBooks.slice(start, start + ITEMS_PER_PAGE);
-  }, [sortedBooks, currentPage]);
+  const [{ books, pageCount }, categories] = await Promise.all([
+    query.trim()
+      ? searchBooks({ query, sort, page: Number(sp["trang"] ?? "1") })
+      : Promise.resolve({ books: [], total: 0, pageCount: 0 }),
+    getCategoryTree(),
+  ]);
 
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-6">
@@ -100,13 +79,7 @@ function SearchPageContent() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-2">
             <span className="text-xs text-content-muted">Gợi ý tìm kiếm phổ biến:</span>
-            {[
-              "Nội khoa",
-              "Chẩn đoán hình ảnh",
-              "Giải phẫu Netter",
-              "Phác đồ điều trị",
-              "Nhi khoa",
-            ].map((tag) => (
+            {SUGGESTED_TAGS.map((tag) => (
               <Link
                 key={tag}
                 href={`/tim-kiem?q=${encodeURIComponent(tag)}`}
@@ -117,24 +90,15 @@ function SearchPageContent() {
             ))}
           </div>
         </div>
-      ) : sortedBooks.length > 0 ? (
+      ) : books.length > 0 ? (
         <div className="space-y-5">
-          <SortControl
-            currentSort={sort}
-            onSortChange={setSort}
-            totalResults={sortedBooks.length}
-          />
+          <div className="flex items-center justify-end">
+            <SortSelect />
+          </div>
 
-          <CardGrid books={paginatedBooks} cols={4} />
+          <CardGrid books={books} cols={4} />
 
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={(page) => {
-              setCurrentPage(page);
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          />
+          <Pagination pageCount={pageCount} />
         </div>
       ) : (
         <div className="space-y-6">
@@ -151,7 +115,7 @@ function SearchPageContent() {
               Chuyên ngành gợi ý bạn có thể quan tâm:
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-              {CATEGORIES_TREE.map((cat) => (
+              {categories.map((cat) => (
                 <Link
                   key={cat.id}
                   href={`/danh-muc/${cat.slug}`}
@@ -165,19 +129,5 @@ function SearchPageContent() {
         </div>
       )}
     </div>
-  );
-}
-
-export default function SearchPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="max-w-[1280px] mx-auto px-4 py-12 text-center text-sm text-content-muted">
-          Đang tìm kiếm...
-        </div>
-      }
-    >
-      <SearchPageContent />
-    </Suspense>
   );
 }

@@ -1,78 +1,42 @@
-"use client";
-
-import { Filter } from "lucide-react";
-import { useSearchParams } from "next/navigation";
-import { Suspense, useMemo, useState } from "react";
 import { CardGrid } from "@/src/components/book/CardGrid";
+import { Pagination, SortSelect } from "@/src/components/book/CatalogControls";
 import { EmptyState } from "@/src/components/book/EmptyState";
-import { FilterSidebar, type FilterState } from "@/src/components/book/FilterSidebar";
-import { Pagination } from "@/src/components/book/Pagination";
-import { SortControl, type SortOption } from "@/src/components/book/SortControl";
+import { FilterSidebar, MobileFilterTrigger } from "@/src/components/book/FilterSidebar";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
-import { BOOKS_DATA } from "@/src/data/books";
+import { listBooks } from "@/src/lib/cms/books";
+import { getCategoryTree } from "@/src/lib/cms/categories";
 
-function LibraryCatalogContent() {
-  const searchParams = useSearchParams();
-  const initialCategory = searchParams.get("chuyen-khoa") || undefined;
+export const revalidate = 60;
 
-  const [filters, setFilters] = useState<FilterState>({
-    category: initialCategory,
-  });
-  const [sort, setSort] = useState<SortOption>("newest");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
-  const ITEMS_PER_PAGE = 8;
+const SORT_MAP = {
+  "moi-nhat": "newest",
+  "luot-tai": "downloads",
+  "danh-gia": "rating",
+  ten: "title",
+} as const;
 
-  // Filter books
-  const filteredBooks = useMemo(() => {
-    return BOOKS_DATA.filter((book) => {
-      if (filters.category) {
-        const matchesCategory =
-          book.categorySlug === filters.category ||
-          book.parentCategorySlug === filters.category ||
-          book.categorySlug.startsWith(filters.category);
-        if (!matchesCategory) return false;
-      }
-      if (filters.language) {
-        if (book.language !== filters.language) return false;
-      }
-      if (filters.format) {
-        if (book.format !== filters.format) return false;
-      }
-      return true;
-    });
-  }, [filters]);
+export default async function LibraryPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | undefined>>;
+}) {
+  const sp = await searchParams;
+  const sort = SORT_MAP[(sp["sap-xep"] ?? "moi-nhat") as keyof typeof SORT_MAP];
+  const category = sp["chuyen-khoa"];
+  const language = sp["ngon-ngu"];
+  const format = sp["dinh-dang"];
 
-  // Sort books
-  const sortedBooks = useMemo(() => {
-    const list = [...filteredBooks];
-    switch (sort) {
-      case "newest":
-        return list.sort(
-          (a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
-        );
-      case "downloads":
-        return list.sort((a, b) => b.downloadCount - a.downloadCount);
-      case "rating":
-        return list.sort((a, b) => b.rating - a.rating);
-      case "title":
-        return list.sort((a, b) => a.title.localeCompare(b.title, "vi"));
-      default:
-        return list;
-    }
-  }, [filteredBooks, sort]);
-
-  // Paginate
-  const totalPages = Math.ceil(sortedBooks.length / ITEMS_PER_PAGE);
-  const paginatedBooks = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return sortedBooks.slice(start, start + ITEMS_PER_PAGE);
-  }, [sortedBooks, currentPage]);
-
-  const handleFilterChange = (newFilters: FilterState) => {
-    setFilters(newFilters);
-    setCurrentPage(1);
-  };
+  const [tree, { books, pageCount }] = await Promise.all([
+    getCategoryTree(),
+    listBooks({
+      category,
+      language,
+      format,
+      sort,
+      page: Number(sp["trang"] ?? "1"),
+      pageSize: 8,
+    }),
+  ]);
 
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-6">
@@ -89,57 +53,26 @@ function LibraryCatalogContent() {
           </p>
         </div>
 
-        {/* Mobile Filter Button (<1024px) */}
-        <div className="lg:hidden flex items-center gap-2">
-          <button
-            onClick={() => setMobileFilterOpen(true)}
-            className="flex items-center gap-2 px-3 py-2 rounded-md border border-border bg-surface text-content text-xs font-semibold hover:bg-surface-muted transition-colors shadow-2xs"
-          >
-            <Filter className="w-4 h-4 text-primary" />
-            <span>Bộ lọc chuyên khoa</span>
-            {Boolean(filters.category || filters.language || filters.format) && (
-              <span className="w-2 h-2 rounded-full bg-primary" />
-            )}
-          </button>
-        </div>
+        <MobileFilterTrigger categories={tree} />
       </div>
 
       {/* List-Grid Layout: Sidebar + Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
         {/* Desktop Filter Sidebar */}
         <div className="hidden lg:block lg:col-span-1 sticky top-20">
-          <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
+          <FilterSidebar categories={tree} />
         </div>
-
-        {/* Mobile Filter Drawer */}
-        {mobileFilterOpen && (
-          <FilterSidebar
-            filters={filters}
-            onFilterChange={handleFilterChange}
-            isMobileDrawer={true}
-            onCloseMobileDrawer={() => setMobileFilterOpen(false)}
-          />
-        )}
 
         {/* Main Content Area */}
         <div className="lg:col-span-3 space-y-5">
-          <SortControl
-            currentSort={sort}
-            onSortChange={setSort}
-            totalResults={sortedBooks.length}
-          />
+          <div className="flex items-center justify-end">
+            <SortSelect />
+          </div>
 
-          {sortedBooks.length > 0 ? (
+          {books.length > 0 ? (
             <>
-              <CardGrid books={paginatedBooks} cols={3} />
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={(page) => {
-                  setCurrentPage(page);
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
-              />
+              <CardGrid books={books} cols={3} />
+              <Pagination pageCount={pageCount} />
             </>
           ) : (
             <EmptyState
@@ -147,25 +80,11 @@ function LibraryCatalogContent() {
               title="Không tìm thấy tài liệu phù hợp với bộ lọc"
               description="Hãy thử bỏ bớt các điều kiện lọc ngôn ngữ hoặc định dạng để hiển thị thêm tài liệu."
               actionLabel="Xóa toàn bộ bộ lọc"
-              onActionClick={() => handleFilterChange({})}
+              actionHref="/thu-vien-sach"
             />
           )}
         </div>
       </div>
     </div>
-  );
-}
-
-export default function LibraryPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="max-w-[1280px] mx-auto px-4 py-12 text-center text-sm text-content-muted">
-          Đang tải kho sách...
-        </div>
-      }
-    >
-      <LibraryCatalogContent />
-    </Suspense>
   );
 }
