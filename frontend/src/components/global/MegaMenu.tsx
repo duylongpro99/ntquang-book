@@ -3,16 +3,21 @@
 import { BookOpen, ChevronDown, ChevronRight, Layers, Menu } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { CATEGORIES_TREE, type CategoryItem } from "@/src/data/categories";
+import type { CategoryItem } from "@/src/lib/cms/types";
 
 export interface MegaMenuProps {
+  categories: CategoryItem[];
   isMobileDrawer?: boolean;
   onCloseMobileDrawer?: () => void;
 }
 
-export function MegaMenu({ isMobileDrawer = false, onCloseMobileDrawer }: MegaMenuProps) {
+export function MegaMenu({
+  categories,
+  isMobileDrawer = false,
+  onCloseMobileDrawer,
+}: MegaMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<CategoryItem>(CATEGORIES_TREE[0]);
+  const [activeCategory, setActiveCategory] = useState<CategoryItem>(categories[0]);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,7 +36,7 @@ export function MegaMenu({ isMobileDrawer = false, onCloseMobileDrawer }: MegaMe
         <div className="px-4 py-3 border-b border-border bg-surface-muted/40 flex items-center justify-between">
           <div className="flex items-center gap-2 font-heading font-semibold text-content text-xs uppercase tracking-wider">
             <Layers className="w-4 h-4 text-primary" />
-            <span>Chuyên khoa y học ({CATEGORIES_TREE.length})</span>
+            <span>Chuyên khoa y học ({categories.length})</span>
           </div>
           <Link
             href="/thu-vien-sach"
@@ -43,7 +48,7 @@ export function MegaMenu({ isMobileDrawer = false, onCloseMobileDrawer }: MegaMe
         </div>
 
         <div className="flex-1 overflow-y-auto divide-y divide-border/70 p-2">
-          {CATEGORIES_TREE.map((cat) => (
+          {categories.map((cat) => (
             <div key={cat.id} className="py-2 px-1">
               <Link
                 href={`/danh-muc/${cat.slug}`}
@@ -106,7 +111,7 @@ export function MegaMenu({ isMobileDrawer = false, onCloseMobileDrawer }: MegaMe
               Chuyên ngành y khoa
             </div>
             <div className="divide-y divide-border/40">
-              {CATEGORIES_TREE.map((cat) => {
+              {categories.map((cat) => {
                 const isActive = activeCategory.id === cat.id;
                 return (
                   <button

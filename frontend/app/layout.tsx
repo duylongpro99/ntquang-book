@@ -10,6 +10,7 @@ import { CmsThemeProvider } from "@/src/components/global/CmsThemeManager";
 import { SocialProofToast } from "@/src/components/global/SocialProofToast";
 import { AuthProvider } from "@/src/context/AuthContext";
 import { QuickViewProvider } from "@/src/context/QuickViewContext";
+import { getCategoryTree } from "@/src/lib/cms/categories";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -37,14 +38,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const categories = await getCategoryTree();
   return (
     <html lang="vi" className={`${inter.variable} ${beVietnamPro.variable}`}>
       <body className="min-h-screen flex flex-col bg-bg text-content antialiased">
         <CmsThemeProvider>
           <AuthProvider>
             <QuickViewProvider>
-              <AppHeader />
+              <AppHeader categories={categories} />
               <main className="flex-1">{children}</main>
               <AppFooter />
               <AuthModal />

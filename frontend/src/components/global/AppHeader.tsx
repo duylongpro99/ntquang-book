@@ -17,8 +17,13 @@ import { GlobalSearch } from "@/src/components/global/GlobalSearch";
 import { MegaMenu } from "@/src/components/global/MegaMenu";
 import { ThemeToggle } from "@/src/components/global/ThemeToggle";
 import { useAuth } from "@/src/context/AuthContext";
+import type { CategoryItem } from "@/src/lib/cms/types";
 
-export function AppHeader() {
+export interface AppHeaderProps {
+  categories: CategoryItem[];
+}
+
+export function AppHeader({ categories }: AppHeaderProps) {
   const { user, isAuthenticated, openAuthModal, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -88,7 +93,7 @@ export function AppHeader() {
 
             {/* Middle: Desktop MegaMenu and GlobalSearch */}
             <div className="hidden md:flex items-center gap-3 flex-1 max-w-2xl mx-2">
-              <MegaMenu />
+              <MegaMenu categories={categories} />
               <div className="flex-1">
                 <GlobalSearch />
               </div>
@@ -257,6 +262,7 @@ export function AppHeader() {
 
             <div className="flex-1 overflow-hidden">
               <MegaMenu
+                categories={categories}
                 isMobileDrawer={true}
                 onCloseMobileDrawer={() => setMobileMenuOpen(false)}
               />

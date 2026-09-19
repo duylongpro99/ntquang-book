@@ -1,8 +1,9 @@
 import { HeartPulse, Library, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import { CATEGORIES_TREE } from "@/src/data/categories";
+import { getCategoryTree } from "@/src/lib/cms/categories";
 
-export function AppFooter() {
+export async function AppFooter() {
+  const categories = await getCategoryTree();
   return (
     <footer className="bg-surface border-t border-border mt-16 text-content">
       <div className="max-w-[1280px] mx-auto px-4 py-12">
@@ -38,7 +39,7 @@ export function AppFooter() {
               Chuyên khoa nổi bật
             </h4>
             <ul className="space-y-2 text-xs text-content-muted">
-              {CATEGORIES_TREE.slice(0, 6).map((cat) => (
+              {categories.slice(0, 6).map((cat) => (
                 <li key={cat.id}>
                   <Link
                     href={`/danh-muc/${cat.slug}`}
