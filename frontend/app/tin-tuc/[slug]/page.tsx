@@ -1,39 +1,27 @@
-"use client";
-
-import { ArrowLeft, Calendar, Clock, HeartPulse, User } from "lucide-react";
-import Link from "next/link";
-import { use } from "react";
+import { Calendar, Clock, HeartPulse, User } from "lucide-react";
+import { notFound } from "next/navigation";
 import { Rail } from "@/src/components/book/Rail";
 import { ShareBar } from "@/src/components/detail/ShareBar";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
-import { getArticleBySlug } from "@/src/data/articles";
-import { BOOKS_DATA } from "@/src/data/books";
+import { getArticleBySlug } from "@/src/lib/cms/articles";
+import { listBooks } from "@/src/lib/cms/books";
 
-export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = use(params);
-  const slug = resolvedParams?.slug;
-  const article = getArticleBySlug(slug);
+export const revalidate = 60;
 
-  if (!article) {
-    return (
-      <div className="max-w-2xl mx-auto px-4 py-16 text-center space-y-4">
-        <h1 className="text-2xl font-bold text-content font-heading">Không tìm thấy bài viết</h1>
-        <p className="text-sm text-content-muted">
-          Bài viết y khoa bạn tìm kiếm không tồn tại hoặc đã bị xóa.
-        </p>
-        <Link
-          href="/tin-tuc"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-contrast text-sm font-semibold hover:bg-primary-hover transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Quay lại trang tin tức</span>
-        </Link>
-      </div>
-    );
-  }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+  if (!article) return { title: "Không tìm thấy bài viết" };
+  return { title: article.title, description: article.excerpt };
+}
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+  if (!article) notFound();
 
   // Related books to show at bottom
-  const recommendedBooks = BOOKS_DATA.slice(0, 4);
+  const recommendedBooks = (await listBooks({ limit: 4 })).books;
 
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-8">

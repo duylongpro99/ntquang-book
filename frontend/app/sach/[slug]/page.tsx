@@ -1,8 +1,6 @@
-"use client";
-
-import { ArrowLeft, Download, ShieldCheck } from "lucide-react";
+import { Download, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import { use } from "react";
+import { notFound } from "next/navigation";
 import { Rail } from "@/src/components/book/Rail";
 import { RatingStars } from "@/src/components/book/RatingStars";
 import { MediaViewer } from "@/src/components/detail/MediaViewer";
@@ -11,33 +9,23 @@ import { PrimaryCTA } from "@/src/components/detail/PrimaryCTA";
 import { ShareBar } from "@/src/components/detail/ShareBar";
 import { TabGroup } from "@/src/components/detail/TabGroup";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
-import { getBookBySlug, getRelatedBooks } from "@/src/data/books";
+import { getBookBySlug, getRelatedBooks } from "@/src/lib/cms/books";
 
-export default function BookDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = use(params);
-  const slug = resolvedParams?.slug;
-  const book = getBookBySlug(slug);
+export const revalidate = 60;
 
-  if (!book) {
-    return (
-      <div className="max-w-2xl mx-auto px-4 py-16 text-center space-y-4">
-        <h1 className="text-2xl font-bold text-content font-heading">Không tìm thấy tài liệu</h1>
-        <p className="text-sm text-content-muted">
-          Cuốn sách hoặc tài liệu y khoa bạn đang tìm kiếm không tồn tại hoặc đã được chuyển sang
-          đường dẫn khác.
-        </p>
-        <Link
-          href="/thu-vien-sach"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-contrast text-sm font-semibold hover:bg-primary-hover transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Quay về kho thư viện sách</span>
-        </Link>
-      </div>
-    );
-  }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const book = await getBookBySlug(slug);
+  if (!book) return { title: "Không tìm thấy sách" };
+  return { title: book.title, description: book.description?.slice(0, 160) };
+}
 
-  const relatedBooks = getRelatedBooks(book, 6);
+export default async function BookDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const book = await getBookBySlug(slug);
+  if (!book) notFound();
+
+  const relatedBooks = await getRelatedBooks(book, 6);
 
   return (
     <div className="space-y-10 pb-20 md:pb-12">
