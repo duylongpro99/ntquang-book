@@ -5,10 +5,14 @@ import type { Article, Book, CategoryItem } from "./types";
 // biome-ignore lint/suspicious/noExplicitAny: Strapi response entries are intentionally dynamically shaped (spec §4)
 export type StrapiEntry = Record<string, any>;
 
-/** 'yyyy-mm-dd' → 'dd/mm/yyyy'. Inverse of the seed's parseSeedDate. */
-export function formatCmsDate(iso: string): string {
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso.trim());
-  if (!m) throw new Error(`Unexpected CMS date (want yyyy-mm-dd): ${iso}`);
+/**
+ * 'yyyy-mm-dd' → 'dd/mm/yyyy'. Inverse of the seed's parseSeedDate.
+ * Tolerant on the render path: a null/empty/malformed date yields '' rather
+ * than throwing, so a single bad CMS row can't 500 the whole news page.
+ */
+export function formatCmsDate(iso: string | null | undefined): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((iso ?? "").trim());
+  if (!m) return "";
   const [, y, mo, d] = m;
   return `${d}/${mo}/${y}`;
 }
@@ -28,13 +32,13 @@ export function mapBook(e: StrapiEntry): Book {
     format: e.format,
     language: e.language,
     sku: e.sku,
-    rating: e.rating,
-    ratingCount: e.ratingCount,
+    rating: e.rating ?? 0,
+    ratingCount: e.ratingCount ?? 0,
     categorySlug: e.category?.slug,
     categoryName: e.category?.name,
     cover: e.coverUrl ?? absolute(e.cover?.url) ?? "",
     description: e.description,
-    downloadCount: e.downloadCount,
+    downloadCount: e.downloadCount ?? 0,
     downloadUrl: e.downloadUrl ?? absolute(e.file?.url) ?? "",
     dateAdded: e.dateAdded,
   };

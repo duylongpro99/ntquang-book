@@ -40,7 +40,10 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const [categories, theme] = await Promise.all([getCategoryTree(), getBranding()]);
+  // getBranding already falls back to DEFAULT_THEME on error; guard the category
+  // tree the same way so a CMS outage degrades the shell (empty nav) instead of
+  // 500-ing every route. MegaMenu/AppHeader tolerate an empty tree.
+  const [categories, theme] = await Promise.all([getCategoryTree().catch(() => []), getBranding()]);
   return (
     <html lang="vi" className={`${inter.variable} ${beVietnamPro.variable}`}>
       <head>
