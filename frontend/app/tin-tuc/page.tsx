@@ -1,7 +1,7 @@
 import { ArrowRight, Clock, User } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumb } from "@/src/components/global/Breadcrumb";
-import { ARTICLES_DATA } from "@/src/data/articles";
+import { listArticles } from "@/src/lib/cms/articles";
 
 export const metadata = {
   title: "Tin Tức & Kiến Thức Y Khoa - Thư Viện Sách Y Học",
@@ -9,9 +9,12 @@ export const metadata = {
     "Cập nhật bài viết hướng dẫn lâm sàng, điểm tin y học và giới thiệu sách chuyên khoa mới.",
 };
 
-export default function BlogListPage() {
-  const featuredArticle = ARTICLES_DATA[0];
-  const otherArticles = ARTICLES_DATA.slice(1);
+export const revalidate = 60;
+
+export default async function BlogListPage() {
+  const articles = await listArticles();
+  const featuredArticle = articles[0];
+  const otherArticles = articles.slice(1);
 
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-6 space-y-8">
