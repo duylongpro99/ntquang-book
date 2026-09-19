@@ -1,6 +1,6 @@
 import type React from "react";
 import { BookCard } from "@/src/components/book/BookCard";
-import type { Book } from "@/src/data/books";
+import type { Book } from "@/src/lib/cms/types";
 
 export interface CardGridProps {
   books?: Book[];

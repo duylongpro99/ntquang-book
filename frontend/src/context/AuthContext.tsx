@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import type { Book } from "@/src/data/books";
+import type { Book } from "@/src/lib/cms/types";
 
 export interface User {
   id: string;
@@ -20,6 +20,7 @@ export interface DownloadRecord {
   bookSlug: string;
   bookTitle: string;
   bookCover: string;
+  bookDownloadUrl: string;
   author: string;
   fileSize: string;
   format: string;
@@ -52,6 +53,7 @@ const INITIAL_DOWNLOADS: DownloadRecord[] = [
     bookTitle: "Điều Trị Học Nội Khoa (Tập 1) – ĐH Y Dược TP.HCM",
     bookCover:
       "https://images.unsplash.com/photo-1532012164546-f432f2e3777a?auto=format&fit=crop&w=600&q=80",
+    bookDownloadUrl: "https://images.unsplash.com/photo-1532012164546-f432f2e3777a?auto=format&fit=crop&w=600&q=80",
     author: "PGS.TS. Châu Ngọc Hoa (Chủ biên)",
     fileSize: "45.2 MB",
     format: "PDF",
@@ -64,6 +66,7 @@ const INITIAL_DOWNLOADS: DownloadRecord[] = [
     bookTitle: "Chẩn Đoán Hình Ảnh Toàn Diện: CT và MRI Lâm Sàng",
     bookCover:
       "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
+    bookDownloadUrl: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
     author: "PGS.TS. Bùi Văn Lệnh",
     fileSize: "92.4 MB",
     format: "PDF",
@@ -76,6 +79,7 @@ const INITIAL_DOWNLOADS: DownloadRecord[] = [
     bookTitle: "Đọc Điện Tâm Đồ (ECG) Dễ Hiểu Từ A Đến Z",
     bookCover:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
+    bookDownloadUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
     author: "BS. Nguyễn Tôn Thơ",
     fileSize: "28.3 MB",
     format: "PDF",
@@ -125,6 +129,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       bookSlug: book.slug,
       bookTitle: book.title,
       bookCover: book.cover,
+      bookDownloadUrl: book.downloadUrl,
       author: book.author,
       fileSize: book.fileSize,
       format: book.format,

@@ -4,7 +4,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 import { BookCard } from "@/src/components/book/BookCard";
-import type { Book } from "@/src/data/books";
+import type { Book } from "@/src/lib/cms/types";
 
 export interface RailProps {
   title: string;

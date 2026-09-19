@@ -4,8 +4,7 @@ import { CheckCircle2, Download, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { EmptyState } from "@/src/components/book/EmptyState";
-import { type DownloadRecord, useAuth } from "@/src/context/AuthContext";
-import { BOOKS_DATA } from "@/src/data/books";
+import { type DownloadRecord } from "@/src/context/AuthContext";
 
 export interface DataTableProps {
   downloads: DownloadRecord[];
@@ -13,15 +12,16 @@ export interface DataTableProps {
 }
 
 export function DataTable({ downloads, className = "" }: DataTableProps) {
-  const { triggerDownload } = useAuth();
   const [reDownloadingId, setReDownloadingId] = useState<string | null>(null);
 
   const handleReDownload = async (record: DownloadRecord) => {
     setReDownloadingId(record.id);
-    const book = BOOKS_DATA.find((b) => b.id === record.bookId);
-    if (book) {
-      await triggerDownload(book);
-    }
+    const element = document.createElement("a");
+    element.href = record.bookDownloadUrl;
+    element.download = record.bookTitle;
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
     setTimeout(() => {
       setReDownloadingId(null);
     }, 1000);

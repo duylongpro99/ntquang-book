@@ -1,5 +1,5 @@
 import { BookOpen, Building, Calendar, HardDrive, Hash, Languages, User } from "lucide-react";
-import type { Book } from "@/src/data/books";
+import type { Book } from "@/src/lib/cms/types";
 
 export interface MetaListProps {
   book: Book;

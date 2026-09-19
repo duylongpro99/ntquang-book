@@ -5,7 +5,7 @@ import Link from "next/link";
 import { RatingStars } from "@/src/components/book/RatingStars";
 import { Skeleton } from "@/src/components/ui/Skeleton";
 import { useQuickView } from "@/src/context/QuickViewContext";
-import type { Book } from "@/src/data/books";
+import type { Book } from "@/src/lib/cms/types";
 
 export interface BookCardProps {
   book?: Book;

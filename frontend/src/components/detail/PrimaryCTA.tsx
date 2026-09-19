@@ -4,7 +4,7 @@ import { CheckCircle2, Download, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/src/components/ui/Button";
 import { useAuth } from "@/src/context/AuthContext";
-import type { Book } from "@/src/data/books";
+import type { Book } from "@/src/lib/cms/types";
 
 export interface PrimaryCTAProps {
   book: Book;

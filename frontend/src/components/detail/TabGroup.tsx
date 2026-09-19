@@ -3,7 +3,7 @@
 import { FileText, ListOrdered, Star } from "lucide-react";
 import { useState } from "react";
 import { RatingStars } from "@/src/components/book/RatingStars";
-import type { Book } from "@/src/data/books";
+import type { Book } from "@/src/lib/cms/types";
 
 export interface TabGroupProps {
   book: Book;

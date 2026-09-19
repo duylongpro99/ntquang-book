@@ -2,7 +2,7 @@
 
 import { X, ZoomIn } from "lucide-react";
 import { useState } from "react";
-import type { Book } from "@/src/data/books";
+import type { Book } from "@/src/lib/cms/types";
 
 export interface MediaViewerProps {
   book: Book;
