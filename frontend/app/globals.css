@@ -3,44 +3,8 @@
 @source "../app";
 
 @layer base {
-  :root {
-    /* Proprietary Clinical Palette: Oxford Medical Sapphire & Precision Slate */
-    --bg: #f8fafc;
-    --surface: #ffffff;
-    --surface-muted: #f1f5f9;
-    --border: #e2e8f0;
-    --text: #0f172a;
-    --text-muted: #475569;
-    --primary: #1d4ed8;
-    --primary-hover: #1e40af;
-    --primary-contrast: #ffffff;
-    --accent: #d97706;
-    --accent-contrast: #ffffff;
-    --success: #16a34a;
-    --warning: #d97706;
-    --danger: #dc2626;
-    --info: #0284c7;
-    --focus-ring: #3b82f6;
-  }
-  .dark {
-    /* Night Shift Clinical Navy Slate */
-    --bg: #0b1120;
-    --surface: #111c33;
-    --surface-muted: #1e293b;
-    --border: #25334d;
-    --text: #f8fafc;
-    --text-muted: #94a3b8;
-    --primary: #3b82f6;
-    --primary-hover: #60a5fa;
-    --primary-contrast: #ffffff;
-    --accent: #f59e0b;
-    --accent-contrast: #0b1120;
-    --success: #22c55e;
-    --warning: #fbbf24;
-    --danger: #ef4444;
-    --info: #38bdf8;
-    --focus-ring: #60a5fa;
-  }
+  /* Color tokens (:root light + .dark) are injected server-side in app/layout.tsx
+     from the CMS branding single type — see generateThemeCss in src/config/theme.ts. */
   html {
     background-color: var(--bg);
     color: var(--text);

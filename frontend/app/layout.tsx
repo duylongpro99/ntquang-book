@@ -6,10 +6,11 @@ import { AppFooter } from "@/src/components/global/AppFooter";
 import { AppHeader } from "@/src/components/global/AppHeader";
 import { AuthModal } from "@/src/components/global/AuthModal";
 import { ChatLauncher } from "@/src/components/global/ChatLauncher";
-import { CmsThemeProvider } from "@/src/components/global/CmsThemeManager";
 import { SocialProofToast } from "@/src/components/global/SocialProofToast";
+import { generateThemeCss } from "@/src/config/theme";
 import { AuthProvider } from "@/src/context/AuthContext";
 import { QuickViewProvider } from "@/src/context/QuickViewContext";
+import { getBranding } from "@/src/lib/cms/branding";
 import { getCategoryTree } from "@/src/lib/cms/categories";
 
 const inter = Inter({
@@ -39,23 +40,27 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const categories = await getCategoryTree();
+  const [categories, theme] = await Promise.all([getCategoryTree(), getBranding()]);
   return (
     <html lang="vi" className={`${inter.variable} ${beVietnamPro.variable}`}>
+      <head>
+        {/* Brand palette from the CMS branding single type: :root (light) + .dark tokens.
+            The .dark class is toggled per-visitor by ThemeToggle. */}
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: server-generated CSS from trusted CMS tokens */}
+        <style dangerouslySetInnerHTML={{ __html: generateThemeCss(theme) }} />
+      </head>
       <body className="min-h-screen flex flex-col bg-bg text-content antialiased">
-        <CmsThemeProvider>
-          <AuthProvider>
-            <QuickViewProvider>
-              <AppHeader categories={categories} />
-              <main className="flex-1">{children}</main>
-              <AppFooter />
-              <AuthModal />
-              <QuickViewModal />
-              <SocialProofToast />
-              <ChatLauncher />
-            </QuickViewProvider>
-          </AuthProvider>
-        </CmsThemeProvider>
+        <AuthProvider>
+          <QuickViewProvider>
+            <AppHeader categories={categories} />
+            <main className="flex-1">{children}</main>
+            <AppFooter />
+            <AuthModal />
+            <QuickViewModal />
+            <SocialProofToast />
+            <ChatLauncher />
+          </QuickViewProvider>
+        </AuthProvider>
       </body>
     </html>
   );

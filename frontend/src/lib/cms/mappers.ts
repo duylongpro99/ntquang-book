@@ -1,3 +1,4 @@
+import type { ColorTokens, ThemeConfig } from "@/src/config/theme";
 import { absolute } from "./client";
 import type { Article, Book, CategoryItem } from "./types";
 
@@ -60,7 +61,45 @@ export function mapArticle(e: StrapiEntry): Article {
   };
 }
 
-export function mapCategoryNode(e: StrapiEntry, children?: CategoryItem[], count?: number): CategoryItem {
+/** branding.theme-tokens component → ColorTokens (16 fields, 1:1). */
+function mapTokens(t: StrapiEntry): ColorTokens {
+  return {
+    bg: t.bg,
+    surface: t.surface,
+    surfaceMuted: t.surfaceMuted,
+    border: t.border,
+    text: t.text,
+    textMuted: t.textMuted,
+    primary: t.primary,
+    primaryHover: t.primaryHover,
+    primaryContrast: t.primaryContrast,
+    accent: t.accent,
+    accentContrast: t.accentContrast,
+    success: t.success,
+    warning: t.warning,
+    danger: t.danger,
+    info: t.info,
+    focusRing: t.focusRing,
+  };
+}
+
+/** branding single type → ThemeConfig (palette only; logo/site meta unused in Phase 4). */
+export function mapBranding(e: StrapiEntry): ThemeConfig {
+  return {
+    id: "cms-branding",
+    name: e.name,
+    description: e.description ?? "",
+    accentLabel: e.accentLabel ?? "",
+    light: mapTokens(e.light),
+    dark: mapTokens(e.dark),
+  };
+}
+
+export function mapCategoryNode(
+  e: StrapiEntry,
+  children?: CategoryItem[],
+  count?: number,
+): CategoryItem {
   const node: CategoryItem = { id: e.slug, name: e.name, slug: e.slug };
   if (count != null) node.count = count;
   if (children && children.length > 0) node.children = children;
