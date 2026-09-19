@@ -32,3 +32,6 @@ __pycache__/
 
 # git worktrees (isolated workspaces)
 .claude/worktrees/
+
+# local skill symlinks (machine-local, not portable)
+.claude/skills/
