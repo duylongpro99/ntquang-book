@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
-import { BOOKS_DATA, type Book } from "@/src/data/books";
+import type { Book } from "@/src/lib/cms/types";
 
 export interface GlobalSearchProps {
   variant?: "inline" | "full";
@@ -37,16 +37,15 @@ export function GlobalSearch({
       return;
     }
 
-    const timer = setTimeout(() => {
-      const q = query.toLowerCase().trim();
-      const filtered = BOOKS_DATA.filter(
-        (b) =>
-          b.title.toLowerCase().includes(q) ||
-          b.author.toLowerCase().includes(q) ||
-          b.categoryName.toLowerCase().includes(q) ||
-          b.description.toLowerCase().includes(q),
-      ).slice(0, 5);
-      setResults(filtered);
+    const timer = setTimeout(async () => {
+      const q = query.trim();
+      try {
+        const res = await fetch(`/api/search/suggest?q=${encodeURIComponent(q)}`);
+        const data: { books: Book[] } = await res.json();
+        setResults(data.books);
+      } catch {
+        setResults([]);
+      }
       setIsOpen(true);
     }, 200);
 
